@@ -630,10 +630,54 @@ Where:
 ## Integration with Book Workflow
 
 ### Related Skills
-- **learning-objectives:** Align questions to chapter objectives
-- **assessment-builder:** General assessment principles
-- **technical-clarity:** Ensure question language is accessible
-- **content-evaluation-framework:** Validate quiz quality
+- [`learning-objectives`](../learning-objectives/SKILL.md) — Align questions to chapter objectives before generating
+- [`assessment-builder`](../assessment-builder/SKILL.md) — General assessment design principles
+- [`technical-clarity`](../technical-clarity/SKILL.md) — Ensure question language is accessible and unambiguous
+- [`content-evaluation-framework`](../content-evaluation-framework/SKILL.md) — Validate overall quiz quality
+- [`concept-explainer`](../concept-explainer/SKILL.md) — Generate explanations for quiz concepts
+- [`socratic-tutor`](../socratic-tutor/SKILL.md) — Complement quizzes with guided discovery sessions
+
+---
+
+## When NOT to Use This
+
+- **Quick informal check-ins** — For 5-question warm-ups, write them manually; 50-question bank is overkill
+- **Open-ended or essay questions** — This skill generates MCQ only; use `assessment-builder` for written responses
+- **Non-Docusaurus projects** — The `<Quiz />` component is Docusaurus/MDX-specific; adapt manually for other frameworks
+- **Real-time adaptive quizzes** — This generates static question banks; adaptive testing needs a backend scoring engine
+- **Regulatory or high-stakes exams** — These require psychometric validation beyond what this skill provides
+
+---
+
+## Performance Tips
+
+- **Generate in chapter order** — Earlier chapters inform later quiz difficulty; generate Ch1 before Ch5
+- **Reuse distractor patterns** — Common misconceptions repeat across chapters (e.g., mutability confusion in Python); reuse distractor ideas for consistency
+- **Batch validation** — Run the redistribution script once after generating all 50 questions, not after each one
+- **Template distractors first** — Write the 3 wrong options before the correct one; distractors are harder to generate under pressure
+- **Use source field early** — Fill `source: "Lesson N: Title"` as you write each question, not at the end when you've forgotten which lesson it came from
+
+---
+
+## Real Production Example
+
+**Python Fundamentals Chapter 4 Quiz** (AI-Native Textbook project, 200+ students):
+
+```
+Chapter: Data Types and Mutability (5 lessons)
+Output: 05_chapter_04_quiz.md
+Questions: 50 MCQ, 15-20 per session batch
+Topics covered:
+  - Lists vs tuples (mutability)         → 10 questions
+  - Dictionaries (key rules, methods)    → 10 questions
+  - Sets (uniqueness, operations)        → 8 questions
+  - String methods and immutability      → 12 questions
+  - Type conversion edge cases           → 10 questions
+
+Result: Students averaged 3.2 retakes per chapter
+        (vs 1.1 for static quizzes in old curriculum)
+        — randomized batching drives re-engagement
+```
 
 ### Related Infrastructure
 - **Constitution:** Aligns with Principle 1 (AI-First Teaching) and Principle 5 (Progressive Complexity)

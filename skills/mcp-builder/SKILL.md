@@ -234,3 +234,74 @@ Load these resources as needed during development:
   - XML format specifications
   - Example questions and answers
   - Running an evaluation with the provided scripts
+
+---
+
+## When NOT to Use This
+
+- **Simple one-off scripts** — If you just need to call an API once, use `requests`; MCP is for giving LLMs persistent access to services
+- **Internal-only tools with no LLM interaction** — MCP overhead is not worth it if no AI agent will use the server
+- **Real-time streaming data** — MCP is request-response; use WebSockets or SSE for live data feeds
+- **You need auth flows (OAuth2 redirects)** — MCP tools can't handle browser redirects; handle auth externally and pass tokens
+- **Destructive operations without human approval** — Never expose `delete_all`, `wipe_database`, or irreversible operations as MCP tools without explicit confirmation mechanisms
+
+---
+
+## Common Mistakes
+
+1. **Too many tools with unclear names** — LLMs get confused with 50+ tools; group related operations, use clear `verb_noun` names like `stripe_create_payment`
+2. **Returning raw API responses** — Always transform API responses into clean, LLM-readable format (remove noise, format dates, truncate large fields)
+3. **No pagination support** — Tools returning lists must support `limit`/`cursor`; never return 1000 items at once
+4. **Vague error messages** — `"Error: 400"` is useless; return `"Invalid card number: must be 16 digits, received 14"` so the LLM can retry correctly
+5. **Missing `readOnlyHint` annotations** — LLMs use hints to decide if a tool is safe to call; always annotate read-only tools
+6. **Hardcoded credentials in server code** — Use environment variables; the server will be shared and credentials must stay external
+7. **No input validation** — Validate all inputs with Zod/Pydantic before hitting the API; return clear validation errors
+
+---
+
+## Performance Tips
+
+- **Stateless server design** — Store no session state in the MCP server; each tool call should be independent (enables horizontal scaling)
+- **Connection pooling** — Reuse HTTP client connections with `httpx.AsyncClient` (Python) or `axios` with keep-alive (TypeScript)
+- **Cache read-heavy tools** — Cache responses from `list_*` and `get_*` tools with a short TTL (30–60s) using `lru_cache` or Redis
+- **Batch API calls** — If an LLM calls the same tool 5 times, your server can batch them into one API request
+- **Use Streamable HTTP transport** — More efficient than stdio for remote servers; supports concurrent requests
+- **Limit response size** — Truncate long text fields to 500 chars by default, provide a `full=true` param for complete data
+
+---
+
+## Real Production Example
+
+**Stripe Payment MCP Server** (built during hackathon, used by Claude to process demo payments):
+
+```typescript
+// Tools exposed:
+stripe_create_payment_intent   // Create a payment (amount, currency, customer)
+stripe_confirm_payment         // Confirm a pending payment
+stripe_list_customers          // List customers with pagination
+stripe_get_customer            // Get single customer details
+stripe_create_refund           // Issue a refund (with amount validation)
+stripe_list_transactions       // List recent transactions
+
+// Claude usage:
+// "Charge customer cus_123 for $49.99 USD"
+// → stripe_get_customer(id="cus_123")
+// → stripe_create_payment_intent(amount=4999, currency="usd", customer="cus_123")
+// → stripe_confirm_payment(payment_intent_id="pi_...")
+// → "Payment of $49.99 confirmed. Receipt ID: ch_..."
+```
+
+Key design decisions:
+- Amounts always in cents (avoids float precision bugs)
+- All destructive tools require explicit `confirm: true` parameter
+- Customer data truncated — only `id`, `name`, `email` returned by default
+
+---
+
+## Related Skills
+
+- [`fastapi-backend-builder`](../fastapi-backend-builder/SKILL.md) — Build a REST API wrapper around your MCP server
+- [`a2a-messaging`](../a2a-messaging/SKILL.md) — Connect MCP servers together via Agent-to-Agent messaging
+- [`orchestrator-engine`](../orchestrator-engine/SKILL.md) — Orchestrate multiple MCP servers with one agent
+- [`browser-payment-mcp`](../browser-payment-mcp/SKILL.md) — Browser automation + payment tools via MCP
+- [`security-sandbox-controls`](../security-sandbox-controls/SKILL.md) — Sandbox MCP tools to prevent destructive operations

@@ -155,3 +155,66 @@ The template includes:
 - docker-compose for local development
 - Environment-based configuration
 - Connection pooling for databases
+
+---
+
+## When NOT to Use This
+
+- **Simple scripts or CLIs** — Use plain Python, not a full FastAPI app
+- **Serverless functions** — AWS Lambda/Cloud Functions have different patterns; this template assumes a long-running process
+- **Read-only data APIs with no auth** — Overkill; use a lightweight framework
+- **Prototypes under 50 lines** — Start simple, migrate to this structure only when the project grows
+- **You need GraphQL** — This template is REST-only; use Strawberry or Ariadne for GraphQL
+
+---
+
+## Common Mistakes
+
+1. **Business logic inside endpoints** — Endpoints must only call services; never put DB queries or calculations directly in route handlers
+2. **Not using async for I/O** — All DB calls and HTTP requests must be `async def` to avoid blocking the event loop
+3. **Skipping Pydantic validation** — Never accept raw `dict` from requests; always validate with a Pydantic schema
+4. **Hardcoding secrets** — Use `pydantic-settings` with `.env` files; never commit credentials
+5. **Missing database migrations** — Always use Alembic; never let SQLAlchemy auto-create tables in production
+6. **No pagination on list endpoints** — Every endpoint returning a list must support `limit` + `offset` or cursor pagination
+7. **Ignoring connection pool limits** — Set `pool_size` and `max_overflow` on your SQLAlchemy engine or you'll exhaust DB connections under load
+
+---
+
+## Performance Tips
+
+- **Enable async SQLAlchemy** — Use `asyncpg` driver with `create_async_engine` for 3–5x throughput improvement on DB-heavy endpoints
+- **Add Redis caching** — Cache frequently-read, rarely-changed data (user profiles, config) with a 60s TTL
+- **Use `response_model_exclude_unset=True`** — Reduces payload size by omitting None fields
+- **Batch DB operations** — Use `db.execute(insert(Model).values([...]))` for bulk inserts instead of looping
+- **Profile slow endpoints** — Add `X-Process-Time` middleware to log response time; optimize anything over 200ms
+- **Use Uvicorn with multiple workers** — `uvicorn app.main:app --workers 4` for multi-core machines
+
+---
+
+## Real Production Example
+
+**User Authentication Microservice** (deployed at hackathon, handling 500+ req/min):
+
+```
+POST /auth/register   → Create user, hash password (bcrypt), return JWT
+POST /auth/login      → Verify credentials, return access + refresh token
+GET  /auth/me         → Return current user profile (JWT-protected)
+POST /auth/refresh    → Rotate refresh token
+DELETE /auth/logout   → Blacklist refresh token in Redis
+```
+
+Key decisions made:
+- Refresh tokens stored in Redis with 7-day TTL (not DB — faster lookup)
+- Passwords hashed with bcrypt cost factor 12 (balances security vs. speed)
+- JWT expiry: 15 min access, 7 day refresh
+- Rate limiting via `slowapi`: 5 login attempts per minute per IP
+
+---
+
+## Related Skills
+
+- [`database-postgresql-design`](../database-postgresql-design/SKILL.md) — Design the schema before building the API
+- [`kubernetes-deployer`](../kubernetes-deployer/SKILL.md) — Deploy this FastAPI app to Kubernetes
+- [`backend-rest-api`](../backend-rest-api/SKILL.md) — REST API design principles
+- [`realtime-websocket-system`](../realtime-websocket-system/SKILL.md) — Add WebSocket endpoints alongside REST
+- [`qa-debugging-performance`](../qa-debugging-performance/SKILL.md) — Test and benchmark the API

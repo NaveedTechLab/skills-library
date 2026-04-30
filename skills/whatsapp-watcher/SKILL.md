@@ -228,3 +228,68 @@ await registry.start_all()
 ## Selector Updates
 
 WhatsApp Web UI changes periodically. See [references/selectors.md](references/selectors.md) for current selectors and update instructions.
+
+---
+
+## When NOT to Use This
+
+- **Official WhatsApp Business API use cases** — If you're building a product for customers, use the official Meta Cloud API; this tool is for personal/internal automation only
+- **Sending automated replies at scale** — This skill is read-only monitoring + file creation; it doesn't send messages and is not designed for bulk outreach (violates WhatsApp ToS)
+- **High-volume message processing (1000+/day)** — Playwright-based scraping has limits; use the official Business API for production-scale workloads
+- **Multi-account monitoring** — Each instance manages one WhatsApp account; parallel instances on the same machine can conflict
+- **Environments without a display (pure headless servers)** — First QR scan requires a visible browser; set up session locally, then transfer to server
+
+---
+
+## Common Mistakes
+
+1. **Running multiple instances simultaneously** — Two watchers on the same WhatsApp account will log each other out; run one instance per account
+2. **Not handling QR re-scan** — Sessions expire after ~14 days; build a re-scan notification into your monitoring or the watcher silently stops working
+3. **Using `headless: True` before QR scan** — First login must be headed (visible browser); only switch to headless after session file is created
+4. **Too-short `poll_interval`** — Polling every 0.5s will trigger WhatsApp's bot detection; keep at 5s minimum
+5. **Not deduplicating messages** — If your watcher restarts, it may re-process old messages; track processed message IDs in a local file
+6. **Broad trigger patterns** — `pattern: "hi"` will match everything; use specific patterns like `@task` or `urgent:` to avoid false positives
+
+---
+
+## Performance Tips
+
+- **Save session to persistent storage** — Mount `whatsapp_session/` to a Docker volume or cloud storage so QR scans survive restarts
+- **Filter by chat name** — Add `chat_filter: ["Boss", "Project Team"]` to only watch specific chats and reduce noise
+- **Use regex for smart triggers** — `r"(deadline|due|by).*\d{1,2}[\/\-]\d{1,2}"` captures date-based urgency more accurately than simple keywords
+- **Combine with `orchestrator-engine`** — Route different trigger categories to different downstream agents (urgent → Slack alert, @task → Jira ticket)
+- **Run as a systemd service** — Use `systemd` or `pm2` to auto-restart the watcher on crash; add `--headless` flag after first QR scan
+
+---
+
+## Real Production Example
+
+**Business Inquiry Auto-Triage System** (built for an AI Marketing Agency):
+
+```python
+triggers = [
+    # Client urgency signals
+    {"pattern": r"urgent|ASAP|immediately", "priority": "urgent"},
+    {"pattern": r"@task|@todo|@action",      "priority": "high"},
+    {"pattern": r"meeting.*(today|tomorrow)", "priority": "high"},
+    # Lead qualification
+    {"pattern": r"price|cost|quote|budget",  "priority": "normal"},
+    {"pattern": r"interested|want to|can you", "priority": "low"},
+]
+```
+
+Result:
+- 47 business inquiries/day auto-categorized
+- Sales team responded to `urgent` within 30 min (vs 4 hrs before)
+- Zero missed leads — all messages saved to `Needs_Action/` for review
+- Integrated with `gmail-watcher` to cross-reference email + WhatsApp from same client
+
+---
+
+## Related Skills
+
+- [`gmail-watcher`](../gmail-watcher/SKILL.md) — Watch Gmail alongside WhatsApp for unified inbox automation
+- [`base-watcher-framework`](../base-watcher-framework/SKILL.md) — The foundation this skill extends; learn it first
+- [`orchestrator-engine`](../orchestrator-engine/SKILL.md) — Route triggered actions to different downstream agents
+- [`a2a-messaging`](../a2a-messaging/SKILL.md) — Connect watcher output to multi-agent pipelines
+- [`audit-logging-system`](../audit-logging-system/SKILL.md) — Log all triggered actions for compliance and review

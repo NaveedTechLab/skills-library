@@ -203,3 +203,79 @@ helm upgrade --install myapp ./charts/myapp \
 ## Assets
 
 - [assets/helm-template/](assets/helm-template/) - Ready-to-use Helm chart template
+
+---
+
+## When NOT to Use This
+
+- **Single-container hobby projects** — Use `docker run` or docker-compose; Kubernetes is overkill
+- **Stateful apps without a storage plan** — Databases need PersistentVolumeClaims and backup strategy; don't deploy stateful services without planning this first
+- **Teams with no K8s knowledge** — K8s adds operational complexity; ensure at least one team member understands it
+- **Serverless workloads** — Use AWS Lambda / Cloud Run for event-driven, short-lived tasks
+- **You just need a quick demo** — Use Render, Railway, or Fly.io for instant deploys without K8s overhead
+
+---
+
+## Common Mistakes
+
+1. **No resource limits set** — Without `resources.limits`, one pod can starve others; always set CPU and memory limits
+2. **Using `imagePullPolicy: Always` with local images** — In Minikube, use `Never`; `Always` will try to pull from a registry that doesn't have your local image
+3. **Storing secrets in `values.yaml`** — Never commit real secrets to Git; use `kubectl create secret` or an external secrets manager
+4. **No readiness probe** — Without it, K8s sends traffic to pods before they're ready, causing 502 errors during deployments
+5. **Single replica in production** — Always run `replicaCount: 2+` for zero-downtime rolling updates
+6. **Not setting `terminationGracePeriodSeconds`** — Abrupt pod kills cause in-flight request drops; set to 30s minimum
+7. **Skipping `helm lint`** — Always lint before deploying; catches YAML errors that would fail silently
+
+---
+
+## Performance Tips
+
+- **Enable Horizontal Pod Autoscaler (HPA)** — Set `autoscaling.enabled: true` with CPU target 70%; handles traffic spikes automatically
+- **Use `topologySpreadConstraints`** — Spread pods across nodes to avoid single-node failure taking down your entire service
+- **Set Pod Disruption Budget (PDB)** — Ensures at least 1 pod stays running during node maintenance
+- **Use `preStop` hook** — Add a 5s sleep in `preStop` to let load balancers drain connections before pod termination
+- **Tune `initialDelaySeconds`** — Match it to your app's actual startup time; too low = false failures, too high = slow rollouts
+- **Use `startupProbe` for slow-starting apps** — Separate startup detection from liveness checks
+
+---
+
+## Real Production Example
+
+**FastAPI + PostgreSQL deployed to Minikube (hackathon production system)**:
+
+```bash
+# 1. Build image
+eval $(minikube docker-env)
+docker build -t crm-api:v1 .
+
+# 2. Deploy app
+helm upgrade --install crm-api ./charts/crm-api \
+  --set image.tag=v1 \
+  --set image.pullPolicy=Never \
+  --set replicaCount=2 \
+  --set resources.limits.cpu=500m \
+  --set resources.limits.memory=512Mi
+
+# 3. Deploy PostgreSQL
+helm repo add bitnami https://charts.bitnami.com/bitnami
+helm upgrade --install crm-db bitnami/postgresql \
+  --set auth.password=secret123 \
+  --set primary.resources.limits.memory=256Mi
+
+# 4. Expose & verify
+kubectl port-forward svc/crm-api 8000:80
+curl http://localhost:8000/health
+# {"status": "ok", "db": "connected"}
+```
+
+Result: 2-replica API, auto-restarts on crash, rolling updates with zero downtime.
+
+---
+
+## Related Skills
+
+- [`k8s-foundation`](../k8s-foundation/SKILL.md) — Learn Kubernetes fundamentals first
+- [`fastapi-backend-builder`](../fastapi-backend-builder/SKILL.md) — Build the app before deploying it
+- [`argocd-app-deployment`](../argocd-app-deployment/SKILL.md) — GitOps continuous deployment on top of this
+- [`prometheus-grafana-setup`](../prometheus-grafana-setup/SKILL.md) — Monitor your deployed app
+- [`postgres-k8s-setup`](../postgres-k8s-setup/SKILL.md) — Deploy PostgreSQL alongside your app
