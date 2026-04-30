@@ -529,3 +529,20 @@ export interface Message {
   timestamp?: Date;
 }
 ```
+## When NOT to Use This Skill
+
+- **Backend development tasks** — use `fastapi-backend-builder` or `backend-rest-api` for server-side code
+- **Mobile app development** — React Native has a different skill set; this skill targets web frontend only
+- **Static sites without JavaScript** — for content-only sites, a static site generator is more appropriate than a full React/Vue setup
+
+## Common Mistakes
+
+- Not lazy-loading routes and heavy components — importing everything eagerly bloats the initial bundle and increases time-to-interactive
+- Fetching data inside `useEffect` without cleanup — missing cleanup functions cause state updates on unmounted components and memory leaks
+- Not memoizing expensive computations with `useMemo`/`useCallback` — unnecessary re-renders slow down complex UIs; profile with React DevTools before and after memoization
+
+## Related Skills
+
+- [`frontend-react-dashboard`](../frontend-react-dashboard/SKILL.md) — Build dashboard layouts with this developer skill
+- [`nextjs-ui-builder`](../nextjs-ui-builder/SKILL.md) — Next.js-specific frontend development with SSR/SSG
+- [`webapp-testing`](../webapp-testing/SKILL.md) — Test the frontend built with this skill

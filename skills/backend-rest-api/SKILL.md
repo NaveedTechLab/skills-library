@@ -119,3 +119,21 @@ app.use('/auth', authLimiter);   // stricter limit on auth endpoints
 - [references/auth.md](references/auth.md) — JWT signing/verification, protected route middleware, refresh tokens, password hashing
 - [references/crud-patterns.md](references/crud-patterns.md) — Full CRUD templates, pagination (offset + cursor), filtering, sorting, error codes
 - `assets/api-template/` — Complete boilerplate to copy and adapt
+
+## When NOT to Use This Skill
+
+- **GraphQL APIs** — this skill generates REST endpoints; use a dedicated GraphQL scaffolding skill for graph-based APIs
+- **Event-driven microservices** — for services that communicate via messages rather than HTTP, use `event-streaming` or `fastapi-dapr-agent`
+- **Serverless functions** — if the API will be deployed as AWS Lambda or Vercel functions, the project structure this skill generates needs significant modification
+
+## Common Mistakes
+
+- Not versioning the API from the start (e.g., `/api/v1/`) — adding versioning later requires breaking changes for all existing clients
+- Returning raw database error messages to clients — exposes schema details and internal structure; always map errors to safe, generic responses
+- Not implementing pagination on list endpoints — returning unbounded lists causes timeouts and OOM errors at scale
+
+## Related Skills
+
+- [`fastapi-backend-builder`](../fastapi-backend-builder/SKILL.md) — Full-featured FastAPI app with auth, DB, and testing included
+- [`database-postgresql-design`](../database-postgresql-design/SKILL.md) — Design the database schema this API will expose
+- [`backend-ai-microservice`](../backend-ai-microservice/SKILL.md) — Add AI capabilities on top of the REST API foundation

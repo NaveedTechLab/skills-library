@@ -1,3 +1,8 @@
+---
+name: business-audit-generator
+description: Analyze business tasks, transactions, and goals to generate executive-level weekly briefings and CEO reports with KPIs, financial summaries, and performance indicators.
+---
+
 # Business Audit Generator
 
 ## Description
@@ -232,3 +237,20 @@ job_id = scheduler.schedule_job(
 - `jinja2` for report templating
 - `requests` for API integrations
 - `structlog` for structured logging
+## When NOT to Use This Skill
+
+- **Real-time operational dashboards** — this skill generates periodic briefings, not live dashboards; use a BI tool for real-time monitoring
+- **Detailed financial audits requiring accountant review** — AI-generated business intelligence does not replace professional financial auditing
+- **Organizations without structured task/transaction data** — the briefing quality depends on clean input data; unstructured data produces unreliable reports
+
+## Common Mistakes
+
+- Running the briefing without validating input data quality first — garbage-in produces garbage KPIs that mislead executives
+- Not specifying the reporting period — default behavior may aggregate all-time data instead of the current week
+- Treating the generated briefing as factually authoritative without human review — always have a human verify numbers against source systems before distributing
+
+## Related Skills
+
+- [`audit-logging-system`](../audit-logging-system/SKILL.md) — Provide the structured event log that feeds this briefing
+- [`scheduler-cron-integration`](../scheduler-cron-integration/SKILL.md) — Automate weekly briefing generation on a cron schedule
+- [`summary-generator`](../summary-generator/SKILL.md) — Generate narrative summaries from the structured data this skill produces

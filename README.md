@@ -128,10 +128,10 @@ npx skillhub install NaveedTechLab/skills-library/fastapi-backend-builder --proj
 ## 📦 Skill Categories
 
 ### ☁️ Cloud & DevOps
-`k8s-foundation` · `kubernetes-deployer` · `argocd-app-deployment` · `kafka-k8s-setup` · `postgres-k8s-setup` · `prometheus-grafana-setup` · `nextjs-k8s-deploy` · `infra-deployment-specialist` · `infra_devops`
+`k8s-foundation` · `kubernetes-deployer` · `argocd-app-deployment` · `kafka-k8s-setup` · `postgres-k8s-setup` · `prometheus-grafana-setup` · `nextjs-k8s-deploy` · `infra-deployment-specialist` · `infra-devops`
 
 ### ⚙️ Backend Development
-`fastapi-backend-builder` · `fastapi-dapr-agent` · `fastapi-engineer` · `backend-rest-api` · `backend-ai-microservice` · `realtime-websocket-system` · `database-postgresql-design` · `event-driven-architect` · `event_streaming`
+`fastapi-backend-builder` · `fastapi-dapr-agent` · `fastapi-engineer` · `backend-rest-api` · `backend-ai-microservice` · `realtime-websocket-system` · `database-postgresql-design` · `event-driven-architect` · `event-streaming`
 
 ### 🎨 Frontend Development
 `nextjs-ui-builder` · `frontend-design` · `frontend-developer` · `frontend-react-dashboard` · `frontend-ai-form-builder` · `motion-interaction-designer` · `threejs-react-ui-specialist` · `webgl-performance-optimizer` · `ui-ux-futuristic-designer` · `canvas-design` · `algorithmic-art`
@@ -152,10 +152,10 @@ npx skillhub install NaveedTechLab/skills-library/fastapi-backend-builder --proj
 `docx` · `pdf` · `pptx` · `xlsx` · `doc-coauthoring` · `notebooklm-slides`
 
 ### 🏢 CRM & Business
-`crm_database_management` · `channel_ingestion` · `agent_workflow` · `odoo-mcp-server` · `business-audit-generator`
+`crm-database-management` · `channel-ingestion` · `agent-workflow` · `odoo-mcp-server` · `business-audit-generator`
 
 ### 🧪 QA & Testing
-`webapp-testing` · `qa-testing-specialist` · `qa-auditor` · `qa-debugging-performance` · `qa_automation` · `code-validation-sandbox` · `security-sandbox-controls`
+`webapp-testing` · `qa-testing-specialist` · `qa-auditor` · `qa-debugging-performance` · `qa-automation` · `code-validation-sandbox` · `security-sandbox-controls`
 
 ### ✍️ Content & Writing
 `book-scaffolding` · `summary-generator` · `technical-clarity` · `prompt-template-designer` · `canonical-format-checker` · `session-intelligence-harvester` · `skills-proficiency-mapper` · `ux-evaluator` · `tool-selection-framework`

@@ -128,3 +128,20 @@ Take a second pass. Go back to the code and refine/polish further to make this a
 ## MULTI-PAGE OPTION
 
 To create additional pages when requested, create more creative pages along the same lines as the design philosophy but distinctly different as well. Bundle those pages in the same .pdf or many .pngs. Treat the first page as just a single page in a whole coffee table book waiting to be filled. Make the next pages unique twists and memories of the original. Have them almost tell a story in a very tasteful way. Exercise full creative freedom.
+## When NOT to Use This Skill
+
+- **Static images** — if the output doesn't need interactivity or animation, use a design tool (Figma, Illustrator) to produce a static image directly
+- **Complex 3D scenes** — use `webgl-performance-optimizer` or `threejs-react-ui-specialist` for 3D; Canvas 2D isn't the right tool
+- **Accessibility-critical UI** — Canvas content is invisible to screen readers; use SVG or HTML elements for UI that must be accessible
+
+## Common Mistakes
+
+- Not calling `ctx.save()` and `ctx.restore()` around isolated drawing operations — accumulated transform state causes rendering artifacts in subsequent draw calls
+- Drawing on every `mousemove` event without debouncing — triggers hundreds of redraws per second and causes jank on complex canvases
+- Not accounting for device pixel ratio (`window.devicePixelRatio`) — canvas looks blurry on high-DPI/Retina displays without DPR scaling
+
+## Related Skills
+
+- [`algorithmic-art`](../algorithmic-art/SKILL.md) — Generate algorithm-driven generative art on Canvas
+- [`webgl-performance-optimizer`](../webgl-performance-optimizer/SKILL.md) — Upgrade Canvas 2D to WebGL for performance-critical rendering
+- [`motion-interaction-designer`](../motion-interaction-designer/SKILL.md) — Add motion and interaction design to Canvas-based UIs

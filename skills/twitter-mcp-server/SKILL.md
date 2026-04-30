@@ -1,3 +1,8 @@
+---
+name: twitter-mcp-server
+description: Integrate with the X (Twitter) API v2 via MCP to create tweets, post threads, and manage media with HITL approval workflows. Use when automating Twitter/X account management from Claude Code.
+---
+
 # Twitter (X) MCP Server
 
 ## Description
@@ -211,3 +216,21 @@ All operations logged with:
 - `pydantic` for validation
 - `tweepy` (optional, for advanced features)
 - Integration with phase-3 audit_logger
+
+## When NOT to Use This Skill
+
+- **Personal Twitter accounts** — the X API v2 Basic tier is expensive and requires Elevated access for meaningful functionality; personal posting is faster done manually
+- **During Twitter/X API rate limit blackout periods** — X API rate limits are strict; automated posting during high-traffic events can exhaust your quota for hours
+- **Crisis or sensitive topics** — never automate responses to breaking news, controversy, or sensitive topics; real-time human judgment is required
+
+## Common Mistakes
+
+- Using read-write OAuth 1.0a tokens for a read-only application — always request minimum necessary OAuth scopes; excessive permissions increase the blast radius of a token compromise
+- Not handling the `duplicate_content` error — X rejects identical tweets; always vary content or include timestamps when posting programmatically
+- Posting threads without tracking the parent tweet ID correctly — broken thread chains where replies aren't attached to the right parent create confusing, disjointed threads
+
+## Related Skills
+
+- [`meta-social-mcp-server`](../meta-social-mcp-server/SKILL.md) — Extend social automation to Facebook and Instagram alongside X
+- [`linkedin-posting-automation`](../linkedin-posting-automation/SKILL.md) — Manage LinkedIn alongside X/Twitter
+- [`mcp-builder`](../mcp-builder/SKILL.md) — Build the MCP infrastructure this server runs on

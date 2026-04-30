@@ -95,3 +95,21 @@ python .claude/skills/browser-payment-mcp/scripts/browser_payment_mcp.py
 
 The server starts on `stdio` transport by default (suitable for MCP client
 integration).
+
+## When NOT to Use This Skill
+
+- **Backend-only payment processing** — if no browser interaction is required, use the payment provider's server-side SDK directly
+- **Mobile apps** — this skill is browser-automation-focused; mobile payment SDKs need a native integration approach
+- **High-volume automated billing** — browser automation for payments is slow and fragile at scale; use the payment gateway's REST API with webhooks
+
+## Common Mistakes
+
+- Not implementing idempotency keys on payment submissions — duplicate form submissions can result in double charges
+- Storing card details even temporarily in browser memory or logs — PCI-DSS compliance requires zero exposure of raw card data
+- Not handling payment provider downtime gracefully — always implement retry logic with user-visible error states
+
+## Related Skills
+
+- [`mcp-builder`](../mcp-builder/SKILL.md) — Build the MCP server layer that this payment skill operates through
+- [`security-sandbox-controls`](../security-sandbox-controls/SKILL.md) — Apply security controls around payment automation
+- [`audit-logging-system`](../audit-logging-system/SKILL.md) — Log all payment events for compliance and audit trails

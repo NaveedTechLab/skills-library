@@ -618,3 +618,15 @@ When providing 3D integration guidance, structure as:
 ---
 
 **Remember**: 3D should enhance, not hinder. Performance is non-negotiable. Always provide graceful fallbacks.
+
+## When NOT to Use This Skill
+
+- **2D UI that doesn't require 3D** — Three.js adds significant bundle size and complexity; use CSS/Canvas for 2D effects
+- **Mobile-first applications** — WebGL performance is inconsistent on low-end mobile devices; always test on target hardware before committing to Three.js
+- **Accessibility-required interfaces** — 3D canvas content is opaque to screen readers; ensure core functionality is accessible via HTML before layering 3D on top
+
+## Related Skills
+
+- [`webgl-performance-optimizer`](../webgl-performance-optimizer/SKILL.md) — Optimize the Three.js scenes built with this skill
+- [`canvas-design`](../canvas-design/SKILL.md) — 2D canvas alternative for simpler visualizations
+- [`motion-interaction-designer`](../motion-interaction-designer/SKILL.md) — Add interaction design to 3D experiences

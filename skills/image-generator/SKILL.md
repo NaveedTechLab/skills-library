@@ -1,3 +1,8 @@
+---
+name: image-generator
+description: Generate high-quality images using multi-turn reasoning and professional creative brief methodology. Use when you need distinctive, purpose-driven visuals rather than generic AI-generated images.
+---
+
 # Image Generator Skill
 
 ## Context & Problem
@@ -418,3 +423,21 @@ You'll know this skill is working when:
 - ✅ Zero duplicate images requiring rework
 
 **Result:** Professional-quality visuals with distinctive aesthetics, generated autonomously with systematic quality control, embedded immediately, and recoverable from interruptions.
+
+## When NOT to Use This Skill
+
+- **Logo and brand identity design** — brand logos require human creative direction and trademark considerations; AI generation is not appropriate for primary brand assets
+- **Images for regulated contexts** (medical, legal, financial) — AI-generated images in professional contexts require disclosure and expert review
+- **High-volume batch image generation** — this skill uses a multi-turn reasoning approach optimized for quality; for bulk generation, use the image provider's batch API directly
+
+## Common Mistakes
+
+- Accepting the first image output without iteration — this skill's value is the multi-turn refinement loop; always provide feedback for at least one revision pass
+- Writing overly technical style specifications — specifying "44pt Roboto Bold" activates prediction mode instead of reasoning; describe intent and mood instead
+- Not specifying the output's intended use — an image for a presentation slide has different composition requirements than a social media post; always state the context
+
+## Related Skills
+
+- [`visual-asset-workflow`](../visual-asset-workflow/SKILL.md) — Educational visual asset generation using creative brief methodology
+- [`algorithmic-art`](../algorithmic-art/SKILL.md) — Generate programmatic generative art as an alternative to AI image generation
+- [`brand-guidelines`](../brand-guidelines/SKILL.md) — Ensure generated images align with brand visual standards

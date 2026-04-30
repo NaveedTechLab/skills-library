@@ -104,3 +104,21 @@ python scripts/cli.py analyze --accounting-dir ./vault/Accounting --days 30
 # Audit subscriptions
 python scripts/cli.py audit-subscriptions --accounting-dir ./vault/Accounting
 ```
+
+## When NOT to Use This Skill
+
+- **Official financial reporting** — the finance watcher generates alerts and summaries, not audited financial statements; never use it as a substitute for formal accounting
+- **High-frequency trading or real-time price feeds** — the polling interval is designed for personal finance monitoring, not millisecond-precision trading systems
+- **Jurisdictions with strict financial data residency requirements** — verify that storing bank transaction data locally complies with your regional financial regulations
+
+## Common Mistakes
+
+- Storing bank credentials or API tokens in plaintext config files — use the operating system's credential store or a secrets manager; never commit financial credentials to git
+- Not setting transaction amount thresholds for alerts — alerting on every transaction creates noise; configure minimum amounts to filter out small recurring charges
+- Processing historical transactions multiple times — track the last-processed transaction ID or timestamp and use it as a cursor to avoid duplicate processing
+
+## Related Skills
+
+- [`base-watcher-framework`](../base-watcher-framework/SKILL.md) — Base framework the finance watcher extends
+- [`audit-logging-system`](../audit-logging-system/SKILL.md) — Log financial events for compliance
+- [`business-audit-generator`](../business-audit-generator/SKILL.md) — Generate executive briefings from aggregated financial data

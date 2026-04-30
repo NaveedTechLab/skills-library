@@ -125,3 +125,21 @@ router.get('/generate/stream', async (req, res) => {
 - [references/llm-integration.md](references/llm-integration.md) — LLM client setup (OpenAI/Anthropic), streaming, retry logic, error taxonomy
 - [references/docker.md](references/docker.md) — Multi-stage Dockerfile, docker-compose patterns, healthchecks, secrets injection
 - `assets/microservice-template/` — Complete boilerplate to copy and adapt
+
+## When NOT to Use This Skill
+
+- **Simple CRUD APIs without AI features** — use `backend-rest-api` instead; adding AI infrastructure to a basic CRUD service is unnecessary complexity
+- **Real-time streaming AI responses** — the microservice pattern adds latency; use a WebSocket-based skill like `realtime-websocket-system` for streaming
+- **Single-page applications calling LLMs directly from the frontend** — always route AI calls through a backend service to protect API keys
+
+## Common Mistakes
+
+- Not implementing rate limiting per user — LLM APIs are expensive; without per-user limits a single abusive caller can exhaust your budget
+- Hard-coding the model name in the service — make the model configurable via environment variable so you can switch models without redeployment
+- Not caching repeated identical prompts — identical LLM calls with the same inputs are pure waste; add a prompt cache layer for deterministic queries
+
+## Related Skills
+
+- [`backend-rest-api`](../backend-rest-api/SKILL.md) — Build the REST API layer that wraps this AI microservice
+- [`fastapi-backend-builder`](../fastapi-backend-builder/SKILL.md) — Full FastAPI application scaffolding including auth and DB
+- [`mcp-builder`](../mcp-builder/SKILL.md) — Expose the AI microservice as an MCP server for Claude Code consumption

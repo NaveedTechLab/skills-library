@@ -639,3 +639,21 @@ When recommending tool selection, provide:
 - Expertise level (familiar with codebase or new)
 
 Or describe a scenario and I'll apply the framework to recommend tool selection with detailed workflow!
+
+## When NOT to Use This Skill
+
+- **When the right tool is already obvious** — don't spend time on formal tool selection for well-understood use cases; apply this framework when genuinely evaluating alternatives
+- **Vendor-locked environments** — if organizational policy mandates a specific tool stack, framework selection is moot; document the constraint and move on
+- **Exploratory prototyping** — when you're learning and exploring, use whatever tool you're comfortable with; apply formal selection when committing to production tooling
+
+## Common Mistakes
+
+- Evaluating tools without defining requirements first — "Tool A has more features" is meaningless without knowing which features matter for your use case
+- Over-weighting popularity over fit — the most popular tool is often wrong for specialized use cases; evaluate against your specific requirements, not community size
+- Selecting tools without considering operational costs — a tool that's easy to build with may be expensive to operate, monitor, and maintain at scale
+
+## Related Skills
+
+- [`prompt-template-designer`](../prompt-template-designer/SKILL.md) — Select the right prompt tooling and then design prompts for it
+- [`implementation-specialist`](../implementation-specialist/SKILL.md) — Implement against the tool decisions made with this framework
+- [`skills-proficiency-mapper`](../skills-proficiency-mapper/SKILL.md) — Map team proficiency in selected tools to identify training needs

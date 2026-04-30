@@ -195,3 +195,20 @@ Required dependencies (install if not available):
 - **LibreOffice**: `sudo apt-get install libreoffice` (for PDF conversion)
 - **Poppler**: `sudo apt-get install poppler-utils` (for pdftoppm to convert PDF to images)
 - **defusedxml**: `pip install defusedxml` (for secure XML parsing)
+## When NOT to Use This Skill
+
+- **Web-first documents** — if the output will be read in a browser, generate HTML or Markdown instead; `.docx` adds download friction
+- **Large-scale document generation at high volume** — `.docx` generation is CPU-intensive; for thousands of documents, use a dedicated document service
+- **Collaborative real-time editing** — `.docx` files don't support real-time collaboration; use Google Docs or a similar platform for live editing workflows
+
+## Common Mistakes
+
+- Not applying a template document as the base — generating `.docx` from scratch produces documents with inconsistent corporate styling; always use a branded template
+- Ignoring character encoding — non-ASCII characters (Unicode, emoji) in Python/Node `.docx` libraries require explicit encoding handling or they produce garbled output
+- Not testing on both Word and LibreOffice — OOXML rendering differs between applications; test with both to catch compatibility issues
+
+## Related Skills
+
+- [`pdf`](../pdf/SKILL.md) — Convert the generated `.docx` to PDF for read-only distribution
+- [`pptx`](../pptx/SKILL.md) — Generate PowerPoint presentations alongside Word documents
+- [`doc-coauthoring`](../doc-coauthoring/SKILL.md) — Co-author the content before converting it to `.docx`

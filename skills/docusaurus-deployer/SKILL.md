@@ -134,3 +134,21 @@ Before deployment to production, verify:
 - TypeScript
 - GitHub Actions
 - GitHub Pages
+
+## When NOT to Use This Skill
+
+- **Kubernetes or self-hosted deployments** — use `docusaurus-deploy` for Kubernetes-specific deployments
+- **Non-GitHub hosting platforms** (Netlify, Vercel, AWS S3) — this skill is optimized for GitHub Pages; use those platforms' own deploy tools
+- **Repositories without write access** — you need admin access to configure GitHub Pages and GitHub Actions secrets
+
+## Common Mistakes
+
+- Not setting the correct `baseUrl` in `docusaurus.config.ts` for project pages — GitHub Pages serves project pages at `/<repo-name>/`; missing this causes broken assets
+- Triggering deployment without a successful local build — always run `npm run build` locally before pushing; it catches broken links and TypeScript errors before they fail the CI
+- Forgetting to configure the GitHub Pages source to "GitHub Actions" in repository settings — the workflow runs but nothing deploys without this setting enabled
+
+## Related Skills
+
+- [`docusaurus-deploy`](../docusaurus-deploy/SKILL.md) — Deploy Docusaurus to Kubernetes instead of GitHub Pages
+- [`k8s-foundation`](../k8s-foundation/SKILL.md) — Kubernetes infrastructure if switching from GitHub Pages to self-hosted
+- [`canonical-format-checker`](../canonical-format-checker/SKILL.md) — Validate documentation quality before publishing

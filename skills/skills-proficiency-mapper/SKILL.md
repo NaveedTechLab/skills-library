@@ -1,3 +1,8 @@
+---
+name: skills-proficiency-mapper
+description: Map and assess skill proficiency levels across technical and non-technical domains. Use when evaluating team capabilities, designing training plans, or producing skill gap analysis reports.
+---
+
 # Skills Proficiency Mapper Skill v3.0 (Reasoning-Activated)
 
 **Version**: 3.0.0 (Strengthened from v2.0 2/4 → 4/4)
@@ -159,3 +164,21 @@ You tend to assign proficiency levels based on intuition ("this feels like B1") 
 ---
 
 **Ready to use**: Invoke to map skills to CEFR/Bloom's/DigComp proficiency levels with validated progression, measurable indicators, and coherence across chapters.
+
+## When NOT to Use This Skill
+
+- **Formal HR performance reviews** — proficiency mapping for compensation or promotion decisions requires validated, legally defensible assessment frameworks, not AI-generated skill maps
+- **Novel, emerging skills without established proficiency benchmarks** — mapping requires reference standards; for cutting-edge skills where standards don't exist yet, focus on observable outputs instead
+- **Single-skill assessments** — if you only need to assess one skill, a targeted assessment is faster than a full proficiency mapping exercise
+
+## Common Mistakes
+
+- Conflating knowledge with demonstrated skill — knowing about a topic and being able to apply it under real conditions are different proficiency levels; always specify whether you're mapping declarative or procedural knowledge
+- Not defining proficiency levels before mapping — "beginner/intermediate/advanced" means different things to different people; use specific, observable behavioral descriptors for each level
+- Mapping proficiency in isolation from the job context — a skill at "intermediate" proficiency may be sufficient for one role and insufficient for another; always contextualize levels against role requirements
+
+## Related Skills
+
+- [`session-intelligence-harvester`](../session-intelligence-harvester/SKILL.md) — Harvest session data to identify skill gaps revealed in practice
+- [`learning-objectives`](../learning-objectives/SKILL.md) — Define learning objectives to address mapped skill gaps
+- [`assessment-builder`](../assessment-builder/SKILL.md) — Build assessments to validate proficiency levels identified by the mapper

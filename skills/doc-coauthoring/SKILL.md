@@ -373,3 +373,21 @@ Announce document completion. Provide a few final tips:
 - Don't rush through stages
 - Each iteration should make meaningful improvements
 - The goal is a document that actually works for readers
+
+## When NOT to Use This Skill
+
+- **Solo authoring tasks** — if one person owns the document end-to-end, the co-authoring coordination overhead is unnecessary
+- **Code documentation (docstrings, inline comments)** — use language-specific documentation tools; prose co-authoring workflows don't apply
+- **Legal contracts or compliance documents** — professional review and legal sign-off are required; AI co-authoring doesn't substitute for legal expertise
+
+## Common Mistakes
+
+- Not establishing a shared style guide before co-authoring — contributors write in different voices and the document reads inconsistently
+- Failing to track which sections are draft vs. reviewed — reviewers waste time re-reading finalized sections, or approved sections get overwritten
+- Merging contributions without a final voice-and-tone pass — the seams between authors are visible; always do a final read-through to unify voice
+
+## Related Skills
+
+- [`technical-clarity`](../technical-clarity/SKILL.md) — Apply clarity editing to the co-authored document
+- [`canonical-format-checker`](../canonical-format-checker/SKILL.md) — Verify the final document meets format standards
+- [`summary-generator`](../summary-generator/SKILL.md) — Generate executive summaries from the co-authored document

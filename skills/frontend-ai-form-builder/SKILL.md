@@ -140,3 +140,21 @@ For print CSS and jsPDF direct-write alternative, see [references/pdf-export.md]
 - [references/ai-integration.md](references/ai-integration.md) — API call hook, streaming, structured JSON parsing, error handling
 - [references/pdf-export.md](references/pdf-export.md) — html2canvas + jsPDF, print CSS, multi-page handling, print-ready rules
 - `assets/form-template/` — Complete boilerplate to copy and adapt
+
+## When NOT to Use This Skill
+
+- **Simple static forms** — a single-field contact form doesn't justify an AI form builder; use a plain HTML form or a form service
+- **Forms handling sensitive medical or financial data** — AI-generated forms require careful accessibility and compliance review before processing sensitive personal information
+- **Forms embedded in CMS platforms** (WordPress, Webflow) — use the CMS's native form builder; React-based AI forms don't integrate cleanly with CMS environments
+
+## Common Mistakes
+
+- Not implementing server-side validation alongside client-side validation — AI-enhanced client validation can be bypassed; always re-validate on the backend
+- Generating forms without ARIA labels and error announcements — AI-generated forms often miss accessibility attributes; always audit with a screen reader
+- Not handling network failures during form submission — show a meaningful error message and preserve form state when the submit API call fails
+
+## Related Skills
+
+- [`frontend-react-dashboard`](../frontend-react-dashboard/SKILL.md) — Embed AI forms in a React dashboard layout
+- [`backend-rest-api`](../backend-rest-api/SKILL.md) — Build the API endpoint that receives form submissions
+- [`webapp-testing`](../webapp-testing/SKILL.md) — Test form validation, submission flows, and edge cases

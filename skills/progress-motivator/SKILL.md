@@ -61,3 +61,20 @@ SKILL RESPONSE:
 - Provide actionable next steps
 - Maintain consistency in tracking metrics
 - Respect privacy of learning data
+## When NOT to Use This Skill
+
+- **Performance management or evaluation contexts** — motivational framing can undermine honest performance feedback; use neutral, factual language for formal evaluations
+- **Users experiencing burnout or mental health challenges** — positive reinforcement isn't a substitute for addressing root causes of burnout; recommend appropriate support resources
+- **Tasks that genuinely aren't going well** — forced positivity when progress is poor erodes trust; acknowledge real challenges honestly before motivating
+
+## Common Mistakes
+
+- Using generic praise ("Great job!") without referencing specific achievements — vague encouragement feels hollow; always reference the specific action or milestone being celebrated
+- Motivating toward speed at the expense of quality — framing progress as "almost done" when quality gates haven't been met encourages cutting corners
+- Ignoring the learner's stated preferences for feedback style — some people find cheerful motivation patronizing; ask about preferred feedback style first
+
+## Related Skills
+
+- [`socratic-tutor`](../socratic-tutor/SKILL.md) — Guide learners through challenges with questions rather than direct encouragement
+- [`learning-objectives`](../learning-objectives/SKILL.md) — Define the milestones that progress motivation is tracking toward
+- [`assessment-builder`](../assessment-builder/SKILL.md) — Create checkpoints that give learners concrete evidence of their progress

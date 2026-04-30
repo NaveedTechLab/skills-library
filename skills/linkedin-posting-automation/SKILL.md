@@ -1,3 +1,8 @@
+---
+name: linkedin-posting-automation
+description: Automate LinkedIn post creation, review, and publishing with approval-gated workflows. Use when you need a governed system for consistent LinkedIn presence with content quality controls.
+---
+
 # LinkedIn Posting Automation
 
 ## Description
@@ -199,3 +204,20 @@ calendar = manager.get_content_calendar(start_date="2024-01-15", end_date="2024-
 - `celery` for asynchronous task processing
 - `redis` for caching and task queues
 - `sqlalchemy` for database operations
+## When NOT to Use This Skill
+
+- **Personal profiles without a brand strategy** — automated posting without a content strategy produces noise, not engagement
+- **Accounts without the LinkedIn Marketing Developer Platform access** — this skill requires API access; personal accounts may not qualify for API use
+- **Crisis or sensitive communications** — never use automated posting for time-sensitive or sensitive content that requires human judgment in real time
+
+## Common Mistakes
+
+- Posting without reviewing the approval workflow — the approval gate exists for a reason; bypassing it exposes the brand to unreviewed content
+- Not including UTM parameters in links — LinkedIn posts that drive traffic can't be attributed in analytics without proper URL tracking
+- Using the same post format repeatedly — LinkedIn's algorithm deprioritizes repetitive content; vary between text-only, image, document, and link posts
+
+## Related Skills
+
+- [`meta-social-mcp-server`](../meta-social-mcp-server/SKILL.md) — Extend social automation to Facebook and Instagram
+- [`twitter-mcp-server`](../twitter-mcp-server/SKILL.md) — Automate Twitter/X posting alongside LinkedIn
+- [`content-evaluation-framework`](../content-evaluation-framework/SKILL.md) — Evaluate post quality before the approval gate

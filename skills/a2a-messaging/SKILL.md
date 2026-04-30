@@ -123,3 +123,21 @@ python cli.py heartbeat
 - **Audit Logging System**: All messages are logged through the audit system.
 - **Finance Watcher**: Payment approvals flow through A2A approval_request/response.
 - **Gmail Watcher**: Email triage results sent as task_delegation from Cloud to Local.
+
+## When NOT to Use This Skill
+
+- **Single-agent workflows** — if only one Claude Code instance is running, A2A messaging adds unnecessary infrastructure; use direct tool calls instead
+- **Synchronous request-response patterns** — A2A is designed for async task delegation; for immediate responses, use direct API calls
+- **Simple file handoffs between agents** — if the shared vault already satisfies your coordination needs, adding the message broker is over-engineering
+
+## Common Mistakes
+
+- Sending secrets (API keys, tokens) inside message payloads — the security filter will reject the message; pass only references or task identifiers
+- Not setting a TTL on messages — stale messages accumulate in the dead letter queue and can confuse the receiving agent
+- Using CRITICAL priority for non-urgent tasks — it starves genuinely critical messages and slows overall throughput
+
+## Related Skills
+
+- [`orchestrator-engine`](../orchestrator-engine/SKILL.md) — Coordinate multi-agent workflows using A2A messages
+- [`audit-logging-system`](../audit-logging-system/SKILL.md) — Audit trail for all inter-agent communications
+- [`watchdog-process-manager`](../watchdog-process-manager/SKILL.md) — Monitor agent health via heartbeat messages

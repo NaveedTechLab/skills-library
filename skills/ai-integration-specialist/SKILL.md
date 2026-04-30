@@ -505,3 +505,21 @@ class ApprovalMetrics:
 - **[llm-prompting.md](references/llm-prompting.md)** - Comprehensive LLM prompting patterns, few-shot learning, multi-agent orchestration, and optimization techniques
 - **[rag-systems.md](references/rag-systems.md)** - Complete RAG implementation with vector databases, chunking strategies, retrieval patterns, and feedback loops
 - **[whatsapp-api.md](references/whatsapp-api.md)** - WhatsApp Business API integration, approval workflows, interactive messages, and webhook handling
+
+## When NOT to Use This Skill
+
+- **Simple single-model chatbots without RAG** — if you just need a basic API call to Claude or GPT, the full integration patterns here are overkill
+- **Real-time streaming applications with strict latency requirements** — RAG retrieval adds latency; profile first before adding vector search to the hot path
+- **Environments where WhatsApp Business API access is unavailable** — the approval workflow patterns require verified WhatsApp Business accounts
+
+## Common Mistakes
+
+- Chunking documents without overlap — adjacent chunks lose contextual continuity and degrade retrieval quality
+- Not implementing retry logic with exponential backoff for LLM API calls — transient rate-limit errors cause unnecessary failures
+- Sending unapproved WhatsApp template messages — Meta's policy requires pre-approval for template messages; using custom messages without templates triggers account suspension
+
+## Related Skills
+
+- [`mcp-builder`](../mcp-builder/SKILL.md) — Build MCP servers to expose the LLM integrations built here
+- [`whatsapp-watcher`](../whatsapp-watcher/SKILL.md) — Monitor and respond to WhatsApp messages in real time
+- [`orchestrator-engine`](../orchestrator-engine/SKILL.md) — Orchestrate multi-agent LLM workflows

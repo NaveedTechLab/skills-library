@@ -273,3 +273,21 @@ Load these references as needed during evaluation to ensure consistency and thor
 ---
 
 **Use this skill to maintain consistent, objective, evidence-based quality standards for all educational content.**
+
+## When NOT to Use This Skill
+
+- **Rough drafts and work-in-progress** — evaluation is most valuable on near-final content; critiquing early drafts can stifle the creative process
+- **Real-time content moderation** — this skill provides thoughtful evaluation, not high-speed automated filtering
+- **Purely subjective creative content** — evaluation frameworks require defined criteria; free-form creative writing resists rubric-based assessment
+
+## Common Mistakes
+
+- Applying evaluation criteria that weren't established before content creation — post-hoc criteria lead to biased judgments
+- Over-weighting format compliance vs. content quality — a perfectly formatted but shallow piece scores incorrectly if structure dominates the rubric
+- Not calibrating the framework with examples before using it — evaluators interpret vague criteria differently; always anchor criteria with concrete examples
+
+## Related Skills
+
+- [`canonical-format-checker`](../canonical-format-checker/SKILL.md) — Check structural format compliance as one input to the evaluation
+- [`technical-clarity`](../technical-clarity/SKILL.md) — Improve content that the evaluation framework flags for clarity issues
+- [`ux-evaluator`](../ux-evaluator/SKILL.md) — Apply user experience evaluation alongside content quality evaluation

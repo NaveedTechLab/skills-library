@@ -98,3 +98,20 @@ class MaterialResponse(BaseModel):
 - Secure authentication with JWT or OAuth2
 - CORS configuration for frontend integration
 - File upload validation and security
+## When NOT to Use This Skill
+
+- **Microservices with Dapr integration** — use `fastapi-dapr-agent` which includes sidecar configurations
+- **Prototype/throwaway scripts** — FastAPI's full structure (routers, models, middleware) is overkill for a quick script; use Flask or a plain Python function
+- **GraphQL APIs** — FastAPI supports GraphQL via Strawberry, but this skill generates REST APIs by default; specify GraphQL explicitly if that's the requirement
+
+## Common Mistakes
+
+- Not using `async def` for I/O-bound route handlers — synchronous route handlers block the event loop and drastically reduce throughput under concurrent load
+- Not validating environment variables at startup — missing `DATABASE_URL` or API keys cause cryptic runtime errors; use Pydantic `Settings` to validate config at import time
+- Returning `dict` objects directly instead of Pydantic response models — raw dicts bypass validation and expose internal field names; always define response schemas
+
+## Related Skills
+
+- [`fastapi-backend-builder`](../fastapi-backend-builder/SKILL.md) — Full-featured FastAPI app with auth, DB migrations, and testing
+- [`backend-rest-api`](../backend-rest-api/SKILL.md) — Framework-agnostic REST API design principles
+- [`database-postgresql-design`](../database-postgresql-design/SKILL.md) — Design the PostgreSQL schema the FastAPI app will use

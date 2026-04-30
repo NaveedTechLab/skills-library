@@ -221,3 +221,21 @@ The watcher waits for files to stabilize before processing:
 - Then processes and emits event
 
 This prevents processing partially downloaded/copied files.
+
+## When NOT to Use This Skill
+
+- **Network or cloud storage** — `inotify`/`FSEvents` only works on local filesystems; use cloud storage event triggers (S3 events, GCS Pub/Sub) for cloud file watching
+- **Binary files requiring content parsing** — filesystem watchers detect changes but don't parse binary formats; combine with a parsing skill for PDFs, images, or spreadsheets
+- **Windows environments with network shares** — filesystem event propagation on SMB/UNC paths is unreliable; use polling-based watchers instead
+
+## Common Mistakes
+
+- Not filtering by file extension — broad watchers trigger on temporary files, `.swp` files, and IDE artifacts, causing redundant processing
+- Reprocessing the same file multiple times due to `MODIFY` event bursts — editors write files in multiple steps; debounce events with a short delay (200-500ms) before acting
+- Not handling `IN_DELETE` and `IN_MOVED_FROM` events — watchdog fires multiple events per file operation; handle all relevant events or you'll miss file deletions and renames
+
+## Related Skills
+
+- [`base-watcher-framework`](../base-watcher-framework/SKILL.md) — Base framework this filesystem watcher extends
+- [`audit-logging-system`](../audit-logging-system/SKILL.md) — Log filesystem events for compliance and audit trails
+- [`watchdog-process-manager`](../watchdog-process-manager/SKILL.md) — Monitor the filesystem watcher process itself

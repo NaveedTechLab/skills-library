@@ -315,3 +315,20 @@ Before marking harvest complete, verify you have:
 - [ ] Created PHR documenting the harvest
 - [ ] Committed changes with descriptive message
 - [ ] Generated summary showing all updates applied
+## When NOT to Use This Skill
+
+- **Real-time session analysis** — this skill harvests and analyzes completed or ongoing sessions post-hoc; use streaming analytics for real-time session monitoring
+- **Sessions containing sensitive personal information without consent** — always verify that session data processing complies with your privacy policy and applicable regulations (GDPR, CCPA)
+- **Short single-turn interactions** — harvesting intelligence from one-line exchanges provides minimal signal; this skill is most valuable for multi-turn, extended sessions
+
+## Common Mistakes
+
+- Not anonymizing or de-identifying session data before analysis — session transcripts often contain PII; strip or mask sensitive fields before processing
+- Ignoring low-confidence patterns — the harvester surfaces patterns with varying confidence levels; don't discard low-confidence patterns without review — they may reveal edge cases
+- Not feeding harvested insights back into prompt templates — the value of session intelligence is improving future sessions; always close the loop by updating prompts based on findings
+
+## Related Skills
+
+- [`prompt-template-designer`](../prompt-template-designer/SKILL.md) — Update prompt templates based on harvested session insights
+- [`skills-proficiency-mapper`](../skills-proficiency-mapper/SKILL.md) — Map skill gaps revealed by session intelligence patterns
+- [`audit-logging-system`](../audit-logging-system/SKILL.md) — Audit session data access and analysis for compliance

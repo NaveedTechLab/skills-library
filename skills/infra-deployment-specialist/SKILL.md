@@ -458,3 +458,21 @@ alembic merge heads -m "merge migrations"
 - **[neon-postgresql.md](references/neon-postgresql.md)** - Complete Neon integration guide with connection patterns, migrations, and optimization
 - **[huggingface-spaces.md](references/huggingface-spaces.md)** - Comprehensive HF Spaces deployment guide with configuration and troubleshooting
 - **[environment-management.md](references/environment-management.md)** - Environment variable best practices, validation, and security
+
+## When NOT to Use This Skill
+
+- **Application feature development** — this skill handles deployment infrastructure, not application code; don't use it for business logic
+- **Fully managed PaaS platforms** (Heroku, Railway, Fly.io) — those platforms abstract away the infrastructure this skill manages; use their native deploy commands
+- **Simple single-container deployments** — running one Docker container doesn't need the full deployment specialist treatment; use `docker run` or a simple `docker-compose.yml`
+
+## Common Mistakes
+
+- Not implementing health checks before marking deployments complete — a pod that's running but not serving traffic shows as Ready without health check validation
+- Deploying to production without testing in a staging environment — infrastructure changes that haven't been smoke-tested in staging frequently cause production incidents
+- Not setting resource requests AND limits — missing requests causes pod placement issues; missing limits allows runaway processes to starve other pods
+
+## Related Skills
+
+- [`k8s-foundation`](../k8s-foundation/SKILL.md) — Kubernetes cluster prerequisites for deployment
+- [`infra-devops`](../infra-devops/SKILL.md) — Full DevOps pipeline including CI/CD and containerization
+- [`prometheus-grafana-setup`](../prometheus-grafana-setup/SKILL.md) — Monitor deployed infrastructure health

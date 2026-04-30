@@ -169,3 +169,15 @@ Data types are Python's classification system—they tell Python "what kind of d
 ```
 
 **Word count**: ~175 words (appropriate for A2)
+
+## When NOT to Use This Skill
+
+- **Content requiring expert analysis** — summarization condenses information but can lose nuance; for technical, legal, or medical documents, expert review of the summary is required before use
+- **Creative works** — summarizing fiction, poetry, or art criticism strips context that's integral to the work's meaning
+- **Real-time streaming content** — this skill processes complete documents; use a streaming summarization approach for live audio or video
+
+## Related Skills
+
+- [`technical-clarity`](../technical-clarity/SKILL.md) — Improve the clarity of summaries after generation
+- [`book-scaffolding`](../book-scaffolding/SKILL.md) — Generate chapter-by-chapter summaries as part of book production
+- [`session-intelligence-harvester`](../session-intelligence-harvester/SKILL.md) — Summarize session transcripts to extract actionable intelligence

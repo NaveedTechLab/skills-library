@@ -72,3 +72,20 @@ To test/visualize the artifact, use available tools (including other Skills or b
 ## Reference
 
 - **shadcn/ui components**: https://ui.shadcn.com/docs/components
+## When NOT to Use This Skill
+
+- **Full production web applications** — web artifacts are for standalone, self-contained outputs; use `nextjs-ui-builder` or `frontend-developer` for full applications
+- **Server-rendered or data-fetching pages** — web artifacts are static; they can't fetch data from servers without CORS and API key exposure concerns
+- **Artifacts requiring authentication or user state** — stateful, authenticated web experiences need a full application framework, not a standalone artifact
+
+## Common Mistakes
+
+- Including external CDN dependencies without a fallback — artifacts that depend on `https://cdn.jsdelivr.net/...` break completely when the CDN is unavailable; bundle critical dependencies inline
+- Not testing the artifact in isolation — artifacts that work in an iframe may have CSS or JavaScript conflicts when embedded in a host page; test in both contexts
+- Writing artifacts that make cross-origin API calls from the browser — browser CORS restrictions block most API calls from static artifacts; proxy through a backend if API access is needed
+
+## Related Skills
+
+- [`frontend-developer`](../frontend-developer/SKILL.md) — Build full React/Vue applications that go beyond artifact scope
+- [`canvas-design`](../canvas-design/SKILL.md) — Create Canvas-based interactive artifacts
+- [`algorithmic-art`](../algorithmic-art/SKILL.md) — Generate generative art as self-contained web artifacts

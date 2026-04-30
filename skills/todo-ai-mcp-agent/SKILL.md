@@ -207,3 +207,21 @@ for intent in intents:
 - [references/intent-mapping.md](references/intent-mapping.md) - Intent classification, entity extraction, disambiguation
 - [references/mcp-tools.md](references/mcp-tools.md) - Tool schemas, invocation patterns, error handling
 - [references/safety-patterns.md](references/safety-patterns.md) - Hallucination prevention, confirmation flows, stateless design
+
+## When NOT to Use This Skill
+
+- **Complex project management** — for multi-project, multi-user task tracking, use a dedicated PM tool (Linear, Jira); this skill handles personal AI-assisted todo management
+- **Mission-critical task tracking** — AI inference for task management introduces uncertainty; don't use for legal, medical, or compliance deadlines where precision is critical
+- **Offline-only environments** — the MCP architecture requires connectivity to the AI backend; use a local task management app for offline use cases
+
+## Common Mistakes
+
+- Not defining clear task completion criteria upfront — tasks like "improve the dashboard" have no objective done condition; always specify measurable acceptance criteria
+- Letting the AI re-prioritize tasks without human review — AI prioritization can deprioritize tasks that are strategically important but not urgency-obvious; always review AI-suggested priority changes
+- Not archiving completed tasks — a growing todo list full of completed items makes active task discovery slow; set up regular archival of done tasks
+
+## Related Skills
+
+- [`todo-domain-expert`](../todo-domain-expert/SKILL.md) — Domain expertise for advanced todo management patterns
+- [`scheduler-cron-integration`](../scheduler-cron-integration/SKILL.md) — Schedule recurring tasks that feed into the todo system
+- [`mcp-builder`](../mcp-builder/SKILL.md) — Build the MCP infrastructure this agent uses

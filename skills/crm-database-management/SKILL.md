@@ -1,5 +1,5 @@
 ---
-name: crm_database_management
+name: crm-database-management
 description: Manages the PostgreSQL database (the 'Internal CRM'). Responsible for schema migrations, customer identity resolution across channels, ticket lifecycle tracking, and vector search implementation via pgvector. Use when Claude needs to work with PostgreSQL database operations, perform schema migrations, manage customer identity resolution, track ticket lifecycles, or implement vector search functionality.
 ---
 
@@ -224,3 +224,20 @@ For detailed implementation patterns, see:
 - [VECTOR_SEARCH.md](references/VECTOR_SEARCH.md) - pgvector implementation
 - [PERFORMANCE_TUNING.md](references/PERFORMANCE_TUNING.md) - Database optimization
 - [SECURITY_PATTERNS.md](references/SECURITY_PATTERNS.md) - Security implementation
+## When NOT to Use This Skill
+
+- **Off-the-shelf CRM platforms** (Salesforce, HubSpot) — if your organization uses a managed CRM, use its native APIs instead of building a custom PostgreSQL CRM
+- **Non-relational customer data** — if customer relationships are highly graph-like (social networks, hierarchies), consider a graph database over PostgreSQL
+- **Greenfield projects without data** — don't over-engineer a CRM schema before you have real data; start simple and migrate as requirements become clearer
+
+## Common Mistakes
+
+- Not implementing customer identity resolution from the start — merging duplicate customer records retroactively is painful; build deduplication logic at ingestion time
+- Using `text` columns for all customer attributes — typed columns (email, phone, UUID) enable proper validation and indexing; use appropriate types
+- Not indexing on `customer_id` and `email` — CRM queries are almost always customer-centric; missing indexes cause full table scans at scale
+
+## Related Skills
+
+- [`channel-ingestion`](../channel-ingestion/SKILL.md) — Ingest customer messages that populate this CRM
+- [`database-postgresql-design`](../database-postgresql-design/SKILL.md) — Design the PostgreSQL schema for this CRM
+- [`agent-workflow`](../agent-workflow/SKILL.md) — The Customer Success Agent that reads and writes this CRM data

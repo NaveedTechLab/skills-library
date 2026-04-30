@@ -40,3 +40,21 @@ Interpret creatively and make unexpected choices that feel genuinely designed fo
 **IMPORTANT**: Match implementation complexity to the aesthetic vision. Maximalist designs need elaborate code with extensive animations and effects. Minimalist or refined designs need restraint, precision, and careful attention to spacing, typography, and subtle details. Elegance comes from executing the vision well.
 
 Remember: Claude is capable of extraordinary creative work. Don't hold back, show what can truly be created when thinking outside the box and committing fully to a distinctive vision.
+
+## When NOT to Use This Skill
+
+- **Backend-only projects** — if there is no UI, frontend design guidance doesn't apply
+- **Native mobile apps** — this skill covers web frontend design; use platform-specific design guidelines (HIG, Material Design) for iOS and Android
+- **Highly specialized data visualization** — for complex charts and graphs, use a dedicated data viz skill or library-specific guidance
+
+## Common Mistakes
+
+- Designing without defining breakpoints first — responsive design added as an afterthought results in inconsistent layouts across screen sizes
+- Using too many font families — stick to 2 fonts maximum (one for headings, one for body); more creates visual noise
+- Not establishing a spacing scale — ad-hoc padding/margin values create inconsistent rhythm; use an 8px base grid or a design token system
+
+## Related Skills
+
+- [`theme-factory`](../theme-factory/SKILL.md) — Convert design decisions into design tokens and theme code
+- [`ui-ux-futuristic-designer`](../ui-ux-futuristic-designer/SKILL.md) — Apply advanced UI/UX design patterns
+- [`brand-guidelines`](../brand-guidelines/SKILL.md) — Ensure frontend design aligns with brand standards

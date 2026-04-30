@@ -49,3 +49,20 @@ SKILL RESPONSE:
 - Encourage the user to articulate their understanding
 - Be patient with the discovery process
 - Guide without leading the user directly to the answer
+## When NOT to Use This Skill
+
+- **Time-constrained learning situations** — Socratic dialogue takes longer than direct explanation; when learners have minutes, not hours, explain directly
+- **Procedural step-by-step tasks** — asking questions about how to perform a well-defined procedure (e.g., installing software) is patronizing; just give the steps
+- **Learners in crisis or frustration** — extended questioning when someone is stuck and frustrated compounds the frustration; provide scaffolding and direct help first
+
+## Common Mistakes
+
+- Asking leading questions that telegraph the answer — "Wouldn't you say that X is true?" isn't Socratic dialogue; it's disguised telling; questions should open inquiry, not close it
+- Continuing to probe when the learner clearly understands — Socratic questioning after understanding is established wastes time and feels condescending
+- Not validating correct answers — Socratic tutors sometimes withhold validation to seem impartial; always confirm when a learner arrives at a correct understanding
+
+## Related Skills
+
+- [`concept-explainer`](../concept-explainer/SKILL.md) — Provide direct explanation when Socratic dialogue isn't appropriate
+- [`progress-motivator`](../progress-motivator/SKILL.md) — Motivate learners who feel frustrated during Socratic exploration
+- [`ai-collaborate-teaching`](../ai-collaborate-teaching/SKILL.md) — Design learning experiences that incorporate Socratic methods

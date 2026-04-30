@@ -742,3 +742,21 @@ This skill works well with:
 - Current concerns (over-reliance, academic integrity, etc.)
 
 Or share an existing lesson plan and I'll assess AI integration balance and suggest improvements!
+
+## When NOT to Use This Skill
+
+- **Pure technical implementation tasks** — if the goal is building software rather than designing learning experiences, use a development-focused skill instead
+- **Assessments requiring AI-free conditions** — in high-stakes testing environments where AI use is prohibited, this skill's co-learning patterns are inappropriate
+- **Non-programming educational content** — this skill is optimized for software development pedagogy; use `concept-explainer` or `concept-scaffolding` for general subject matter
+
+## Common Mistakes
+
+- Replacing foundational skill-building entirely with AI assistance — learners must develop independent capability; AI should augment, not substitute core practice
+- Skipping the "validate-before-trust" step — accepting AI output without verification teaches uncritical dependency, not collaboration
+- Designing AI-heavy lessons for beginners before they understand what correct output looks like — learners can't validate AI work they don't yet understand
+
+## Related Skills
+
+- [`concept-scaffolding`](../concept-scaffolding/SKILL.md) — Build foundational concept frameworks that precede AI collaboration lessons
+- [`assessment-builder`](../assessment-builder/SKILL.md) — Create assessments that measure AI-collaboration competency
+- [`exercise-designer`](../exercise-designer/SKILL.md) — Design hands-on exercises that apply the co-learning patterns taught here

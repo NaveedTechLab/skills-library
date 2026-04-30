@@ -192,3 +192,21 @@ Requirements file and configuration templates.
 ---
 
 The Slack MCP server enables secure and compliant Slack workspace operations with appropriate human oversight.
+
+## When NOT to Use This Skill
+
+- **External customer communications** — Slack is an internal tool; use `email-mcp-server` or `meta-social-mcp-server` for external communications
+- **High-volume message broadcasting** — Slack's rate limits make it unsuitable for mass notifications; use email or push notification services for broadcasts
+- **Free-tier Slack workspaces** — some Slack API features (webhooks, full message search) require paid plans; verify plan compatibility before building integrations
+
+## Common Mistakes
+
+- Using Slack bot tokens instead of app tokens for socket mode — bot tokens are for web API calls; socket mode requires an app-level token; using the wrong token type causes silent authentication failures
+- Posting sensitive data in Slack messages — Slack messages are logged, searchable, and often retained indefinitely; never post credentials, PII, or financial data in Slack messages
+- Not handling Slack event subscriptions with acknowledgment within 3 seconds — Slack retries unacknowledged events multiple times, creating duplicate message processing; always acknowledge immediately then process asynchronously
+
+## Related Skills
+
+- [`email-mcp-server`](../email-mcp-server/SKILL.md) — Email-based alternative for communications that need delivery confirmation
+- [`mcp-builder`](../mcp-builder/SKILL.md) — Build the MCP infrastructure this Slack server runs on
+- [`internal-comms`](../internal-comms/SKILL.md) — Design the internal communication content delivered via this Slack server

@@ -218,3 +218,21 @@ Before approving content that teaches patterns:
 - Canonical source not checked before implementation
 - Vague feedback ("fix the format") instead of specific corrections
 - New patterns invented instead of following canonical
+
+## When NOT to Use This Skill
+
+- **Creative or free-form writing** — canonical format checking imposes rigid structure; it's appropriate only for standardized document types
+- **Early drafts** — apply format checking as a final step, not during the creative or drafting phase
+- **Non-standardized internal documents** — if your organization hasn't defined canonical formats, this skill will enforce arbitrary conventions
+
+## Common Mistakes
+
+- Running the checker before agreeing on the canonical format definition — the checker enforces whatever format you give it, so an incorrect spec produces incorrect enforcement
+- Treating every format warning as an error — some deviations are intentional; use the checker to flag, then human-review before rejecting
+- Not version-controlling the canonical format spec — teams evolve their standards; without versioning, old documents get incorrectly flagged against new rules
+
+## Related Skills
+
+- [`technical-clarity`](../technical-clarity/SKILL.md) — Improve writing quality after format compliance is confirmed
+- [`doc-coauthoring`](../doc-coauthoring/SKILL.md) — Collaboratively author documents that comply with canonical formats
+- [`content-evaluation-framework`](../content-evaluation-framework/SKILL.md) — Evaluate content quality beyond structural format compliance

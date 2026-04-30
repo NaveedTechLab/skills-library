@@ -1,5 +1,5 @@
 ---
-name: channel_ingestion
+name: channel-ingestion
 description: Implements FastAPI endpoints and webhook handlers for Gmail API, Twilio WhatsApp, and the Web Support Form. Handles message normalization and initial ingestion into the system. Use when Claude needs to create or modify webhook endpoints for multi-channel message ingestion, normalize messages from different sources, or integrate with Gmail, Twilio WhatsApp, or web forms.
 ---
 
@@ -138,3 +138,20 @@ For detailed implementation patterns, see:
 - [WEB_FORM_HANDLING.md](references/WEB_FORM_HANDLING.md) - Web form processing patterns
 - [NORMALIZATION_SCHEMA.md](references/NORMALIZATION_SCHEMA.md) - Message normalization schema
 - [SECURITY_PATTERNS.md](references/SECURITY_PATTERNS.md) - Security implementation patterns
+## When NOT to Use This Skill
+
+- **Single-channel systems** — if you only receive messages from one source, a dedicated single-channel integration is simpler than the multi-channel normalization this skill provides
+- **Real-time streaming at very high volume** — the webhook-based ingestion model has throughput limits; use `event-streaming` (Kafka) for millions of messages per hour
+- **Channels not covered by this skill** — Gmail, Twilio WhatsApp, and Web Form are the three supported sources; other channels need custom integration work
+
+## Common Mistakes
+
+- Not validating webhook signatures — accepting unverified webhooks allows spoofed messages to enter the system; always verify HMAC signatures
+- Blocking the webhook response with slow processing — webhook handlers must respond within 5 seconds or the sender retries; queue messages immediately and process asynchronously
+- Not normalizing timestamps to UTC — messages from different channels use different timezone conventions; always store in UTC
+
+## Related Skills
+
+- [`agent-workflow`](../agent-workflow/SKILL.md) — Route normalized messages to the Customer Success Agent
+- [`crm-database-management`](../crm-database-management/SKILL.md) — Store ingested messages and customer identities
+- [`event-streaming`](../event-streaming/SKILL.md) — Stream ingested messages to downstream consumers via Kafka

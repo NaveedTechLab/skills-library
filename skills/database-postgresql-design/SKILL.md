@@ -130,3 +130,21 @@ SELECT ...;
 
 - [references/schema-design.md](references/schema-design.md) — Normalization patterns, analytics schema design, partitioning, materialized views
 - [references/query-patterns.md](references/query-patterns.md) — Aggregation recipes, window functions, CTEs, index maintenance, EXPLAIN interpretation
+
+## When NOT to Use This Skill
+
+- **Non-relational data models** — for document storage or key-value patterns, consider MongoDB or Redis; PostgreSQL's relational model is overkill
+- **Throwaway prototypes** — detailed schema design slows down rapid prototyping; use SQLite or a simple JSON file for early-stage experiments
+- **Fully managed cloud databases with auto-schema tools** — if your platform (Supabase, Firebase) handles schema management automatically, this skill adds friction
+
+## Common Mistakes
+
+- Not planning for schema evolution — adding `NOT NULL` columns to existing tables requires backfilling; always plan migration paths before applying constraints
+- Using `VARCHAR(255)` for all string fields — choose specific sizes appropriate to the domain (email: 255, phone: 20, UUID: 36); it communicates intent and catches data entry errors
+- Neglecting to add indexes during initial design — retroactively adding indexes to large tables requires long-running migrations and table locks
+
+## Related Skills
+
+- [`postgres-k8s-setup`](../postgres-k8s-setup/SKILL.md) — Deploy the designed database to Kubernetes
+- [`crm-database-management`](../crm-database-management/SKILL.md) — Apply this design skill to CRM-specific schema needs
+- [`backend-rest-api`](../backend-rest-api/SKILL.md) — Build the API layer on top of the designed schema

@@ -156,3 +156,21 @@ Invalid transitions:
 
 For detailed validation rules and implementation patterns, see:
 - [references/domain-rules.md](references/domain-rules.md) - Extended validation logic, security considerations, and business rules
+
+## When NOT to Use This Skill
+
+- **Technical task tracking in software projects** — use `todo-ai-mcp-agent` for AI-assisted code/project task management; this skill covers domain-level todo expertise
+- **Enterprise workflow management** — this skill addresses personal productivity patterns; enterprise BPM (business process management) needs organizational workflow tools
+- **Legal, medical, or regulated task management** — domain-specific compliance requirements for task tracking are outside this skill's scope
+
+## Common Mistakes
+
+- Creating overly granular tasks that create overhead instead of reducing it — tasks like "open email client" add cognitive load without value; keep tasks at meaningful action granularity
+- Not batching similar context tasks — switching between unrelated contexts has a cognitive cost; group related tasks and complete them in context blocks
+- Capturing tasks without enough context to be actionable later — "do the thing" is not a useful task; always add enough detail that you can act on it without re-researching
+
+## Related Skills
+
+- [`todo-ai-mcp-agent`](../todo-ai-mcp-agent/SKILL.md) — AI-powered todo agent that implements domain expert patterns
+- [`scheduler-cron-integration`](../scheduler-cron-integration/SKILL.md) — Automate recurring tasks identified by the domain expert
+- [`progress-motivator`](../progress-motivator/SKILL.md) — Motivate progress through the task list

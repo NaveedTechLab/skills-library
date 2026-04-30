@@ -1,3 +1,8 @@
+---
+name: security-sandbox-controls
+description: Enforce environment-based safety controls including DRY_RUN mode, rate limits, credential isolation, and permission boundaries. Use when hardening Claude Code environments against unintended side-effects or unauthorized access.
+---
+
 # Security Sandbox Controls
 
 ## Description
@@ -171,3 +176,20 @@ db_creds = cm.get_credentials("database_primary")
 - `redis` for rate limiting coordination (optional)
 - `pydantic` for configuration validation
 - `structlog` for structured logging
+## When NOT to Use This Skill
+
+- **Production systems requiring zero downtime** — sandbox controls may interfere with production traffic during initial configuration; configure in a staging environment first
+- **High-throughput systems** — DRY_RUN mode and comprehensive rate limiting add overhead; profile the impact before applying to latency-sensitive production paths
+- **Simple local development scripts** — full sandbox security controls are excessive for single-developer local scripts; use environment-variable guards instead
+
+## Common Mistakes
+
+- Forgetting to disable DRY_RUN mode before going live — code in DRY_RUN silently skips side effects; failing to flip the flag means production actions never execute
+- Setting rate limits that are too aggressive for legitimate traffic — overly tight limits reject valid requests; baseline real traffic patterns before configuring limits
+- Not testing sandbox controls with a red-team exercise — security controls that haven't been tested under adversarial conditions provide false assurance
+
+## Related Skills
+
+- [`audit-logging-system`](../audit-logging-system/SKILL.md) — Pair security sandbox controls with comprehensive audit logging
+- [`code-validation-sandbox`](../code-validation-sandbox/SKILL.md) — Code-level sandbox for executing and testing code safely
+- [`qa-testing-specialist`](../qa-testing-specialist/SKILL.md) — Test that security controls are working as intended

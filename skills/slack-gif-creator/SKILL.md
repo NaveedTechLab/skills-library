@@ -252,3 +252,21 @@ Be creative! Combine concepts (bouncing + rotating, pulsing + sliding, etc.) and
 ```bash
 pip install pillow imageio numpy
 ```
+
+## When NOT to Use This Skill
+
+- **Professional or formal Slack workspaces** — GIFs may be inappropriate in serious enterprise or client-facing channels; assess the workspace culture before automating GIF posting
+- **High-frequency automated posting** — Slack rate limits apply; flooding channels with GIFs triggers throttling and may result in bot token suspension
+- **Regulated industries with media archiving requirements** — GIF content may trigger compliance concerns in financial, healthcare, or legal Slack workspaces
+
+## Common Mistakes
+
+- Not checking that the target channel allows bots before posting — Slack channels can be configured to restrict bot posts; always verify permissions before attempting to send
+- Posting GIFs without content moderation — even GIF search results from reputable APIs can surface inappropriate content; add a content filter before sending
+- Not handling Slack API rate limits — posting rapidly without respecting `Retry-After` headers causes cascading failures; implement proper rate limit handling
+
+## Related Skills
+
+- [`slack-mcp-server`](../slack-mcp-server/SKILL.md) — Full Slack MCP integration for text and media posting
+- [`mcp-builder`](../mcp-builder/SKILL.md) — Build the Slack MCP infrastructure this skill uses
+- [`internal-comms`](../internal-comms/SKILL.md) — Design internal communications that incorporate Slack engagement features

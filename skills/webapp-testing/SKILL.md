@@ -94,3 +94,14 @@ with sync_playwright() as p:
   - `element_discovery.py` - Discovering buttons, links, and inputs on a page
   - `static_html_automation.py` - Using file:// URLs for local HTML
   - `console_logging.py` - Capturing console logs during automation
+## When NOT to Use This Skill
+
+- **Backend-only API testing** — this skill targets web applications with UI; use `qa-testing-specialist` for pure API/unit test suites
+- **Mobile app testing** — web application testing tools don't cover native mobile apps; use Appium or platform-specific testing frameworks for mobile
+- **Performance load testing** — this skill handles functional end-to-end testing; use k6, Locust, or JMeter for load and stress testing
+
+## Related Skills
+
+- [`qa-testing-specialist`](../qa-testing-specialist/SKILL.md) — Design the full test strategy this webapp testing executes
+- [`qa-automation`](../qa-automation/SKILL.md) — Automate the webapp test suite in CI/CD
+- [`qa-debugging-performance`](../qa-debugging-performance/SKILL.md) — Debug and fix failures discovered during webapp testing

@@ -1,3 +1,8 @@
+---
+name: code-validation-sandbox
+description: Validate and test code snippets in an isolated sandbox environment. Use when you need to verify correctness, catch runtime errors, or safely execute untrusted code before integrating it into a project.
+---
+
 # Code Validation Sandbox — Intelligent Validation Architecture
 
 **Version**: 3.0.0 (Reasoning-Activated — Constitution v6.0.0)
@@ -1275,3 +1280,20 @@ User: "Validate Python code in book-source/docs/04-Python-Fundamentals/14-data-t
 **Validate Multiple Chapters**:
 ```
 User: "Validate Chapters 14, 15, and 16"
+## When NOT to Use This Skill
+
+- **Trusted, reviewed code** — running validated production code through a sandbox adds latency with no safety benefit
+- **Infrastructure or system commands** — sandbox environments don't replicate production infra; use staging environments for infra validation
+- **Code that requires external service connections** — sandboxes have no network access by design; integration tests need a real test environment
+
+## Common Mistakes
+
+- Assuming sandbox success means production safety — sandboxes catch runtime errors but not logic errors, race conditions, or environment-specific failures
+- Not setting execution timeouts — runaway loops can hang the sandbox indefinitely; always set a maximum execution time
+- Ignoring sandbox resource limits — code that passes in a constrained sandbox may fail in production when it needs more memory or CPU
+
+## Related Skills
+
+- [`code-example-generator`](../code-example-generator/SKILL.md) — Generate code examples that get validated here
+- [`qa-testing-specialist`](../qa-testing-specialist/SKILL.md) — Full testing strategy beyond sandbox validation
+- [`security-sandbox-controls`](../security-sandbox-controls/SKILL.md) — Security layer that works alongside sandbox execution

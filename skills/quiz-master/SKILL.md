@@ -54,3 +54,20 @@ SKILL RESPONSE:
 - Difficulty should match the user's level
 - Explanations should connect to broader concepts
 - Respect time limits if specified
+## When NOT to Use This Skill
+
+- **Formal graded assessments** — use `assessment-builder` for academic or professional certification assessments with rigorous rubrics
+- **Domain-specific technical quizzes requiring expert validation** — always have a subject matter expert verify technical accuracy for high-stakes quiz content
+- **Accessibility-required environments** — ensure generated quiz interfaces meet WCAG 2.1 requirements; AI-generated quiz UIs may need accessibility remediation
+
+## Common Mistakes
+
+- Writing questions that are too ambiguous — every question should have exactly one defensible correct answer; ambiguous questions confuse learners and produce unfair results
+- Using all `True/False` questions — binary questions don't reveal depth of understanding; include a mix of MCQ, short answer, and scenario-based questions
+- Not randomizing question and answer order — fixed ordering allows answer patterns to be memorized; always shuffle both questions and answer choices
+
+## Related Skills
+
+- [`quiz-generator`](../quiz-generator/SKILL.md) — Generate large batches of MCQs for quiz content
+- [`assessment-builder`](../assessment-builder/SKILL.md) — Build formal assessments with rubrics and scoring
+- [`learning-objectives`](../learning-objectives/SKILL.md) — Align quiz questions to defined learning objectives

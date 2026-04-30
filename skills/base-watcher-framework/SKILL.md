@@ -220,3 +220,21 @@ See [references/extending.md](references/extending.md) for detailed guide on:
 **Optional:**
 - `aiohttp` - For APIWatcher
 - `pyyaml` - For YAML config files
+
+## When NOT to Use This Skill
+
+- **One-time data retrieval** — if you only need to fetch data once, a simple script is cleaner than a persistent watcher
+- **High-frequency event streams** — for sub-second polling requirements, use `event-streaming` with Kafka instead of a polling watcher
+- **Environments without a persistent process manager** — the watcher requires a long-running process; use `scheduler-cron-integration` for periodic jobs that don't need to run continuously
+
+## Common Mistakes
+
+- Not implementing exponential backoff on polling failures — rapid-fire retry loops on API errors exhaust rate limits quickly
+- Forgetting to handle duplicate events — most event sources can deliver the same event twice; always implement idempotency checks
+- Running watchers without health-check endpoints — silent watcher failures go undetected; expose a `/health` endpoint and wire it to `watchdog-process-manager`
+
+## Related Skills
+
+- [`watchdog-process-manager`](../watchdog-process-manager/SKILL.md) — Monitor the watcher process and restart on failure
+- [`gmail-watcher`](../gmail-watcher/SKILL.md) — Gmail-specific watcher built on this framework
+- [`whatsapp-watcher`](../whatsapp-watcher/SKILL.md) — WhatsApp-specific watcher built on this framework

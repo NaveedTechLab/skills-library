@@ -1,3 +1,8 @@
+---
+name: ralph-wiggum-loop
+description: Implement autonomous task completion loops that persist until tasks are fully finished. Use when running long-running background tasks that must complete without human re-prompting.
+---
+
 # Ralph Wiggum Loop
 
 ## Description
@@ -141,3 +146,21 @@ loop.force_complete_task(task_id, reason="Manual override by admin")
 - `watchdog` for file system monitoring
 - Integration with phase-3 audit_logger
 - Integration with phase-3 safety_enforcer
+
+## When NOT to Use This Skill
+
+- **Interactive tasks requiring human input at each step** — the autonomous loop pattern assumes tasks can be completed without interruption; use HITL approval flows for tasks requiring human decisions
+- **Short tasks that complete in a single pass** — the loop overhead is unnecessary if the task doesn't require persistence across multiple completion attempts
+- **Tasks with unclear completion criteria** — the loop needs to know when to stop; undefined "done" conditions cause infinite loops consuming tokens
+
+## Common Mistakes
+
+- Not setting a maximum iteration count — without a hard limit, infinite loops consume your entire token budget; always set `max_iterations` as a safety guard
+- Treating exit as failure — Claude naturally completes tasks and exits; this skill should inject continuation prompts only when the task is genuinely incomplete, not on every exit
+- Not writing intermediate state to disk — if the loop crashes or hits a limit, losing all progress means starting over; checkpoint state to disk at each meaningful step
+
+## Related Skills
+
+- [`orchestrator-engine`](../orchestrator-engine/SKILL.md) — Coordinate multiple autonomous loops across agents
+- [`watchdog-process-manager`](../watchdog-process-manager/SKILL.md) — Monitor the loop process and restart on failure
+- [`audit-logging-system`](../audit-logging-system/SKILL.md) — Audit all loop iterations for compliance and debugging

@@ -280,3 +280,21 @@ app.add_middleware(
 - **State validation fails**: Check state storage mechanism
 - **Token exchange fails**: Verify client credentials and redirect URI
 - **Scope errors**: Request only supported scopes for platform
+
+## When NOT to Use This Skill
+
+- **Architectural decision-making** — this skill implements against a defined spec; use a design skill first to establish the architecture before implementing
+- **Greenfield projects without any specification** — implementation without a spec produces code that won't meet real requirements; define requirements first
+- **Legacy codebase refactoring** — refactoring requires understanding existing patterns and constraints; use a dedicated refactoring approach rather than fresh implementation
+
+## Common Mistakes
+
+- Starting implementation before clarifying acceptance criteria — code that meets an unclear spec requires expensive rework when requirements are clarified
+- Not breaking large implementations into reviewable increments — large PRs are hard to review and more likely to introduce hard-to-find bugs
+- Ignoring non-functional requirements (performance, security, observability) — functional correctness is necessary but not sufficient for production-ready implementation
+
+## Related Skills
+
+- [`fastapi-backend-builder`](../fastapi-backend-builder/SKILL.md) — Implement FastAPI backends using this specialist's patterns
+- [`code-validation-sandbox`](../code-validation-sandbox/SKILL.md) — Validate implementation correctness in a sandbox
+- [`qa-testing-specialist`](../qa-testing-specialist/SKILL.md) — Test the completed implementation

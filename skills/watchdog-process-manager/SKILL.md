@@ -135,3 +135,20 @@ Template configuration files and example process definitions for common supervis
 ---
 
 The watchdog process manager enables reliable and resilient process management with comprehensive monitoring and alerting capabilities.
+## When NOT to Use This Skill
+
+- **Cloud-native microservices with built-in restart policies** — Kubernetes liveness probes and restart policies already manage process health; adding a separate watchdog creates redundant restarts
+- **Ephemeral jobs and one-shot scripts** — watchdog monitoring is for long-running persistent processes; one-shot scripts don't need a process monitor
+- **Development environments** — watchdog overhead and auto-restart behavior can mask bugs; let processes fail visibly in development to catch issues early
+
+## Common Mistakes
+
+- Setting restart delay to zero — immediate restarts after a crash can create restart loops that consume resources; always set a minimum restart delay (e.g., 5-10 seconds) with exponential backoff
+- Not setting a maximum restart count — processes in a crash loop should eventually stop retrying and alert a human; set `max_restarts` with a circuit breaker threshold
+- Monitoring processes but not alerting on repeated failures — a process that restarts 10 times in an hour has a serious problem; always send an alert when the restart threshold is exceeded
+
+## Related Skills
+
+- [`base-watcher-framework`](../base-watcher-framework/SKILL.md) — Watch external events, while the watchdog monitors internal process health
+- [`audit-logging-system`](../audit-logging-system/SKILL.md) — Log process restart events for operational audit trails
+- [`prometheus-grafana-setup`](../prometheus-grafana-setup/SKILL.md) — Monitor process health metrics alongside the watchdog

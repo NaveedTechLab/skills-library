@@ -1,3 +1,8 @@
+---
+name: scheduler-cron-integration
+description: Set up scheduled execution for recurring operations using cron-like expressions. Use when you need daily summaries, weekly audits, or any time-triggered automated task within Claude Code workflows.
+---
+
 # Scheduler Cron Integration
 
 ## Description
@@ -186,3 +191,20 @@ for record in history:
 - `pytz` for timezone handling
 - `sqlite3` for job persistence (optional)
 - `structlog` for structured logging
+## When NOT to Use This Skill
+
+- **Event-driven tasks** — if tasks should trigger on external events (webhooks, message queue messages), use `event-streaming` instead of a time-based scheduler
+- **Sub-minute scheduling** — cron-based schedulers have a 1-minute minimum interval; for sub-minute tasks, use an application-level timer or a message queue consumer
+- **Distributed job scheduling across multiple nodes** — single-node cron can't coordinate job execution across a cluster; use a distributed scheduler (Celery Beat, Airflow) for multi-node environments
+
+## Common Mistakes
+
+- Not implementing job locking — cron jobs that take longer than their interval can overlap with the next execution; always implement a distributed lock to prevent concurrent runs
+- Writing scheduled jobs that swallow errors silently — cron doesn't retry failed jobs by default; implement explicit failure logging and alerting so missed executions are visible
+- Not testing cron expressions before deploying — off-by-one errors in cron syntax (`0 8 * * 1` vs `0 8 * * 0`) schedule jobs on the wrong day or time; always validate expressions
+
+## Related Skills
+
+- [`ralph-wiggum-loop`](../ralph-wiggum-loop/SKILL.md) — Autonomous loops that run until completion, complementing time-based scheduling
+- [`audit-logging-system`](../audit-logging-system/SKILL.md) — Log scheduled job execution for compliance and debugging
+- [`watchdog-process-manager`](../watchdog-process-manager/SKILL.md) — Monitor the scheduler process itself for health

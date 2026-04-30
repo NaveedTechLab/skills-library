@@ -122,3 +122,20 @@ Template files and configurations for Argo CD applications.
 ---
 
 **Any unneeded directories can be deleted.** Not every skill requires all three types of resources.
+## When NOT to Use This Skill
+
+- **Simple one-off kubectl deployments** — if you only need to apply a manifest once without GitOps tracking, use `kubernetes-deployer` directly
+- **Environments without a Git repository** — ArgoCD is GitOps-first; without a Git source of truth the sync model doesn't work
+- **Non-Kubernetes targets** — ArgoCD is Kubernetes-native; use standard CI/CD pipelines for VMs or serverless deployments
+
+## Common Mistakes
+
+- Not setting `syncPolicy.automated` with `selfHeal: true` — manual drift from the desired state won't be corrected automatically
+- Committing secrets directly to the Git repo that ArgoCD syncs — use Sealed Secrets or external secret operators instead
+- Not configuring health checks for custom resources — ArgoCD marks apps as Healthy before they're actually ready
+
+## Related Skills
+
+- [`k8s-foundation`](../k8s-foundation/SKILL.md) — Kubernetes cluster prerequisites for ArgoCD
+- [`kubernetes-deployer`](../kubernetes-deployer/SKILL.md) — Imperative Kubernetes deployments when GitOps is not required
+- [`infra-devops`](../infra-devops/SKILL.md) — Full infrastructure and DevOps pipeline including ArgoCD integration

@@ -582,3 +582,20 @@ class DataSanitizer:
 ```
 
 This skill provides comprehensive guidance for implementing hybrid intelligence systems that selectively integrate LLMs while maintaining strict separation between AI-enhanced features and core deterministic logic.
+## When NOT to Use This Skill
+
+- **Single-model implementations** — if only one AI model is needed, this skill's multi-model orchestration adds unnecessary complexity
+- **Budget-constrained projects** — routing across multiple AI providers multiplies API costs; establish a clear cost model before going multi-model
+- **Real-time latency-critical applications** — model routing and fallback logic adds latency; profile the overhead against your SLA before adopting this architecture
+
+## Common Mistakes
+
+- Not implementing circuit breakers for individual model providers — a single provider outage cascades to all requests without isolation; always add per-provider circuit breakers
+- Comparing model outputs without a defined evaluation rubric — "Model A is better" is unactionable; define specific quality dimensions before comparing providers
+- Not logging which model handled each request — without routing audit trails, debugging quality issues and cost attribution becomes impossible
+
+## Related Skills
+
+- [`ai-integration-specialist`](../ai-integration-specialist/SKILL.md) — Implement the LLM integrations that this architect orchestrates
+- [`orchestrator-engine`](../orchestrator-engine/SKILL.md) — Orchestrate multi-step AI workflows across the hybrid intelligence layer
+- [`mcp-builder`](../mcp-builder/SKILL.md) — Expose the hybrid intelligence system as an MCP server

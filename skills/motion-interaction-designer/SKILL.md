@@ -782,3 +782,21 @@ When providing motion design guidance, structure as:
 ---
 
 **Remember**: Less is more. Purposeful motion enhances usability. Excessive animation annoys users.
+
+## When NOT to Use This Skill
+
+- **Static content-only sites** — animation adds no value to sites where users are reading static text or documents; it creates distraction
+- **Accessibility-sensitive contexts** — users with vestibular disorders can experience motion sickness from animations; always provide `prefers-reduced-motion` media query overrides
+- **Low-performance target devices** — complex animations on older mobile devices or low-end hardware cause jank; profile on target devices before investing in rich motion design
+
+## Common Mistakes
+
+- Animating layout properties (`width`, `height`, `top`, `left`) instead of `transform` — layout animations trigger expensive reflow; always animate with `transform` and `opacity` for GPU-accelerated compositing
+- Not defining animation curves that match the physical metaphor — linear animations feel robotic; use `ease-in-out` for objects with weight, `ease-out` for appearing elements
+- Adding animations without purpose — gratuitous motion increases perceived load time and cognitive overhead; every animation should communicate state or guide attention
+
+## Related Skills
+
+- [`canvas-design`](../canvas-design/SKILL.md) — Canvas-based animation as an alternative to CSS/JS animations
+- [`threejs-react-ui-specialist`](../threejs-react-ui-specialist/SKILL.md) — 3D interactive experiences that extend motion design
+- [`ui-ux-futuristic-designer`](../ui-ux-futuristic-designer/SKILL.md) — Apply motion design in futuristic UI design systems

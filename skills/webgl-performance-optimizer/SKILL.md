@@ -545,3 +545,21 @@ See `/references` directory for:
 ## Remember
 
 > "Premature optimization is the root of all evil, but so is premature de-optimization." - Profile first, optimize based on data, not assumptions. Always maintain 60fps on desktop and 30fps on mobile as your baseline targets.
+
+## When NOT to Use This Skill
+
+- **2D applications without intensive rendering** — WebGL optimization is overkill for standard 2D CSS-based UIs; use this skill only when Canvas 2D or CSS performance is genuinely insufficient
+- **Applications with accessibility as the primary constraint** — WebGL content is opaque to assistive technology; prioritize semantic HTML and accessible alternatives before WebGL optimization
+- **Projects without a performance baseline** — never optimize blindly; establish frame-rate and memory measurements before applying WebGL optimizations
+
+## Common Mistakes
+
+- Creating new WebGL geometry or shader programs per frame instead of reusing them — per-frame object creation triggers garbage collection and causes frame drops; always pool and reuse WebGL resources
+- Not using Frustum Culling — rendering off-screen objects wastes GPU cycles; cull objects outside the camera frustum before issuing draw calls
+- Uploading textures to the GPU without mipmaps — textures without mipmaps cause aliasing artifacts and poor sampling performance; always generate mipmaps for textures used at multiple sizes
+
+## Related Skills
+
+- [`threejs-react-ui-specialist`](../threejs-react-ui-specialist/SKILL.md) — Build the Three.js scenes that this optimizer improves
+- [`canvas-design`](../canvas-design/SKILL.md) — Canvas 2D alternative for less demanding visual requirements
+- [`algorithmic-art`](../algorithmic-art/SKILL.md) — Optimize generative art algorithms using WebGL performance techniques

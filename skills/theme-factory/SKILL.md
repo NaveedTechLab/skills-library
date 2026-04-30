@@ -57,3 +57,21 @@ After a preferred theme is selected:
 
 ## Create your Own Theme
 To handle cases where none of the existing themes work for an artifact, create a custom theme. Based on provided inputs, generate a new theme similar to the ones above. Give the theme a similar name describing what the font/color combinations represent. Use any basic description provided to choose appropriate colors/fonts. After generating the theme, show it for review and verification. Following that, apply the theme as described above.
+
+## When NOT to Use This Skill
+
+- **One-off design decisions** — if you're making a single styling choice, writing a design token isn't worth the overhead
+- **Third-party component libraries with locked themes** — some UI libraries don't support design token injection; check library theming capabilities before using this skill
+- **Projects without a design system** — theme factory generates tokens from a design system; if no system exists, create `brand-guidelines` first
+
+## Common Mistakes
+
+- Defining colors without semantic aliases — `color-blue-500` is a raw value; `color-action-primary` is a semantic alias; always create semantic layers above raw values
+- Not accounting for dark mode from the start — adding dark mode to an existing theme requires duplicating and inverting many tokens; design for both light and dark simultaneously
+- Generating tokens without defining the base scale — tokens generated without a consistent scale (4px spacing base, 1.25 type ratio) produce visually inconsistent results
+
+## Related Skills
+
+- [`brand-guidelines`](../brand-guidelines/SKILL.md) — Define the brand decisions that become this theme's token values
+- [`frontend-design`](../frontend-design/SKILL.md) — Apply the generated theme in frontend design work
+- [`ui-ux-futuristic-designer`](../ui-ux-futuristic-designer/SKILL.md) — Use the theme tokens in advanced UI design systems

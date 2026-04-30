@@ -30,3 +30,21 @@ If the communication type doesn't match any existing guideline, ask for clarific
 
 ## Keywords
 3P updates, company newsletter, company comms, weekly update, faqs, common questions, updates, internal comms
+
+## When NOT to Use This Skill
+
+- **External customer communications** — internal comms templates are not appropriate for customer-facing messaging; use `email-mcp-server` or `slack-mcp-server` for outbound customer comms
+- **Legal notices or compliance communications** — internal comms skills don't account for legal language requirements; involve legal review for regulatory communications
+- **Crisis communications** — high-stakes communications during incidents require human judgment, not templated AI generation
+
+## Common Mistakes
+
+- Using the same tone for all internal audiences — communications to the engineering team vs. executive leadership require different levels of technical detail and formality
+- Not including a clear call to action — internal comms that inform but don't specify next steps get ignored
+- Sending communications without proofreading for organizational context — AI-generated internal comms can miss organizational jargon, team names, or product terminology
+
+## Related Skills
+
+- [`slack-mcp-server`](../slack-mcp-server/SKILL.md) — Deliver internal comms via Slack channels
+- [`email-mcp-server`](../email-mcp-server/SKILL.md) — Deliver internal comms via email
+- [`summary-generator`](../summary-generator/SKILL.md) — Generate meeting summaries and update digests for internal distribution

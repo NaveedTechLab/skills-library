@@ -1,3 +1,8 @@
+---
+name: technical-clarity
+description: Transform complex technical content into clear, precise, jargon-free writing. Use when documentation, API references, or technical guides need to be accessible to a wider audience without sacrificing accuracy.
+---
+
 # Technical Clarity Skill v3.0 (Reasoning-Activated)
 
 **Version**: 3.0.0
@@ -489,3 +494,15 @@ def wrapper(*args, **kwargs):
 ---
 
 **Ready to use**: Invoke this skill to review technical content for clarity, accessibility, and comprehension at target proficiency level. Run AFTER content creation, BEFORE finalization.
+
+## When NOT to Use This Skill
+
+- **Content for domain experts who need precise technical language** — simplifying expert-to-expert documentation removes necessary precision and may introduce inaccuracies
+- **Legal or regulatory text** — technical clarity rewrites must be reviewed by legal counsel; simplified language can change the legal meaning of compliance documents
+- **Real-time editing during content creation** — apply clarity editing as a final pass, not while drafting; editing in-flight interrupts creative flow
+
+## Related Skills
+
+- [`concept-explainer`](../concept-explainer/SKILL.md) — Explain individual concepts clearly before applying document-level clarity editing
+- [`canonical-format-checker`](../canonical-format-checker/SKILL.md) — Check structural format compliance alongside clarity quality
+- [`doc-coauthoring`](../doc-coauthoring/SKILL.md) — Co-author documents that will be polished with this clarity skill

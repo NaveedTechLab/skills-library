@@ -556,3 +556,21 @@ If validation fails:
 3. Halt and require user intervention (hard failure mode)
 
 Examples must meet quality standards: varied types, appropriate difficulty, clear objectives, comprehensive test cases.
+
+## When NOT to Use This Skill
+
+- **Passive content consumption** — exercises require active participation; if the learning goal is awareness rather than skill, reading or watching suffices
+- **Exercises requiring physical equipment or lab access** — this skill generates digital/conceptual exercises; lab-based hands-on activities need physical environment design
+- **High-stakes summative assessments** — use `assessment-builder` for formal graded assessments; exercises are formative practice, not evaluation
+
+## Common Mistakes
+
+- Designing exercises that are too open-ended without scaffolding for beginners — novice learners need clear success criteria and step-by-step guidance
+- Not providing a sample solution or worked example — learners get stuck without a reference answer; always include at least one example solution
+- Misaligning exercise difficulty with the learner's current level — exercises that are too easy bore learners; too hard causes frustration and disengagement
+
+## Related Skills
+
+- [`assessment-builder`](../assessment-builder/SKILL.md) — Create formal assessments from the same content domain
+- [`learning-objectives`](../learning-objectives/SKILL.md) — Define the objectives exercises should practice
+- [`concept-scaffolding`](../concept-scaffolding/SKILL.md) — Build the conceptual framework exercises reinforce

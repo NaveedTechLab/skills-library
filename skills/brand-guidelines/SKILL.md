@@ -71,3 +71,21 @@ To access Anthropic's official brand identity and style resources, use this skil
 - Uses RGB color values for precise brand matching
 - Applied via python-pptx's RGBColor class
 - Maintains color fidelity across different systems
+
+## When NOT to Use This Skill
+
+- **Personal projects without a brand identity** — brand guidelines require intentional brand decisions; don't generate them as a placeholder
+- **Rebranding an existing organization** — rebrands need stakeholder input and strategic alignment, not AI-generated guidelines alone
+- **Legal trademark or IP documentation** — brand guidelines don't substitute for proper trademark filings; consult a legal professional for IP protection
+
+## Common Mistakes
+
+- Generating color palettes without checking accessibility contrast ratios — WCAG 2.1 AA requires 4.5:1 contrast for body text
+- Defining brand voice without real-world examples — abstract tone descriptions ("bold but approachable") are unactionable; always include do/don't examples
+- Not specifying minimum logo sizes and clear-space rules — logos get misused when usage constraints are absent from the guide
+
+## Related Skills
+
+- [`canvas-design`](../canvas-design/SKILL.md) — Implement the brand guidelines in Canvas-based visual assets
+- [`theme-factory`](../theme-factory/SKILL.md) — Convert brand guidelines into code-ready design tokens and themes
+- [`ui-ux-futuristic-designer`](../ui-ux-futuristic-designer/SKILL.md) — Apply brand guidelines to futuristic UI design systems

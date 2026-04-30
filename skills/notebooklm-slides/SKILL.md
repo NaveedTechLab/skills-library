@@ -649,3 +649,15 @@ NARRATIVE ARC:
 - ❌ Academic tone for beginners
 - ❌ Random sequence without progression
 - ❌ Vague takeaways ("Keep learning!")
+
+## Common Mistakes
+
+- Providing unstructured source material without clear section headings — NotebookLM uses headings to understand document structure; unstructured text produces unfocused slides
+- Uploading too many sources without filtering for relevance — more sources doesn't mean better slides; curate 3-5 high-quality sources for the best results
+- Not reviewing generated slides for factual accuracy — NotebookLM can misinterpret or oversimplify complex source material; always verify key claims before presenting
+
+## Related Skills
+
+- [`pptx`](../pptx/SKILL.md) — Generate PowerPoint files programmatically as an alternative to NotebookLM slides
+- [`summary-generator`](../summary-generator/SKILL.md) — Generate summaries from the source material before uploading to NotebookLM
+- [`visual-asset-workflow`](../visual-asset-workflow/SKILL.md) — Add custom visuals to the slides NotebookLM generates

@@ -294,3 +294,21 @@ For complex dashboard requests, see:
 ---
 
 **Remember**: Design is about solving user problems elegantly. Every pixel, color, and animation should have a purpose. Guide with precision, inspire with aesthetics.
+
+## When NOT to Use This Skill
+
+- **Utility or internal tools** — futuristic UI design has high implementation cost; invest it only for user-facing products where visual differentiation drives adoption
+- **Accessibility-first products** — cutting-edge visual effects often conflict with accessibility standards; ensure core accessibility is not sacrificed for aesthetics
+- **Legacy browser support requirements** — futuristic CSS (container queries, scroll-driven animations, view transitions) doesn't work in old browsers; verify browser support requirements first
+
+## Common Mistakes
+
+- Prioritizing visual novelty over usability — futuristic doesn't mean confusing; core interactions (navigation, CTAs, forms) must remain instantly intuitive regardless of visual style
+- Not optimizing animated and visual-heavy UI for performance — glass morphism, particle effects, and complex animations tank performance on mid-range devices; always measure Core Web Vitals
+- Designing for desktop first and mobile as an afterthought — futuristic UI patterns that work on large screens often collapse on mobile; design for both form factors simultaneously
+
+## Related Skills
+
+- [`theme-factory`](../theme-factory/SKILL.md) — Convert futuristic design language into production design tokens
+- [`motion-interaction-designer`](../motion-interaction-designer/SKILL.md) — Add motion design to the futuristic UI
+- [`webgl-performance-optimizer`](../webgl-performance-optimizer/SKILL.md) — Optimize the WebGL effects this design style often requires

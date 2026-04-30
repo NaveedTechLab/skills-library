@@ -247,3 +247,20 @@ Configuration templates and example implementations for various audit scenarios.
 ---
 
 The audit logging system enables comprehensive tracking and accountability for all agent actions with guaranteed retention and traceability.
+## When NOT to Use This Skill
+
+- **High-frequency, low-risk operations** — logging every debug-level event is wasteful; audit logs should capture significant state changes and security events only
+- **Local development environments** — full audit infrastructure adds setup overhead; use structured `print` logging locally and enable audit logs in staging/production
+- **Systems with strict sub-millisecond latency requirements** — synchronous audit log writes add latency; consider async logging with a write-ahead buffer
+
+## Common Mistakes
+
+- Storing audit logs in the same database as application data — a compromised app can delete its own audit trail; use a separate, append-only log store
+- Not including the agent or user identity in every log entry — audit logs without actor attribution are useless for incident investigation
+- Logging sensitive fields (passwords, tokens, PII) in plaintext — redact or hash sensitive values before writing to the audit log
+
+## Related Skills
+
+- [`security-sandbox-controls`](../security-sandbox-controls/SKILL.md) — Pair with audit logging for full security posture
+- [`watchdog-process-manager`](../watchdog-process-manager/SKILL.md) — Monitor agent processes and surface anomalies caught by audit logs
+- [`scheduler-cron-integration`](../scheduler-cron-integration/SKILL.md) — Schedule regular audit log review and archival jobs

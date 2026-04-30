@@ -195,3 +195,21 @@ Before finalizing evaluation:
 - [ ] Compared against industry conventions (GitHub, Stripe, etc.)
 - [ ] Priorities assigned (P1/P2/P3) based on UX impact
 - [ ] Verdict is clear and actionable
+
+## When NOT to Use This Skill
+
+- **Evaluating visual aesthetics alone** — UX evaluation covers usability, accessibility, and experience; for pure visual design critique, use a dedicated design review process
+- **Very early wireframes or sketches** — formal UX evaluation on low-fidelity sketches is premature; wait until the design has enough fidelity to simulate real interaction
+- **Real-time live user sessions** — this skill is for structured evaluation, not live session facilitation; use a usability testing tool for moderated user sessions
+
+## Common Mistakes
+
+- Evaluating without real users or realistic tasks — heuristic evaluation catches some issues, but usability testing with real users on real tasks is irreplaceable
+- Only evaluating happy paths — the most critical UX problems occur at error states, empty states, and edge cases; always evaluate what happens when things go wrong
+- Not documenting severity ratings with evaluation findings — "this is broken" is not actionable; rate each finding by frequency, impact, and persistence for prioritization
+
+## Related Skills
+
+- [`content-evaluation-framework`](../content-evaluation-framework/SKILL.md) — Evaluate content quality alongside the UX evaluation
+- [`frontend-design`](../frontend-design/SKILL.md) — Apply UX evaluation findings to improve the frontend design
+- [`webapp-testing`](../webapp-testing/SKILL.md) — Test the UX improvements made based on evaluation findings

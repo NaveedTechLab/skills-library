@@ -48,3 +48,14 @@ SKILL RESPONSE:
 - Include visual descriptions when helpful
 - Connect new concepts to previously learned material
 - End with a summary of key points
+## When NOT to Use This Skill
+
+- **Expert-to-expert communication** — removing jargon for domain experts slows communication; use technical precision directly
+- **Legal or compliance documentation** — simplifying regulatory language can change its meaning and create liability
+- **Real-time conversation** — this skill is for crafted written explanations, not interactive back-and-forth dialogue
+
+## Related Skills
+
+- [`concept-scaffolding`](../concept-scaffolding/SKILL.md) — Build full multi-stage learning progressions using the concepts explained here
+- [`socratic-tutor`](../socratic-tutor/SKILL.md) — Guide learners to discover concepts through questions rather than explanation
+- [`technical-clarity`](../technical-clarity/SKILL.md) — Apply clarity principles to technical documentation beyond concept explanations

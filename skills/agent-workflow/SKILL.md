@@ -1,5 +1,5 @@
 ---
-name: agent_workflow
+name: agent-workflow
 description: Implements the core Customer Success Agent using OpenAI Agents SDK. Manages the orchestration of tool calls (search, ticket creation, etc.), conversation logic, and state management. Use when Claude needs to create or modify Customer Success Agent implementations with OpenAI Agents SDK, orchestrate multiple tools, manage conversation flows, or handle persistent state across interactions.
 ---
 
@@ -184,3 +184,20 @@ For detailed implementation patterns, see:
 - [STATE_MANAGEMENT.md](references/STATE_MANAGEMENT.md) - State persistence strategies
 - [ERROR_HANDLING.md](references/ERROR_HANDLING.md) - Error handling and recovery patterns
 - [SECURITY_PATTERNS.md](references/SECURITY_PATTERNS.md) - Security implementation guidelines
+## When NOT to Use This Skill
+
+- **Simple single-turn chatbots** — the OpenAI Agents SDK adds orchestration overhead that's unnecessary for stateless Q&A bots
+- **Non-OpenAI model backends** — this skill is tightly coupled to the OpenAI Agents SDK; use `hybrid-intelligence-architect` for multi-provider setups
+- **Batch processing workflows** — the conversational state model is designed for interactive sessions, not bulk data processing
+
+## Common Mistakes
+
+- Not clearing customer state after session end — stale state bleeds into new conversations and causes incorrect context
+- Defining tools without explicit error-return schemas — the agent may loop indefinitely when a tool fails silently
+- Storing sensitive customer data in the in-memory state manager — use an encrypted external store (Redis, PostgreSQL) for production deployments
+
+## Related Skills
+
+- [`channel-ingestion`](../channel-ingestion/SKILL.md) — Ingest messages from Gmail and WhatsApp before routing to this agent
+- [`crm-database-management`](../crm-database-management/SKILL.md) — Persist customer state and ticket data
+- [`orchestrator-engine`](../orchestrator-engine/SKILL.md) — Coordinate multiple specialized agents above this one

@@ -482,3 +482,20 @@ Required dependencies (should already be installed):
 - **LibreOffice**: `sudo apt-get install libreoffice` (for PDF conversion)
 - **Poppler**: `sudo apt-get install poppler-utils` (for pdftoppm to convert PDF to images)
 - **defusedxml**: `pip install defusedxml` (for secure XML parsing)
+## When NOT to Use This Skill
+
+- **Interactive or animated presentations** — `.pptx` supports animations but they're hard to generate programmatically; use Reveal.js or a web-based slide tool for animation-heavy presentations
+- **Real-time collaboration** — PowerPoint files don't support real-time co-editing like Google Slides; use Google Slides for collaborative presentation building
+- **Simple text-only decks** — if your slides are mostly bullet points with no design, a plain Markdown-to-slides tool (Marp, Slidev) is faster and more maintainable
+
+## Common Mistakes
+
+- Not using a branded template as the base file — starting from scratch produces presentations with inconsistent typography and no brand identity
+- Generating too many slides — more than 20 slides for a typical presentation causes attention loss; focus on key messages and cut ruthlessly
+- Not testing the generated file in both PowerPoint and Google Slides — OOXML rendering differences between applications cause layout breaks; always verify compatibility
+
+## Related Skills
+
+- [`pdf`](../pdf/SKILL.md) — Export the completed presentation to PDF for distribution
+- [`notebooklm-slides`](../notebooklm-slides/SKILL.md) — Generate slides from research sources using NotebookLM
+- [`visual-asset-workflow`](../visual-asset-workflow/SKILL.md) — Create custom visuals for slides

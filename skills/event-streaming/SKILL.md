@@ -1,5 +1,5 @@
 ---
-name: event_streaming
+name: event-streaming
 description: Implements Kafka-based event streaming to decouple channel intake from agent processing. Manages producers, consumers, and message reliability across the processing pipeline. Use when Claude needs to implement Kafka-based event streaming, set up producers/consumers, manage message reliability, or decouple system components using event streaming.
 ---
 
@@ -419,3 +419,20 @@ For detailed implementation patterns, see:
 - [SCALING_STRATEGIES.md](references/SCALING_STRATEGIES.md) - Scaling strategies
 - [SECURITY_BEST_PRACTICES.md](references/SECURITY_BEST_PRACTICES.md) - Security implementation
 - [FAULT_TOLERANCE.md](references/FAULT_TOLERANCE.md) - Fault tolerance patterns
+## When NOT to Use This Skill
+
+- **Small-scale applications with a single service** — Kafka's operational complexity is not justified for simple one-service apps; use direct function calls or a simple queue
+- **Synchronous request-response patterns** — Kafka is asynchronous by design; use REST or gRPC when callers need immediate responses
+- **Environments without Kafka infrastructure** — requires `kafka-k8s-setup` or a managed Kafka service; don't use this skill before the broker is running
+
+## Common Mistakes
+
+- Publishing messages without a schema registry — schema-less Kafka topics create incompatibilities between producer and consumer versions when fields change
+- Using a single partition for all messages — single-partition topics are processed serially; partition by customer or entity ID to enable parallel consumption
+- Not setting `enable.auto.commit=false` for consumers — auto-commit can mark messages as processed before the handler finishes, causing data loss on failure
+
+## Related Skills
+
+- [`kafka-k8s-setup`](../kafka-k8s-setup/SKILL.md) — Deploy the Kafka cluster before using this streaming skill
+- [`event-driven-architect`](../event-driven-architect/SKILL.md) — Design the event-driven architecture that this streaming implementation follows
+- [`channel-ingestion`](../channel-ingestion/SKILL.md) — Ingest messages from external channels into the event stream

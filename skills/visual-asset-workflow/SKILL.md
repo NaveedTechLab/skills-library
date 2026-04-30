@@ -1,3 +1,8 @@
+---
+name: visual-asset-workflow
+description: Create educational and professional visual assets using a creative brief methodology to produce distinctive, pedagogically effective visuals. Use when standard AI image generation produces generic results.
+---
+
 # Visual Asset Workflow Skill
 
 ## Context & Problem
@@ -302,3 +307,21 @@ You'll know this skill is working when:
 - ✅ Reflection document created after batch (systematic learning)
 
 **Result:** Professional-quality visuals that teach effectively, generated efficiently through planning, with zero duplicates requiring rework.
+
+## When NOT to Use This Skill
+
+- **Non-educational contexts** — this skill's methodology is optimized for pedagogical visuals; for marketing or branding visuals, use `image-generator` with a different creative brief approach
+- **Simple diagram or flowchart needs** — for technical architecture diagrams, use a dedicated diagramming tool (draw.io, Mermaid); the full creative brief methodology is overkill
+- **Rapid iteration prototyping** — the multi-turn creative brief approach takes time; for quick placeholder visuals, generate directly and refine later
+
+## Common Mistakes
+
+- Writing creative briefs that are too abstract without concrete visual direction — "make it feel like understanding" doesn't translate to pixels; always include at least one concrete visual metaphor
+- Not specifying the intended output dimensions and use context — a visual for a 1920px wide slide needs different composition than a 400px sidebar thumbnail
+- Skipping the pedagogical reasoning section of the brief — this is what activates reasoning mode over prediction mode; never omit it even when in a hurry
+
+## Related Skills
+
+- [`image-generator`](../image-generator/SKILL.md) — Execute image generation from the creative briefs this workflow produces
+- [`pptx`](../pptx/SKILL.md) — Embed the generated visual assets into PowerPoint presentations
+- [`notebooklm-slides`](../notebooklm-slides/SKILL.md) — Use visual assets alongside NotebookLM-generated slide content

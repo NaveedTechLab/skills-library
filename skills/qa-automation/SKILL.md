@@ -1,5 +1,5 @@
 ---
-name: qa_automation
+name: qa-automation
 description: Builds the pytest-based test suite for the transition from prototype to production. Implements E2E tests, edge-case validation, and performance metric tracking (latency, accuracy, escalation rates). Use when Claude needs to create or modify pytest-based test suites, implement E2E tests, validate edge cases, or track performance metrics like latency, accuracy, and escalation rates.
 ---
 
@@ -645,3 +645,20 @@ For detailed implementation patterns, see:
 - [EDGE_CASE_VALIDATION.md](references/EDGE_CASE_VALIDATION.md) - Edge case testing strategies
 - [METRIC_TRACKING.md](references/METRIC_TRACKING.md) - Performance and quality metrics
 - [PYTEST_BEST_PRACTICES.md](references/PYTEST_BEST_PRACTICES.md) - Pytest framework best practices
+## When NOT to Use This Skill
+
+- **Manual exploratory testing** — automation excels at regression testing; use human testers for exploratory, usability, and creative testing scenarios
+- **One-time test runs** — if you only need to run a test suite once, writing automation infrastructure isn't worth the time; run it manually
+- **Highly UI-volatile prototypes** — automated UI tests break every time the UI changes; wait for the UI to stabilize before investing in browser automation
+
+## Common Mistakes
+
+- Automating tests before the application behavior is stable — tests that break constantly due to feature changes demoralize teams and get disabled
+- Not running automation in headless mode in CI — headed browser tests require a display; always configure headless mode for automated pipeline execution
+- Writing flaky tests with hardcoded wait times — `sleep(2)` is not a reliable synchronization mechanism; use explicit waits for specific conditions
+
+## Related Skills
+
+- [`qa-testing-specialist`](../qa-testing-specialist/SKILL.md) — Design the test strategy before automating it
+- [`webapp-testing`](../webapp-testing/SKILL.md) — Web application test scenarios this automation executes
+- [`infra-devops`](../infra-devops/SKILL.md) — CI/CD pipeline that runs the automated test suite

@@ -117,3 +117,21 @@ const { data, isLoading, error } = useDataFetch('/api/metrics');
 - [references/table.md](references/table.md) — useTableData hook, DataTable component, column definitions, filter patterns
 - [references/dark-mode.md](references/dark-mode.md) — useDarkMode hook, system preference detection, Tailwind class strategy, color palette
 - `assets/dashboard-template/` — Complete boilerplate to copy and adapt
+
+## When NOT to Use This Skill
+
+- **Non-React stacks** — if the project uses Vue, Angular, or Svelte, use framework-appropriate skills
+- **Simple single-metric displays** — a full dashboard layout for one KPI is overengineering; use a simple card component
+- **External BI tools** (Grafana, Metabase, Looker) — if your data is already in a BI platform, build dashboards there instead of recreating them in React
+
+## Common Mistakes
+
+- Not virtualizing large data tables — rendering 10,000+ rows without virtualization (react-window, TanStack Virtual) freezes the browser
+- Polling for dashboard data on a short interval without caching — repeated API calls on every re-render waste bandwidth; use SWR or React Query with appropriate stale times
+- Not designing for empty, loading, and error states — dashboards look broken without proper skeleton loaders and error boundaries for each widget
+
+## Related Skills
+
+- [`frontend-developer`](../frontend-developer/SKILL.md) — Core frontend development skills underpinning this dashboard
+- [`frontend-ai-form-builder`](../frontend-ai-form-builder/SKILL.md) — Add AI-powered filter and configuration forms to the dashboard
+- [`nextjs-ui-builder`](../nextjs-ui-builder/SKILL.md) — Build the Next.js page that hosts this dashboard component

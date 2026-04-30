@@ -197,3 +197,21 @@ export default function Error({ error, reset }) {
 - [references/components.md](references/components.md) - Component patterns, forms, loading states
 - [references/api-integration.md](references/api-integration.md) - Fetch utilities, server actions
 - [references/auth-patterns.md](references/auth-patterns.md) - Login flow, protected routes, auth context
+
+## When NOT to Use This Skill
+
+- **Simple static HTML pages** — Next.js adds a React and Node.js build pipeline that's unnecessary for a static brochure site; use plain HTML or a static site generator
+- **Backend-only APIs** — Next.js API routes work for simple BFF patterns but use `fastapi-backend-builder` for complex, high-throughput backend services
+- **Existing non-Next.js React projects** — migrating a Create React App project to Next.js mid-development introduces breaking changes; start greenfield or plan a dedicated migration
+
+## Common Mistakes
+
+- Mixing Server Components and Client Components without understanding the boundary — components that use `useState`, `useEffect`, or browser APIs must be Client Components; accidentally marking them as Server Components causes runtime errors
+- Not configuring image optimization with `next/image` — using raw `<img>` tags bypasses Next.js's automatic WebP conversion and lazy loading, degrading Core Web Vitals
+- Fetching data in Client Components on every render instead of using Server Components or React Query caching — each client-side fetch adds a network round trip and waterfall
+
+## Related Skills
+
+- [`frontend-react-dashboard`](../frontend-react-dashboard/SKILL.md) — Build dashboard components within the Next.js app
+- [`nextjs-k8s-deploy`](../nextjs-k8s-deploy/SKILL.md) — Deploy the built Next.js app to Kubernetes
+- [`frontend-ai-form-builder`](../frontend-ai-form-builder/SKILL.md) — Add AI-powered forms to the Next.js application

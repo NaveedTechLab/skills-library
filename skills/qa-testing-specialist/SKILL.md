@@ -506,3 +506,21 @@ with patch("app.services.linkedin.httpx.AsyncClient.post"):
 ## Reference Documentation
 
 - **[testing-best-practices.md](references/testing-best-practices.md)** - Comprehensive testing patterns, async testing, mocking strategies, and CI/CD integration
+
+## When NOT to Use This Skill
+
+- **Prototype-phase code** — investing in a full test suite for throwaway prototypes wastes time; wait until the design is stable
+- **Trivial getter/setter functions** — 100% test coverage of trivial code inflates the test suite without adding meaningful coverage of real behaviors
+- **Test environments without access to real dependencies** — tests that mock everything don't catch integration failures; ensure your test environment can access actual services for integration tests
+
+## Common Mistakes
+
+- Writing tests that test the implementation rather than the behavior — tests that break every time an internal refactoring happens have no value; test observable outputs, not internal mechanics
+- Not running tests in CI/CD — tests that only run locally miss regressions that happen in integration; every PR should trigger the full test suite
+- Skipping negative test cases — testing only the happy path misses error handling bugs; always test invalid inputs, boundary conditions, and failure scenarios
+
+## Related Skills
+
+- [`qa-auditor`](../qa-auditor/SKILL.md) — Audit the codebase to find areas that need testing
+- [`qa-automation`](../qa-automation/SKILL.md) — Automate the test execution pipeline
+- [`webapp-testing`](../webapp-testing/SKILL.md) — End-to-end web application testing

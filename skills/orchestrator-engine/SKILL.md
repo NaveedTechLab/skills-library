@@ -152,3 +152,20 @@ Template configuration files and workflow definitions for common orchestration s
 ---
 
 The orchestrator engine enables sophisticated automation of Claude Code workflows while maintaining flexibility and reliability.
+## When NOT to Use This Skill
+
+- **Single-agent tasks** — orchestration adds coordination overhead that's unnecessary when one agent can handle the task end-to-end
+- **Simple linear pipelines** — if tasks execute in a fixed sequence without branching or parallelism, a simple script is clearer than an orchestrator
+- **Latency-sensitive real-time operations** — orchestration communication adds latency; for sub-100ms requirements, use direct function calls
+
+## Common Mistakes
+
+- Not implementing timeouts for each agent task — a stalled sub-agent can block the entire orchestration indefinitely without task-level timeouts
+- Not logging intermediate orchestration states — when an orchestration fails mid-run, you need the state log to resume from where it stopped rather than restarting from scratch
+- Over-orchestrating simple workflows — adding orchestration to a two-step process makes it harder to debug and maintain than just calling the steps sequentially
+
+## Related Skills
+
+- [`a2a-messaging`](../a2a-messaging/SKILL.md) — Agent-to-agent communication layer this orchestrator coordinates
+- [`hybrid-intelligence-architect`](../hybrid-intelligence-architect/SKILL.md) — Multi-model intelligence that feeds into orchestrated workflows
+- [`watchdog-process-manager`](../watchdog-process-manager/SKILL.md) — Monitor the orchestrator process and restart on failure

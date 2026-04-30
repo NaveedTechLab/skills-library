@@ -1,3 +1,8 @@
+---
+name: odoo-mcp-server
+description: Integrate with Odoo ERP systems via MCP to perform accounting, invoicing, and financial operations with HITL approval controls. Use when connecting Claude Code to Odoo for business process automation.
+---
+
 # Odoo MCP Server
 
 ## Description
@@ -219,3 +224,21 @@ volumes:
 - `pydantic` for data validation
 - Integration with phase-3 audit_logger
 - Integration with phase-3 safety_enforcer
+
+## When NOT to Use This Skill
+
+- **Non-Odoo ERP systems** (SAP, NetSuite, QuickBooks) — this skill is Odoo-specific; other ERP systems require separate integrations
+- **Fully automated financial posting without human review** — all financial write operations require HITL approval; this skill is not suitable for zero-touch automation
+- **Read-heavy analytics workloads** — if you only need reporting data, direct database read access via `database-postgresql-design` may be more efficient than the MCP overhead
+
+## Common Mistakes
+
+- Hardcoding the Odoo server URL — use environment variables for the host and port; hardcoded URLs break when migrating between staging and production instances
+- Not validating account codes before creating journal entries — Odoo will reject entries referencing non-existent accounts; always look up valid accounts before posting
+- Not handling Odoo JSON-RPC session expiry — Odoo sessions expire after inactivity; implement automatic re-authentication when session errors occur
+
+## Related Skills
+
+- [`crm-database-management`](../crm-database-management/SKILL.md) — Manage the CRM database that Odoo integrates with
+- [`audit-logging-system`](../audit-logging-system/SKILL.md) — Log all financial operations for compliance
+- [`mcp-builder`](../mcp-builder/SKILL.md) — Build the MCP infrastructure this Odoo server runs on

@@ -292,3 +292,21 @@ with open("encrypted.pdf", "wb") as output:
 - For JavaScript libraries (pdf-lib), see reference.md
 - If you need to fill out a PDF form, follow the instructions in forms.md
 - For troubleshooting guides, see reference.md
+
+## When NOT to Use This Skill
+
+- **Editable documents** — PDFs are not designed for editing; if the consumer will need to modify the document, generate `.docx` instead
+- **Web-first content** — HTML renders better in browsers than embedded PDFs; use HTML for content meant to be read online
+- **Highly dynamic content** — PDFs are static; for content that changes frequently, a web page is easier to update and distribute
+
+## Common Mistakes
+
+- Not embedding fonts in the generated PDF — PDFs without embedded fonts render incorrectly on systems where those fonts aren't installed
+- Using screen-resolution images (72 DPI) in print-intended PDFs — print-quality PDFs require at least 300 DPI images; screen-res images look pixelated when printed
+- Not setting PDF metadata (title, author, subject) — metadata-less PDFs are harder to organize, search, and identify in document management systems
+
+## Related Skills
+
+- [`docx`](../docx/SKILL.md) — Generate Word documents that can be converted to PDF
+- [`pptx`](../pptx/SKILL.md) — Generate presentations that can be exported to PDF
+- [`doc-coauthoring`](../doc-coauthoring/SKILL.md) — Co-author content before converting to PDF

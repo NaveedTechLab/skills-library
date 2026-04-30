@@ -575,3 +575,21 @@ If validation fails:
 3. Halt and require user intervention (hard failure mode)
 
 Assessments must meet quality standards: balanced cognitive distribution, varied types, meaningful distractors, clear rubrics.
+
+## When NOT to Use This Skill
+
+- **Informal knowledge checks** — quick in-conversation comprehension checks don't need the full assessment scaffolding this skill provides
+- **Performance-based or portfolio assessments** — this skill targets question-based assessments; use `exercise-designer` for project or lab-based evaluation
+- **Assessments requiring human expert review of domain accuracy** — always have a subject matter expert validate generated questions before deploying them to learners
+
+## Common Mistakes
+
+- Generating only recall-level (Bloom's Level 1) questions — effective assessments require higher-order thinking; always include analysis and synthesis questions
+- Writing distractors that are obviously wrong — poor distractors make the correct answer trivial to spot and reduce assessment validity
+- Reusing the same question stems with different numbers — test-takers recognize patterns and the assessment loses diagnostic value
+
+## Related Skills
+
+- [`quiz-generator`](../quiz-generator/SKILL.md) — Generate large sets of MCQs quickly from content
+- [`exercise-designer`](../exercise-designer/SKILL.md) — Design hands-on exercises alongside formal assessments
+- [`learning-objectives`](../learning-objectives/SKILL.md) — Define the learning objectives that assessments should measure

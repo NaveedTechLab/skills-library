@@ -483,3 +483,20 @@ def search_knowledge_base(query):
 ```
 
 This skill provides comprehensive guidance for ensuring Zero-Backend-LLM compliance through systematic code review and API auditing.
+## When NOT to Use This Skill
+
+- **Active development sprints** — auditing code that's still being actively changed is wasteful; run QA audits at stable checkpoints (pre-release, end of sprint)
+- **Trivial scripts and throwaway code** — full QA audit overhead isn't proportional to the risk of low-stakes scripts
+- **Unfamiliar technology stacks without reference standards** — auditing requires knowing what "good" looks like; establish quality standards before auditing against them
+
+## Common Mistakes
+
+- Reporting every finding without prioritizing severity — an audit report with 200 low-severity issues overwhelms developers; triage and prioritize findings by impact
+- Auditing without defined acceptance criteria — "the code is bad" is not actionable; always tie audit findings to specific, measurable quality standards
+- Performing audits without a fix-verification step — audits that don't verify remediation create false assurance that issues were resolved
+
+## Related Skills
+
+- [`qa-testing-specialist`](../qa-testing-specialist/SKILL.md) — Implement the test suite that supports the audit findings
+- [`qa-debugging-performance`](../qa-debugging-performance/SKILL.md) — Debug and fix performance issues uncovered by the audit
+- [`code-validation-sandbox`](../code-validation-sandbox/SKILL.md) — Validate code quality in a sandbox as part of the audit process

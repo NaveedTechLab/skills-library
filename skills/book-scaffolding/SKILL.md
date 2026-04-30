@@ -437,3 +437,21 @@ For deeper guidance on specific aspects of book structure:
 
 **Status**: Ready for use on all multi-part educational books. Proven on CoLearning Python & Agentic AI project.
 
+
+## When NOT to Use This Skill
+
+- **Short-form content** (blog posts, articles under 5,000 words) — the full book scaffold is overkill; use `summary-generator` or `technical-clarity` for shorter pieces
+- **Academic papers or research reports** — those have rigid structural conventions this skill doesn't enforce; use discipline-specific templates instead
+- **Fiction or creative writing** — this skill is optimized for non-fiction, instructional, and technical books
+
+## Common Mistakes
+
+- Generating all chapters in a single pass without reviewing the outline first — chapter structure problems are cheap to fix in outline form but expensive after full generation
+- Not defining the target reader before generating — ambiguous audience leads to inconsistent tone and depth across chapters
+- Treating the generated scaffold as final — the output is a structured starting point, not a finished manuscript; always revise for voice and accuracy
+
+## Related Skills
+
+- [`technical-clarity`](../technical-clarity/SKILL.md) — Edit generated chapters for clarity and precision
+- [`concept-scaffolding`](../concept-scaffolding/SKILL.md) — Build the conceptual framework before structuring the book
+- [`summary-generator`](../summary-generator/SKILL.md) — Generate chapter summaries and back-cover copy

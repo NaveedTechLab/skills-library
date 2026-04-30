@@ -615,3 +615,21 @@ objectives:
 - End goal (build project? understand theory? debug code?)
 
 Or paste existing objectives and I'll help make them more measurable!
+
+## When NOT to Use This Skill
+
+- **Informal conversations and micro-learning** — short knowledge-sharing chats don't require formal learning objective specification
+- **Performance improvement plans** — organizational performance management has different goal-setting frameworks than pedagogical learning objectives
+- **Research or exploration tasks** — open-ended inquiry doesn't produce measurable behavioral outcomes that learning objectives require
+
+## Common Mistakes
+
+- Writing objectives with unmeasurable verbs (understand, know, appreciate) — Bloom's Taxonomy verbs (analyze, create, evaluate) are observable and assessable; vague verbs are not
+- Writing too many objectives for a single lesson — more than 3-5 objectives per lesson overloads the learner and makes assessment impractical
+- Writing objectives from the instructor's perspective instead of the learner's — "I will cover X" is a teaching goal; "Learners will be able to X" is a learning objective
+
+## Related Skills
+
+- [`assessment-builder`](../assessment-builder/SKILL.md) — Build assessments that measure the objectives defined here
+- [`concept-scaffolding`](../concept-scaffolding/SKILL.md) — Scaffold the learning progression toward these objectives
+- [`exercise-designer`](../exercise-designer/SKILL.md) — Design exercises that give learners practice toward these objectives

@@ -1,3 +1,8 @@
+---
+name: meta-social-mcp-server
+description: Integrate with Facebook and Instagram APIs via MCP to create, schedule, and manage social posts with human-in-the-loop approval workflows. Use when automating Meta platform social media management.
+---
+
 # Meta Social MCP Server
 
 ## Description
@@ -211,3 +216,21 @@ Reuses LinkedIn pattern:
 - `pydantic` for validation
 - Integration with phase-3 audit_logger
 - Integration with phase-3 safety_enforcer
+
+## When NOT to Use This Skill
+
+- **Personal Facebook profiles** — Meta's Graph API is for Pages and Business accounts; personal profile automation violates Meta's terms of service
+- **Emergency or crisis communications** — automated social posting during a crisis can compound damage; always have a human manage communications in real-time during incidents
+- **High-frequency posting (more than 3-5 posts/day)** — over-posting on Meta platforms triggers spam detection and reduces organic reach
+
+## Common Mistakes
+
+- Using short-lived user access tokens instead of long-lived page tokens — short-lived tokens expire after 1 hour; generate long-lived tokens (60 days) for automation
+- Not testing on a staging page before posting to the main brand page — always validate content and formatting on a test page first
+- Posting media without pre-uploading via the resumable upload API — large media files posted inline fail silently on slow connections; use resumable uploads
+
+## Related Skills
+
+- [`twitter-mcp-server`](../twitter-mcp-server/SKILL.md) — Extend automation to X/Twitter alongside Meta
+- [`linkedin-posting-automation`](../linkedin-posting-automation/SKILL.md) — Manage LinkedIn alongside Meta platforms
+- [`mcp-builder`](../mcp-builder/SKILL.md) — Build the MCP infrastructure this server runs on

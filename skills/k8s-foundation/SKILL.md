@@ -102,3 +102,20 @@ Template files and configurations for foundational charts.
 ---
 
 **Any unneeded directories can be deleted.** Not every skill requires all three types of resources.
+## When NOT to Use This Skill
+
+- **Single-server deployments** — Kubernetes is designed for multi-node clusters; a single VM is better served by Docker Compose or a simple systemd service
+- **Serverless workloads** — functions that run on AWS Lambda, Cloud Run, or Fargate don't need Kubernetes cluster management
+- **Quick local testing** — use `docker-compose` or `minikube` for local development; don't provision a full Kubernetes cluster just to test an application
+
+## Common Mistakes
+
+- Not setting resource requests and limits on all workloads — unbounded pods exhaust node resources and evict other workloads unexpectedly
+- Using the `default` namespace for all workloads — namespace isolation is a fundamental Kubernetes security and organization principle; always create dedicated namespaces
+- Not configuring RBAC from the start — adding least-privilege access controls retroactively is painful; define service accounts and roles during initial cluster setup
+
+## Related Skills
+
+- [`kubernetes-deployer`](../kubernetes-deployer/SKILL.md) — Deploy applications to the cluster set up by this skill
+- [`prometheus-grafana-setup`](../prometheus-grafana-setup/SKILL.md) — Add monitoring to the Kubernetes cluster
+- [`argocd-app-deployment`](../argocd-app-deployment/SKILL.md) — Implement GitOps-based deployments on the cluster

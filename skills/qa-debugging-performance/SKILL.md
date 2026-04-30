@@ -141,3 +141,21 @@ Before suggesting refactors, confirm the change is requested or clearly necessar
 
 - [references/express-debugging.md](references/express-debugging.md) — Express error patterns, async handling, ORM query safety
 - [references/react-performance.md](references/react-performance.md) — Re-render diagnosis, memo patterns, hook recipes
+
+## When NOT to Use This Skill
+
+- **Premature optimization** — profile before optimizing; don't use this skill until you've measured and identified an actual bottleneck
+- **Non-performance bugs** (logic errors, data corruption) — this skill focuses on performance debugging; functional bugs need a different debugging approach
+- **Infrastructure-level bottlenecks** — if the slowness is in the database, network, or disk I/O, address infrastructure first; application-level optimization won't help much
+
+## Common Mistakes
+
+- Optimizing the wrong code path — always profile first; developers frequently optimize code that isn't the actual bottleneck
+- Measuring performance in development mode — Next.js, React, and most frameworks run significantly slower in development mode; always benchmark in production builds
+- Not establishing a performance baseline before optimizing — without a before-measurement, you can't tell if changes improved anything
+
+## Related Skills
+
+- [`qa-auditor`](../qa-auditor/SKILL.md) — Audit-level quality review that surfaces performance issues
+- [`qa-testing-specialist`](../qa-testing-specialist/SKILL.md) — Build the test suite including performance regression tests
+- [`webapp-testing`](../webapp-testing/SKILL.md) — End-to-end testing including performance scenario coverage

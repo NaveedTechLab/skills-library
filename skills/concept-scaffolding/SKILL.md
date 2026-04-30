@@ -1,3 +1,8 @@
+---
+name: concept-scaffolding
+description: Build structured conceptual frameworks that scaffold learners from foundational ideas to advanced understanding. Use when designing curricula, onboarding materials, or multi-stage learning progressions.
+---
+
 # Concept Scaffolding Skill v3.0 (Reasoning-Activated)
 
 **Version**: 3.0.0
@@ -470,3 +475,21 @@ say_hello()  # Prints "Hello!" three times
 ---
 
 **Ready to use**: Invoke this skill when you need to break complex concepts into progressive learning steps with cognitive load management and validation checkpoints.
+
+## When NOT to Use This Skill
+
+- **Single-concept explanations** — for explaining one idea clearly, use `concept-explainer`; scaffolding is for multi-stage progressions
+- **Expert learners** — highly skilled practitioners don't need scaffolded progressions; provide the full complexity directly
+- **Rapidly changing technical content** — scaffolded frameworks take time to build; if the material changes quickly, invest in flexible reference docs instead
+
+## Common Mistakes
+
+- Scaffolding too many concepts in a single progression — keep each scaffold to one conceptual thread; parallel threads confuse learners about the intended path
+- Not testing the scaffold with actual learners before deploying — what seems logical to the author may have gaps that derail novice learners
+- Skipping prerequisite mapping — learners who reach a scaffold step without required prior knowledge fail silently
+
+## Related Skills
+
+- [`concept-explainer`](../concept-explainer/SKILL.md) — Explain individual concepts within the scaffold
+- [`learning-objectives`](../learning-objectives/SKILL.md) — Define the objectives each scaffold stage should achieve
+- [`assessment-builder`](../assessment-builder/SKILL.md) — Create assessments to verify learners passed each scaffold stage

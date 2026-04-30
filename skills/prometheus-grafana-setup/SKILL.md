@@ -110,3 +110,20 @@ Template files and configurations for monitoring setup.
 ---
 
 **Any unneeded directories can be deleted.** Not every skill requires all three types of resources.
+## When NOT to Use This Skill
+
+- **Managed observability platforms** (Datadog, New Relic, Grafana Cloud) — if your organization pays for a managed monitoring service, use its native agent instead of self-hosting Prometheus/Grafana
+- **Development-only environments** — full Prometheus/Grafana stacks add operational overhead; use simple console logging and local metrics in development
+- **Serverless or ephemeral workloads** — the pull-based Prometheus scrape model doesn't work well with short-lived serverless functions; use push-based metrics (StatsD, CloudWatch) instead
+
+## Common Mistakes
+
+- Not setting retention limits on Prometheus storage — Prometheus's default local storage grows unboundedly; always configure `--storage.tsdb.retention.time` to cap disk usage
+- Creating dashboards without setting alert thresholds — dashboards that only show data without alerting require humans to watch them continuously; always add Alertmanager rules
+- Not labeling metrics with meaningful labels (service, environment, version) — metrics without labels are impossible to filter by environment or deployment version in multi-tenant setups
+
+## Related Skills
+
+- [`k8s-foundation`](../k8s-foundation/SKILL.md) — Kubernetes cluster on which Prometheus and Grafana are deployed
+- [`watchdog-process-manager`](../watchdog-process-manager/SKILL.md) — Process-level monitoring that complements metrics-level monitoring
+- [`audit-logging-system`](../audit-logging-system/SKILL.md) — Structured logging that works alongside metrics for full observability

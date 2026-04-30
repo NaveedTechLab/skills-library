@@ -235,3 +235,20 @@ result = supabase.table('users').insert({'name': 'John', 'email': 'john@example.
 - Implement proper error logging
 - Monitor resource utilization
 - Track performance metrics
+## When NOT to Use This Skill
+
+- **Application development** — use development-focused skills; this skill handles infrastructure concerns only
+- **Cloud-provider-specific managed services** (AWS Lambda, Cloud Run) — serverless and fully managed services have different operational models than the infrastructure patterns this skill covers
+- **Development laptops and local environments** — production-grade infrastructure patterns (HA, auto-scaling, monitoring) add overhead in local dev; use Docker Compose instead
+
+## Common Mistakes
+
+- Not documenting infrastructure changes in version control (infrastructure as code) — manually applied changes are impossible to reproduce and audit
+- Sharing long-lived service account credentials instead of using workload identity — credentials that don't rotate become long-term security liabilities
+- Skipping staging environment testing for infrastructure changes — untested infra changes are the leading cause of production incidents
+
+## Related Skills
+
+- [`infra-deployment-specialist`](../infra-deployment-specialist/SKILL.md) — Deploy applications to the infrastructure this skill manages
+- [`infra-devops`](../infra-devops/SKILL.md) — Full DevOps pipeline including containerization and CI/CD
+- [`k8s-foundation`](../k8s-foundation/SKILL.md) — Kubernetes infrastructure setup and management

@@ -151,3 +151,20 @@ Configuration templates and example implementations for various email scenarios.
 ---
 
 The email MCP server enables secure and compliant email operations with appropriate human oversight.
+## When NOT to Use This Skill
+
+- **Bulk email marketing** — use dedicated ESPs (SendGrid, Mailchimp) for mass email; this skill handles transactional and individual emails only
+- **Regulated industries requiring email archiving** — ensure your setup complies with retention requirements before routing regulated communications through this server
+- **High-frequency automated email sending** — Gmail and OAuth providers enforce daily sending limits; exceeding them causes account suspension
+
+## Common Mistakes
+
+- Using personal Gmail credentials instead of a service account — personal OAuth tokens expire and require re-authentication; service accounts with domain-wide delegation are more reliable
+- Not implementing HITL approval for outbound emails — sending emails without human review is risky; always add an approval step before the `send` action
+- Storing OAuth tokens in plaintext config files — tokens are credentials; store them in an encrypted secret manager or environment variables
+
+## Related Skills
+
+- [`gmail-watcher`](../gmail-watcher/SKILL.md) — Monitor incoming emails alongside sending them
+- [`calendar-mcp-server`](../calendar-mcp-server/SKILL.md) — Coordinate calendar invites with email communications
+- [`mcp-builder`](../mcp-builder/SKILL.md) — Build the MCP infrastructure this email server runs on

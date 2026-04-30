@@ -753,3 +753,14 @@ Student can:
 - [ ] Evolved through iterations?
 
 You can use @papers/prompting-practices-claude.md for more information.
+## When NOT to Use This Skill
+
+- **One-off conversational prompts** — simple single-use questions don't need a reusable template; the overhead isn't justified
+- **Highly domain-specific prompts requiring expert knowledge** — template design is a structural skill; domain accuracy requires expert review for medical, legal, or financial prompts
+- **Prompts for proprietary, undocumented model APIs** — template design assumes you know how the model responds to structural cues; unknown model behaviors make template optimization guesswork
+
+## Related Skills
+
+- [`code-example-generator`](../code-example-generator/SKILL.md) — Generate code that uses the prompt templates designed here
+- [`tool-selection-framework`](../tool-selection-framework/SKILL.md) — Choose the right AI tool before designing prompts for it
+- [`canonical-format-checker`](../canonical-format-checker/SKILL.md) — Verify that prompt templates conform to organizational standards

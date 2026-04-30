@@ -1,3 +1,8 @@
+---
+name: code-example-generator
+description: Generate high-quality, reasoning-driven code examples for any language or framework. Use when you need pedagogically clear, well-commented examples that teach concepts rather than just demonstrate syntax.
+---
+
 # Code Example Generator Skill v3.0 (Reasoning-Activated)
 
 **Version**: 3.0.0
@@ -484,3 +489,15 @@ def delete_user(user, user_id):
 ---
 
 **Ready to use**: Invoke this skill to generate pedagogically sound, runnable code examples that demonstrate concepts through production-relevant patterns using Spec→Prompt→Code→Validation workflow.
+
+## When NOT to Use This Skill
+
+- **Production-ready code** — examples generated here are for learning and illustration; they may lack error handling, security hardening, and edge-case coverage needed for production
+- **Domain-specific code requiring specialized knowledge** — for highly specialized domains (embedded systems, cryptographic algorithms), examples need expert domain review
+- **Complete application scaffolding** — use `fastapi-backend-builder` or similar scaffolding skills for full applications; this skill generates focused examples, not entire projects
+
+## Related Skills
+
+- [`concept-scaffolding`](../concept-scaffolding/SKILL.md) — Build the conceptual framework before illustrating it with code examples
+- [`code-validation-sandbox`](../code-validation-sandbox/SKILL.md) — Validate generated code examples for correctness
+- [`technical-clarity`](../technical-clarity/SKILL.md) — Improve the prose explanations that accompany code examples

@@ -1,5 +1,5 @@
 ---
-name: infra_devops
+name: infra-devops
 description: Handles containerization with Docker and deployment orchestration on Kubernetes. Manages K8s manifests, auto-scaling configurations, and health monitoring for all system components. Use when Claude needs to work with Docker containerization, Kubernetes deployment orchestration, K8s manifests, auto-scaling configurations, or health monitoring for system components.
 ---
 
@@ -800,3 +800,20 @@ For detailed implementation patterns, see:
 - [CI_CD_PIPELINES.md](references/CI_CD_PIPELINES.md) - CI/CD pipeline configurations
 - [SECURITY_BEST_PRACTICES.md](references/SECURITY_BEST_PRACTICES.md) - Security implementations
 - [RESOURCE_OPTIMIZATION.md](references/RESOURCE_OPTIMIZATION.md) - Resource management and optimization
+## When NOT to Use This Skill
+
+- **Application feature work** — this skill handles containerization and deployment orchestration, not business logic
+- **Serverless-only architectures** — Kubernetes and Docker Compose patterns don't apply to pure serverless; use cloud-provider-specific deployment tools
+- **Environments without a container runtime** — Kubernetes requires Docker or containerd; ensure the runtime is available before using this skill
+
+## Common Mistakes
+
+- Not using multi-stage Docker builds — single-stage builds include build tools in the production image, massively inflating image size
+- Not implementing readiness and liveness probes in Kubernetes manifests — Kubernetes can't distinguish a healthy pod from a crashed one without probes
+- Storing secrets in Kubernetes ConfigMaps instead of Secrets — ConfigMaps are stored in plaintext in etcd; always use Secrets (or an external secret manager) for credentials
+
+## Related Skills
+
+- [`k8s-foundation`](../k8s-foundation/SKILL.md) — Kubernetes cluster setup that underpins this DevOps skill
+- [`argocd-app-deployment`](../argocd-app-deployment/SKILL.md) — GitOps-based deployment layer on top of the infrastructure this skill builds
+- [`prometheus-grafana-setup`](../prometheus-grafana-setup/SKILL.md) — Observability for the infrastructure managed here

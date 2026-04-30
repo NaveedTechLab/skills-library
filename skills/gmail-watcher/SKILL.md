@@ -185,3 +185,21 @@ await registry.start_all()
 ## Gmail API Setup
 
 See [references/gmail-setup.md](references/gmail-setup.md) for detailed Google Cloud Console setup instructions.
+
+## When NOT to Use This Skill
+
+- **Mass email reading at high volume** — Gmail API has per-user rate limits; for enterprise inboxes with thousands of daily emails, use a dedicated email parsing service
+- **Corporate Exchange/Outlook inboxes** — this skill is Gmail-specific; use Microsoft Graph API for Office 365 email monitoring
+- **Automated email sending** — the Gmail watcher monitors incoming emails; use `email-mcp-server` for outbound email automation
+
+## Common Mistakes
+
+- Using Gmail API polling instead of push notifications — polling every minute misses emails and consumes API quota; use Gmail push notifications via Pub/Sub for real-time delivery
+- Not filtering by label or sender before processing — processing every email including spam and newsletters wastes tokens; filter to relevant senders or labels first
+- Marking emails as read without a human review step — automated read-marking can hide important emails from human inbox management; use labels instead
+
+## Related Skills
+
+- [`email-mcp-server`](../email-mcp-server/SKILL.md) — Send emails after processing them with the watcher
+- [`base-watcher-framework`](../base-watcher-framework/SKILL.md) — Base framework the Gmail watcher is built on
+- [`scheduler-cron-integration`](../scheduler-cron-integration/SKILL.md) — Schedule periodic Gmail polling jobs as a fallback

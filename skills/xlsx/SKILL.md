@@ -287,3 +287,14 @@ The script returns JSON with error details:
 - Add comments to cells with complex formulas or important assumptions
 - Document data sources for hardcoded values
 - Include notes for key calculations and model sections
+## When NOT to Use This Skill
+
+- **Real-time collaborative spreadsheets** — `.xlsx` files don't support real-time collaboration; use Google Sheets for live multi-user editing
+- **Large datasets exceeding 1M rows** — Excel has a 1,048,576 row limit and gets slow well before it; use a database or Parquet files for large datasets
+- **Data visualization dashboards** — generating `.xlsx` files for BI purposes is a poor substitute for purpose-built analytics tools (Tableau, Grafana, Metabase)
+
+## Related Skills
+
+- [`pdf`](../pdf/SKILL.md) — Convert spreadsheet data to PDF for read-only distribution
+- [`database-postgresql-design`](../database-postgresql-design/SKILL.md) — Use PostgreSQL for structured data that outgrows spreadsheets
+- [`business-audit-generator`](../business-audit-generator/SKILL.md) — Generate executive reports from the data managed in spreadsheets

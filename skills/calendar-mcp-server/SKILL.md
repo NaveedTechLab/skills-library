@@ -180,3 +180,21 @@ config = CalendarConfig(
 
 server = CalendarMCPServer(config=config)
 ```
+
+## When NOT to Use This Skill
+
+- **Read-only calendar access** — if you only need to display events without creating or modifying them, a simple OAuth read integration suffices
+- **Calendars not based on Google Calendar or CalDAV** — this skill targets standard calendar APIs; proprietary enterprise calendars may require custom integration
+- **High-frequency event polling** — use Google Calendar push notifications (webhooks) instead of polling to avoid hitting API rate limits
+
+## Common Mistakes
+
+- Not handling OAuth token expiry — access tokens expire; always implement refresh token logic to avoid silent authentication failures
+- Creating events without timezone specification — naive datetime objects create ambiguous calendar entries that shift with DST changes
+- Not checking for calendar conflicts before creating events — double-bookings create a poor user experience; always query existing events first
+
+## Related Skills
+
+- [`email-mcp-server`](../email-mcp-server/SKILL.md) — Pair with calendar for full communication automation
+- [`scheduler-cron-integration`](../scheduler-cron-integration/SKILL.md) — Schedule recurring tasks that sync with calendar events
+- [`mcp-builder`](../mcp-builder/SKILL.md) — Build the MCP server infrastructure this calendar skill runs on

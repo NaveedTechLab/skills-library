@@ -203,3 +203,21 @@ async def handle_event(request: Request):
 - [references/kafka-patterns.md](references/kafka-patterns.md) - Topic design, producers, consumers, error handling
 - [references/dapr-pubsub.md](references/dapr-pubsub.md) - Component config, publish/subscribe, local development
 - [references/microservice-patterns.md](references/microservice-patterns.md) - Saga, CQRS, circuit breaker, bulkhead
+
+## When NOT to Use This Skill
+
+- **Simple request-response APIs** — event-driven architecture adds significant complexity; use a REST API when synchronous communication is sufficient
+- **Small teams without operational experience** — event-driven systems require expertise to operate; ensure the team can debug distributed message flows before committing to this architecture
+- **Latency-sensitive operations requiring sub-100ms response** — event processing introduces async lag; use synchronous calls for real-time operations
+
+## Common Mistakes
+
+- Not designing for idempotency in event consumers — network failures cause event redelivery; consumers that don't handle duplicates produce incorrect state
+- Ignoring event schema evolution — events are contracts; changing event structure without versioning breaks downstream consumers
+- Not implementing dead letter queues — events that fail processing repeatedly disappear silently without a DLQ; always capture unprocessable events for investigation
+
+## Related Skills
+
+- [`event-streaming`](../event-streaming/SKILL.md) — Implement Kafka-based event streaming for this architecture
+- [`kafka-k8s-setup`](../kafka-k8s-setup/SKILL.md) — Deploy the Kafka infrastructure for event streaming
+- [`realtime-websocket-system`](../realtime-websocket-system/SKILL.md) — Pair event-driven backends with real-time WebSocket frontends

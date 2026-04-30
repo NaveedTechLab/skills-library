@@ -403,3 +403,20 @@ This skill includes helpful templates and documentation:
 - The **algorithm is where to create** something unique
 - Don't copy the flow field example - build what the philosophy demands
 - But DO keep the exact UI structure and Anthropic branding from the template
+## When NOT to Use This Skill
+
+- **Representational or photorealistic art** — this skill is for algorithm-driven, generative, abstract visual work; use `image-generator` for photorealistic outputs
+- **Static one-time illustrations** — if you need a single non-interactive image, a drawing tool is faster than writing a generative algorithm
+- **Teams without JavaScript/Canvas/WebGL experience** — the output code requires maintenance; don't use this skill if no one on the team can debug canvas rendering
+
+## Common Mistakes
+
+- Hardcoding magic numbers (canvas size, particle count) without making them configurable — the art becomes brittle and non-responsive across screen sizes
+- Not seeding the random number generator — outputs are non-reproducible, making it impossible to recreate a specific piece
+- Ignoring frame rate optimization — complex generative algorithms running at 60fps without `requestAnimationFrame` throttling freeze the browser
+
+## Related Skills
+
+- [`canvas-design`](../canvas-design/SKILL.md) — HTML5 Canvas fundamentals underlying most generative art
+- [`webgl-performance-optimizer`](../webgl-performance-optimizer/SKILL.md) — Optimize GPU-accelerated generative art for performance
+- [`threejs-react-ui-specialist`](../threejs-react-ui-specialist/SKILL.md) — Embed generative 3D art into React applications

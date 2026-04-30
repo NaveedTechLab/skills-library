@@ -128,3 +128,21 @@ For `useNotifications` hook (Socket.io client + state), dropdown component, and 
 - [references/websocket-server.md](references/websocket-server.md) — Full server setup, Redis adapter for scaling, auth, CORS, error handling
 - [references/alert-engine.md](references/alert-engine.md) — PostgreSQL schema, threshold operators, cooldown logic, campaign-level config
 - [references/react-ui.md](references/react-ui.md) — useNotifications hook, badge component, dropdown, mark-as-read
+
+## When NOT to Use This Skill
+
+- **Infrequent data updates** — if data changes less than once per minute, HTTP polling is simpler and less resource-intensive than a persistent WebSocket connection
+- **Request-response APIs** — WebSockets are for bidirectional streaming; for standard query-response patterns, use REST or GraphQL
+- **Large file transfers** — WebSockets are optimized for small, frequent messages; use HTTP multipart uploads for large file transfers
+
+## Common Mistakes
+
+- Not implementing heartbeat/ping-pong to detect stale connections — TCP connections can silently break; without keepalive pings, the server accumulates phantom connections that never receive messages
+- Broadcasting to all connections instead of targeted rooms/channels — sending every event to every client wastes bandwidth and leaks data to unintended recipients
+- Not handling reconnection with exponential backoff on the client — clients that reconnect immediately on disconnect hammer the server; always implement exponential backoff
+
+## Related Skills
+
+- [`event-driven-architect`](../event-driven-architect/SKILL.md) — Design the event architecture that feeds real-time updates
+- [`event-streaming`](../event-streaming/SKILL.md) — Kafka-based backend event streaming to power the WebSocket server
+- [`frontend-developer`](../frontend-developer/SKILL.md) — Implement the client-side WebSocket connection
