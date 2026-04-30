@@ -1,12 +1,9 @@
-# WebGL Performance Optimizer
-
 ---
 name: webgl-performance-optimizer
-description: Optimize Three.js UI performance, reduce GPU load, suggest fallback UI strategies, and maintain 60fps experience
-version: 1.0.0
-author: Claude Code Skills
-created: 2026-01-03
+description: Optimize Three.js and WebGL performance, reduce GPU load, suggest fallback UI strategies, and maintain 60fps experience.
 ---
+
+# WebGL Performance Optimizer
 
 ## Core Philosophy
 
