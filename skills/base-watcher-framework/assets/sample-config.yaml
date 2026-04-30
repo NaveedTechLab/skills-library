@@ -1,0 +1,42 @@
+# Sample Watcher Configuration
+# Copy and customize for your use case
+
+watchers:
+  # File system watcher - monitors a directory for changes
+  - type: filesystem
+    name: docs-watcher
+    config:
+      watch_path: ./docs
+      patterns:
+        - "*.md"
+        - "*.txt"
+      ignore_patterns:
+        - ".git/*"
+        - "__pycache__/*"
+        - "*.tmp"
+      recursive: true
+      poll_interval: 5.0
+      use_hash: false  # Set true for content-based change detection
+
+  # API watcher - monitors REST endpoint for changes
+  # Requires: pip install aiohttp
+  # - type: api
+  #   name: github-releases
+  #   config:
+  #     url: https://api.github.com/repos/owner/repo/releases/latest
+  #     method: GET
+  #     poll_interval: 300  # 5 minutes
+  #     auth_type: bearer
+  #     auth_credentials: ${GITHUB_TOKEN}
+  #     change_strategy: field  # full_hash, field, timestamp, etag
+  #     compare_fields:
+  #       - tag_name
+  #       - published_at
+
+  # Multiple watchers can run simultaneously
+  # - type: filesystem
+  #   name: config-watcher
+  #   config:
+  #     watch_path: ./config
+  #     patterns: ["*.yaml", "*.json"]
+  #     poll_interval: 10.0

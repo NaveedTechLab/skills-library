@@ -1,0 +1,39 @@
+{
+  "credentials_path": "credentials.json",
+  "token_path": "token.pickle",
+  "server": {
+    "host": "localhost",
+    "port": 8080
+  },
+  "hitl": {
+    "enabled": true,
+    "approval_timeout": 3600,
+    "approval_required": {
+      "external_recipients": true,
+      "attachment_size_mb": 10,
+      "sensitive_keywords": [
+        "confidential",
+        "private",
+        "urgent",
+        "sensitive",
+        "classified",
+        "legal",
+        "contract"
+      ]
+    }
+  },
+  "email_settings": {
+    "default_signature": "--\nSent via Claude Email MCP Server",
+    "max_attachment_size_mb": 25,
+    "rate_limit": {
+      "requests_per_minute": 10,
+      "burst_size": 5
+    }
+  },
+  "logging": {
+    "level": "INFO",
+    "file": "email_mcp_server.log",
+    "max_size": "10MB",
+    "backup_count": 5
+  }
+}

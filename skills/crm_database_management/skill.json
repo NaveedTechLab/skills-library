@@ -1,0 +1,39 @@
+{
+  "name": "crm_database_management",
+  "version": "1.0.0",
+  "description": "Manages the PostgreSQL database (the 'Internal CRM'). Responsible for schema migrations, customer identity resolution across channels, ticket lifecycle tracking, and vector search implementation via pgvector.",
+  "author": "Claude",
+  "tags": [
+    "postgresql",
+    "crm",
+    "database",
+    "migrations",
+    "identity-resolution",
+    "ticket-management",
+    "vector-search",
+    "pgvector"
+  ],
+  "dependencies": [
+    "psycopg2-binary",
+    "SQLAlchemy",
+    "redis",
+    "cryptography",
+    "PyJWT",
+    "numpy",
+    "alembic"
+  ],
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "requirements.txt",
+    "setup.sh",
+    "scripts/crm_database_manager.py",
+    "references/SCHEMA_DESIGN.md",
+    "references/MIGRATION_STRATEGY.md",
+    "references/CUSTOMER_IDENTITY.md",
+    "references/TICKET_LIFECYCLE.md",
+    "references/VECTOR_SEARCH.md",
+    "references/PERFORMANCE_TUNING.md",
+    "references/SECURITY_PATTERNS.md"
+  ]
+}

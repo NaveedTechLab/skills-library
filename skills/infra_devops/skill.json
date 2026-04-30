@@ -1,0 +1,39 @@
+{
+  "name": "infra_devops",
+  "version": "1.0.0",
+  "description": "Handles containerization with Docker and deployment orchestration on Kubernetes. Manages K8s manifests, auto-scaling configurations, and health monitoring for all system components.",
+  "author": "Claude",
+  "tags": [
+    "kubernetes",
+    "docker",
+    "containerization",
+    "deployment",
+    "orchestration",
+    "autoscaling",
+    "monitoring",
+    "cicd",
+    "devops"
+  ],
+  "dependencies": [
+    "kubernetes",
+    "docker",
+    "pyyaml",
+    "requests",
+    "cachetools",
+    "google-auth"
+  ],
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "requirements.txt",
+    "setup.sh",
+    "scripts/k8s_deployment_manager.py",
+    "references/DOCKER_PATTERNS.md",
+    "references/KUBERNETES_MANIFESTS.md",
+    "references/AUTOSCALING_STRATEGIES.md",
+    "references/MONITORING_STACK.md",
+    "references/CI_CD_PIPELINES.md",
+    "references/SECURITY_BEST_PRACTICES.md",
+    "references/RESOURCE_OPTIMIZATION.md"
+  ]
+}

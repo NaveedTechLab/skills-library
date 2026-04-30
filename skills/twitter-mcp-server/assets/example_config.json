@@ -1,0 +1,18 @@
+{
+  "twitter": {
+    "client_id": "",
+    "client_secret": "",
+    "access_token": "",
+    "access_token_secret": "",
+    "bearer_token": "",
+    "api_version": "2",
+    "timeout_seconds": 30,
+    "require_approval_for_tweets": true,
+    "require_approval_for_threads": true,
+    "require_approval_for_delete": true,
+    "approval_timeout_hours": 24,
+    "enable_rate_tracking": true,
+    "warn_at_percentage": 80,
+    "block_at_percentage": 95
+  }
+}

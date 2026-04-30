@@ -1,0 +1,40 @@
+{
+  "mode": "DEVELOPMENT",
+  "dry_run_enabled": true,
+  "rate_limits": {
+    "file_operations": {
+      "max_operations": 100,
+      "window_seconds": 60,
+      "burst_allowance": 10,
+      "per_user": false,
+      "per_resource": false
+    },
+    "network_requests": {
+      "max_operations": 50,
+      "window_seconds": 60,
+      "burst_allowance": 5,
+      "per_user": false,
+      "per_resource": false
+    },
+    "system_commands": {
+      "max_operations": 20,
+      "window_seconds": 60,
+      "burst_allowance": 2,
+      "per_user": true,
+      "per_resource": false
+    },
+    "credential_access": {
+      "max_operations": 10,
+      "window_seconds": 60,
+      "burst_allowance": 1,
+      "per_user": true,
+      "per_resource": false
+    }
+  },
+  "credentials_isolated": true,
+  "permission_enforcement": true,
+  "dangerous_operations_allowed": false,
+  "log_level": "INFO",
+  "audit_logging": true,
+  "environment": "development"
+}

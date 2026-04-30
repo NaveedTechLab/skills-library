@@ -1,0 +1,135 @@
+# Example Watchdog Process Manager Configuration
+
+# Processes to supervise
+processes:
+  - name: "file-watcher"
+    command: "python file_watcher.py"
+    restart_policy: "always"
+    max_restarts: 5
+    restart_window: 60
+    environment:
+      LOG_LEVEL: "INFO"
+      PYTHONPATH: "/opt/watchers"
+    working_dir: "/opt/watchers"
+    resource_limits:
+      cpu_percent: 80
+      memory_mb: 512
+    health_check:
+      type: "resource"
+      interval: 30
+      cpu_percent: 75
+      memory_mb: 480
+    autostart: true
+    stdout_file: "/var/log/file-watcher.out"
+    stderr_file: "/var/log/file-watcher.err"
+
+  - name: "api-server"
+    command: "python api_server.py --port 8080"
+    restart_policy: "on-failure"
+    environment:
+      DATABASE_URL: "postgresql://localhost/myapp"
+      LOG_LEVEL: "INFO"
+    working_dir: "/opt/api"
+    health_check:
+      type: "heartbeat"
+      interval: 60
+    autostart: true
+    stdout_file: "/var/log/api-server.out"
+    stderr_file: "/var/log/api-server.err"
+
+  - name: "orchestrator-engine"
+    command: "python orchestrator_engine.py"
+    restart_policy: "always"
+    max_restarts: 3
+    restart_window: 120
+    environment:
+      LOG_LEVEL: "DEBUG"
+      CONFIG_FILE: "/etc/orchestrator/config.json"
+    working_dir: "/opt/orchestrator"
+    resource_limits:
+      cpu_percent: 70
+      memory_mb: 1024
+    health_check:
+      type: "resource"
+      interval: 45
+      cpu_percent: 65
+      memory_mb: 900
+    autostart: true
+
+# Alerting configuration
+alerts:
+  channels:
+    # Email notifications
+    - name: "email-ops"
+      type: "email"
+      smtp_server: "smtp.gmail.com"
+      smtp_port: 587
+      username: "watchdog@mycompany.com"
+      password: "${EMAIL_PASSWORD}"
+      from_email: "watchdog@mycompany.com"
+      to_emails:
+        - "ops@mycompany.com"
+        - "dev-team@mycompany.com"
+
+    # Slack notifications
+    - name: "slack-alerts"
+      type: "slack"
+      webhook_url: "${SLACK_WEBHOOK_URL}"
+      channel: "#system-alerts"
+      username: "Watchdog Bot"
+
+    # Generic webhook
+    - name: "webhook-notifications"
+      type: "webhook"
+      url: "https://api.mycompany.com/alerts"
+      method: "POST"
+      headers:
+        Authorization: "Bearer ${WEBHOOK_TOKEN}"
+        Content-Type: "application/json"
+
+    # System logs
+    - name: "system-logs"
+      type: "log"
+      log_level: "WARNING"
+      logger_name: "watchdog.alerts"
+
+  # Alert rules
+  rules:
+    - name: "critical_failures"
+      conditions:
+        alert_types: ["process_failure", "restart_limit_exceeded"]
+        severity: "critical"
+      actions: ["email-ops", "slack-alerts", "system-logs"]
+
+    - name: "resource_warnings"
+      conditions:
+        alert_types: ["resource_violation"]
+        severity: "warning"
+      actions: ["system-logs", "webhook-notifications"]
+
+    - name: "system_health_issues"
+      conditions:
+        alert_types: ["system_health_violation"]
+        severity: "warning"
+      actions: ["system-logs", "email-ops"]
+
+# Health monitoring configuration
+health_monitor:
+  system_thresholds:
+    cpu_percent: 85
+    memory_percent: 85
+    disk_percent: 90
+    process_count: 800
+  process_thresholds:
+    cpu_percent: 75
+    memory_mb: 1024
+    num_threads: 50
+  collection_interval: 45
+  alert_on_violation: true
+
+# Supervisor settings
+supervisor:
+  log_level: "INFO"
+  max_log_size: "10MB"
+  backup_count: 5
+  cleanup_on_exit: true

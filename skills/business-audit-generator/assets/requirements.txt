@@ -1,0 +1,13 @@
+# Required dependencies for Business Audit Generator
+pandas>=1.3.0
+numpy>=1.21.0
+matplotlib>=3.4.0
+scikit-learn>=1.0.0
+scipy>=1.7.0
+jinja2>=3.0.0
+structlog>=21.1.0
+PyYAML>=6.0
+
+# Optional dependencies
+# reportlab>=3.5.67  # For PDF generation
+# weasyprint>=52.5  # Alternative PDF generation

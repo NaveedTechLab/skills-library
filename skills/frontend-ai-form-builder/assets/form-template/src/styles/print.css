@@ -1,0 +1,78 @@
+/* Print-ready styles for AI result panel */
+
+#ai-result-panel {
+  background: #ffffff !important;
+  color: #000000 !important;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 11pt;
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px;
+  box-shadow: none !important;
+}
+
+#ai-result-panel h2 {
+  font-size: 18pt;
+  font-weight: bold;
+  border-bottom: 2pt solid #000;
+  padding-bottom: 6pt;
+  margin-bottom: 14pt;
+}
+
+#ai-result-panel h3 {
+  font-size: 13pt;
+  font-weight: bold;
+  margin: 16pt 0 6pt;
+  border-bottom: 1pt solid #ccc;
+  padding-bottom: 4pt;
+}
+
+#ai-result-panel ul,
+#ai-result-panel ol {
+  padding-left: 20pt;
+  margin: 6pt 0;
+}
+
+#ai-result-panel li {
+  margin-bottom: 4pt;
+}
+
+#ai-result-panel p {
+  margin: 0 0 8pt;
+}
+
+/* Prevent mid-section page breaks */
+.pdf-section {
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  #ai-result-panel,
+  #ai-result-panel * {
+    visibility: visible;
+  }
+
+  #ai-result-panel {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    padding: 15mm 20mm;
+    box-shadow: none;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  @page {
+    margin: 15mm;
+    size: A4 portrait;
+  }
+}

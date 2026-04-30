@@ -1,0 +1,78 @@
+# WhatsApp Watcher - Sample Triggers Configuration
+# Copy and customize for your use case
+
+triggers:
+  # Urgent priority - 1 hour response time
+  - pattern: "urgent"
+    priority: urgent
+    name: urgent-keyword
+    is_regex: false
+    case_sensitive: false
+    
+  - pattern: "asap"
+    priority: urgent
+    name: asap-keyword
+    
+  - pattern: "emergency"
+    priority: urgent
+    name: emergency-keyword
+
+  # High priority - 4 hour response time
+  - pattern: "@task"
+    priority: high
+    name: task-mention
+    
+  - pattern: "please help"
+    priority: high
+    name: help-request
+    
+  - pattern: "call me"
+    priority: high
+    name: call-request
+    
+  - pattern: "deadline.*\\d{1,2}/\\d{1,2}"
+    is_regex: true
+    priority: high
+    name: deadline-with-date
+    
+  - pattern: "meeting.*(today|tomorrow)"
+    is_regex: true
+    priority: high
+    name: meeting-soon
+    
+  - pattern: "by (EOD|end of day|tonight)"
+    is_regex: true
+    priority: high
+    name: eod-deadline
+
+  # Normal priority - 24 hour response time
+  - pattern: "when you get a chance"
+    priority: normal
+    name: when-free
+    
+  - pattern: "invoice|payment|bill"
+    is_regex: true
+    priority: normal
+    name: finance-related
+    
+  - pattern: "question"
+    priority: normal
+    name: question-keyword
+    
+  - pattern: "can you"
+    priority: normal
+    name: request-pattern
+
+  # Low priority - 72 hour response time
+  - pattern: "fyi"
+    priority: low
+    name: fyi-info
+    case_sensitive: false
+    
+  - pattern: "no rush"
+    priority: low
+    name: no-rush
+    
+  - pattern: "whenever"
+    priority: low
+    name: whenever-keyword

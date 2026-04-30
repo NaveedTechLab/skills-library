@@ -1,0 +1,110 @@
+# Default values for Prometheus and Grafana monitoring stack
+
+# Prometheus configuration
+prometheus:
+  enabled: true
+  prometheusSpec:
+    retention: 10d
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: ""
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 8Gi
+    ruleSelectorNilUsesHelmValues: false
+    serviceMonitorSelectorNilUsesHelmValues: false
+    podMonitorSelectorNilUsesHelmValues: false
+    probeSelectorNilUsesHelmValues: false
+  ingress:
+    enabled: false
+
+# AlertManager configuration
+alertmanager:
+  enabled: true
+  alertmanagerSpec:
+    storage:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: ""
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 2Gi
+    retention: 120h
+
+# Grafana configuration
+grafana:
+  enabled: true
+  adminPassword: "prom-operator"
+  persistence:
+    enabled: true
+    size: 5Gi
+  service:
+    type: ClusterIP
+  dashboardProviders:
+    dashboardproviders.yaml:
+      apiVersion: 1
+      providers:
+      - name: 'default'
+        orgId: 1
+        folder: ''
+        type: file
+        disableDeletion: false
+        editable: true
+        options:
+          path: /var/lib/grafana/dashboards/default
+  dashboards:
+    default:
+      # Kubernetes cluster monitoring
+      k8s-cluster-summary:
+        gnetId: 315
+        revision: 1
+        datasource: Prometheus
+      # Node monitoring
+      node-exporter-full:
+        gnetId: 1860
+        revision: 22
+        datasource: Prometheus
+      # Kubernetes apps
+      kubernetes-apps:
+        gnetId: 8685
+        revision: 1
+        datasource: Prometheus
+      # Kubernetes pods
+      kubernetes-pods:
+        gnetId: 6330
+        revision: 1
+        datasource: Prometheus
+  datasources:
+    datasources.yaml:
+      apiVersion: 1
+      datasources:
+      - name: Prometheus
+        type: prometheus
+        url: http://prometheus-server:80
+        access: proxy
+        isDefault: true
+
+# Kube-state-metrics configuration
+kubeStateMetrics:
+  enabled: true
+
+# Node-exporter configuration
+nodeExporter:
+  enabled: true
+
+# Prometheus operator configuration
+prometheusOperator:
+  enabled: true
+  admissionWebhooks:
+    enabled: true
+  prometheusConfigReloader:
+    resources:
+      limits:
+        cpu: 200m
+        memory: 200Mi
+      requests:
+        cpu: 50m
+        memory: 50Mi

@@ -1,0 +1,35 @@
+{
+  "name": "agent_workflow",
+  "version": "1.0.0",
+  "description": "Implements the core Customer Success Agent using OpenAI Agents SDK. Manages the orchestration of tool calls (search, ticket creation, etc.), conversation logic, and state management.",
+  "author": "Claude",
+  "tags": [
+    "openai",
+    "agents",
+    "customer-success",
+    "tool-orchestration",
+    "conversation-flow",
+    "state-management"
+  ],
+  "dependencies": [
+    "openai",
+    "pydantic",
+    "redis",
+    "cryptography",
+    "bleach"
+  ],
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "requirements.txt",
+    "setup.sh",
+    "scripts/customer_success_agent.py",
+    "references/AGENT_ARCHITECTURE.md",
+    "references/TOOL_ORCHESTRATION.md",
+    "references/CONVERSATION_FLOW.md",
+    "references/STATE_MANAGEMENT.md",
+    "references/ERROR_HANDLING.md",
+    "references/SECURITY_PATTERNS.md",
+    "test_agent.py"
+  ]
+}

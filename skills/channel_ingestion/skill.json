@@ -1,0 +1,34 @@
+{
+  "name": "channel_ingestion",
+  "version": "1.0.0",
+  "description": "Implements FastAPI endpoints and webhook handlers for Gmail API, Twilio WhatsApp, and the Web Support Form. Handles message normalization and initial ingestion into the system.",
+  "author": "Claude",
+  "tags": [
+    "webhooks",
+    "fastapi",
+    "gmail",
+    "twilio",
+    "whatsapp",
+    "messaging",
+    "normalization"
+  ],
+  "dependencies": [
+    "fastapi",
+    "twilio",
+    "google-auth",
+    "google-api-python-client"
+  ],
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "requirements.txt",
+    "setup.sh",
+    "scripts/channel_ingestion_service.py",
+    "references/GMAIL_INTEGRATION.md",
+    "references/TWILIO_WHATSAPP.md",
+    "references/WEB_FORM_HANDLING.md",
+    "references/NORMALIZATION_SCHEMA.md",
+    "references/SECURITY_PATTERNS.md",
+    "test_channel_ingestion.py"
+  ]
+}

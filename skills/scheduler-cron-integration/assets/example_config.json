@@ -1,0 +1,39 @@
+{
+  "scheduler": {
+    "enabled": true,
+    "max_concurrent_jobs": 10,
+    "job_storage_path": "./scheduled_jobs.db",
+    "log_retention_days": 30,
+    "check_interval_seconds": 30,
+    "log_level": "INFO",
+    "timezone": "UTC",
+    "max_execution_time_minutes": 60,
+    "enable_persistence": true,
+    "backup_on_startup": false
+  },
+  "cron": {
+    "support_seconds": true,
+    "timezone": "UTC",
+    "max_execution_time_minutes": 60,
+    "validate_expressions": true,
+    "allow_aliases": true,
+    "extended_format": true
+  },
+  "jobs": {
+    "default_timeout_minutes": 10,
+    "max_retries": 3,
+    "retry_delay_seconds": 30,
+    "default_priority": "NORMAL",
+    "enable_notifications": true,
+    "notify_on_failure": true,
+    "notify_on_success": false,
+    "max_history_records": 100
+  },
+  "security": {
+    "enforce_permissions": false,
+    "allowed_users": [],
+    "restricted_commands": ["rm", "shutdown", "reboot"],
+    "audit_logging": true,
+    "require_authentication": true
+  }
+}

@@ -1,0 +1,129 @@
+# Kafka Helm Chart Values
+# Sample configuration for deploying Kafka on Kubernetes with namespace isolation
+
+# Global settings
+global:
+  storageClass: ""
+
+# Kafka settings
+auth:
+  clientProtocol: plaintext  # Change to 'sasl' for production
+  interBrokerProtocol: plaintext  # Change to 'sasl' for production
+  zookeeper:
+    enabled: true
+
+# Number of Kafka brokers
+replicaCount: 3
+
+# Image configuration
+image:
+  registry: docker.io
+  repository: bitnami/kafka
+  tag: 3.6.0
+  pullPolicy: IfNotPresent
+
+# Persistence settings
+persistence:
+  enabled: true
+  storageClass: ""  # Use default storage class
+  size: 100Gi  # Adjust based on expected data volume
+  accessModes:
+    - ReadWriteOnce
+
+# Resources configuration
+resources:
+  limits:
+    cpu: 2000m
+    memory: 4Gi
+  requests:
+    cpu: 1000m
+    memory: 2Gi
+
+# Service configuration
+service:
+  type: ClusterIP
+  ports:
+    client: 9092
+    internal: 9093
+  nodePorts:
+    client: ""
+  annotations: {}
+
+# Network Policy configuration for isolation
+networkPolicy:
+  enabled: true
+  allowExternal: true  # Set to false to restrict to internal traffic only
+  additionalRules: []
+
+# Metrics configuration
+metrics:
+  enabled: true
+  serviceMonitor:
+    enabled: false  # Enable if using Prometheus Operator
+
+  kafka:
+    jmx:
+      enabled: true
+    exporter:
+      enabled: true
+      image:
+        registry: docker.io
+        repository: danielqsj/kafka-exporter
+        tag: latest
+
+# ZooKeeper configuration
+zookeeper:
+  enabled: true
+  replicaCount: 3
+
+  # ZooKeeper resources
+  resources:
+    limits:
+      cpu: 500m
+      memory: 1Gi
+    requests:
+      cpu: 250m
+      memory: 512Mi
+
+  # ZooKeeper persistence
+  persistence:
+    enabled: true
+    storageClass: ""
+    size: 20Gi
+
+# Logging configuration
+logLevel: INFO
+
+# Configuration overrides
+configuration: |
+  # Default Kafka configuration
+  offsets.topic.replication.factor=3
+  transaction.state.log.replication.factor=3
+  transaction.state.log.min.isr=2
+  default.replication.factor=3
+  min.insync.replicas=2
+  inter.broker.protocol.version=3.0
+
+# JVM configuration
+heapOpts: "-Xmx2g -Xms2g"
+
+# Service Account
+serviceAccount:
+  create: true
+  name: ""
+  automountServiceAccountToken: false
+
+# Security Context
+podSecurityContext:
+  enabled: true
+  fsGroup: 1001
+
+containerSecurityContext:
+  enabled: true
+  runAsUser: 1001
+  runAsNonRoot: true
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: false
+  capabilities:
+    drop:
+      - ALL

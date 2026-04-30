@@ -1,0 +1,215 @@
+# MCP Wrapper Configuration Template
+# Configuration for MCP API wrapper scripts
+
+mcp_wrappers:
+  # Global settings for all MCP wrappers
+  global:
+    # Default timeout for operations (in seconds)
+    default_timeout: 30
+
+    # Maximum output size for filtering (in characters)
+    max_output_size: 5000
+
+    # Maximum number of lines to return
+    max_output_lines: 100
+
+    # Enable detailed logging (production should be false)
+    enable_detailed_logging: false
+
+    # Security settings
+    security:
+      # Enable command sanitization
+      enable_sanitization: true
+
+      # Dangerous commands that should be blocked
+      dangerous_commands:
+        - "rm"
+        - "mv"
+        - "dd"
+        - "mkfs"
+        - "shred"
+        - "lvremove"
+        - "vgremove"
+        - "pvremove"
+        - "swapoff"
+        - "umount"
+        - "reboot"
+        - "shutdown"
+        - "kill"
+        - "pkill"
+        - "killall"
+
+      # Safe commands that are allowed
+      safe_commands:
+        - "ls"
+        - "cat"
+        - "grep"
+        - "find"
+        - "head"
+        - "tail"
+        - "wc"
+        - "sort"
+        - "uniq"
+        - "echo"
+        - "pwd"
+        - "whoami"
+        - "ps"
+        - "top"
+        - "df"
+        - "du"
+        - "free"
+        - "netstat"
+        - "curl"
+        - "wget"
+
+    # Result filtering settings
+    filtering:
+      # Enable content filtering
+      enable_filtering: true
+
+      # Maximum number of filtered results to return
+      max_filtered_results: 20
+
+      # Default patterns to exclude from results
+      exclude_patterns:
+        - "password"
+        - "secret"
+        - "token"
+        - "key"
+        - "credential"
+
+      # Enable sensitive data masking
+      enable_masking: true
+      mask_patterns:
+        - "token"
+        - "password"
+        - "secret"
+        - "key"
+
+  # File operation specific settings
+  file_operations:
+    # Maximum file size to read (in bytes)
+    max_file_size: 10485760  # 10MB
+
+    # Allowed file extensions (empty means all allowed)
+    allowed_extensions: []
+
+    # Disallowed file paths
+    disallowed_paths:
+      - "/etc/shadow"
+      - "/etc/passwd"
+      - "/root/"
+      - "/proc/"
+      - "/sys/"
+
+    # Enable path validation
+    enable_path_validation: true
+
+  # Command execution settings
+  command_execution:
+    # Enable command timeout
+    enable_timeout: true
+
+    # Allowed command patterns (regex)
+    allowed_patterns:
+      - "^ls($|\\s+.*)"
+      - "^cat($|\\s+.*)"
+      - "^grep($|\\s+.*)"
+      - "^find($|\\s+.*)"
+      - "^head($|\\s+.*)"
+      - "^tail($|\\s+.*)"
+      - "^wc($|\\s+.*)"
+      - "^sort($|\\s+.*)"
+      - "^uniq($|\\s+.*)"
+      - "^echo($|\\s+.*)"
+      - "^pwd($|\\s+.*)"
+      - "^whoami($|\\s+.*)"
+
+    # Enable command logging
+    enable_command_logging: true
+
+  # Network operation settings
+  network_operations:
+    # Allowed protocols
+    allowed_protocols:
+      - "http"
+      - "https"
+
+    # Blocked domains/IPs
+    blocked_hosts: []
+
+    # Maximum download size (in bytes)
+    max_download_size: 104857600  # 100MB
+
+    # Request timeout (in seconds)
+    request_timeout: 30
+
+  # Result formatting settings
+  result_formatting:
+    # Output format (json, text, csv)
+    output_format: "json"
+
+    # Enable result truncation
+    enable_truncation: true
+
+    # Maximum length for string values in results
+    max_string_length: 500
+
+    # Enable metadata inclusion
+    include_metadata: true
+
+# MCP Server Connection Settings
+mcp_connection:
+  # Base URL for MCP server
+  base_url: "http://localhost:3000"
+
+  # API version to use
+  api_version: "v1"
+
+  # Authentication settings
+  auth:
+    # Enable authentication
+    enabled: false
+
+    # Authentication type (bearer, basic, none)
+    type: "none"
+
+    # Token or credentials (should be in secure storage)
+    token: ""
+    username: ""
+    password: ""
+
+  # Retry settings
+  retry:
+    enabled: true
+    max_attempts: 3
+    delay_seconds: 1
+    backoff_multiplier: 2
+
+# Performance settings
+performance:
+  # Enable caching
+  enable_caching: false
+
+  # Cache TTL (in seconds)
+  cache_ttl: 300
+
+  # Concurrent operation limit
+  max_concurrent_operations: 5
+
+  # Enable compression for large results
+  enable_compression: false
+
+# Logging settings
+logging:
+  # Log level (debug, info, warn, error)
+  level: "info"
+
+  # Log format (text, json)
+  format: "json"
+
+  # Enable audit logging
+  enable_audit: true
+
+  # Audit log file path
+  audit_log_path: "/var/log/mcp-audit.log"

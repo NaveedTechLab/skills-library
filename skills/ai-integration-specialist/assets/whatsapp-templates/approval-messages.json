@@ -1,0 +1,118 @@
+{
+  "approval_request": {
+    "type": "interactive",
+    "interactive": {
+      "type": "button",
+      "header": {
+        "type": "text",
+        "text": "📋 Approval Required"
+      },
+      "body": {
+        "text": "Platform: {{platform}}\nRequest ID: {{request_id}}\n\nContent:\n{{content}}\n\nPlease review and respond."
+      },
+      "footer": {
+        "text": "Reply within 24 hours"
+      },
+      "action": {
+        "buttons": [
+          {
+            "type": "reply",
+            "reply": {
+              "id": "approve_{{request_id}}",
+              "title": "✅ Approve"
+            }
+          },
+          {
+            "type": "reply",
+            "reply": {
+              "id": "reject_{{request_id}}",
+              "title": "❌ Reject"
+            }
+          },
+          {
+            "type": "reply",
+            "reply": {
+              "id": "edit_{{request_id}}",
+              "title": "✏️ Request Edit"
+            }
+          }
+        ]
+      }
+    }
+  },
+
+  "approval_confirmation": {
+    "type": "text",
+    "text": {
+      "body": "✅ *Content Approved*\n\nRequest ID: {{request_id}}\nPlatform: {{platform}}\n\nYour content has been approved and will be published shortly.\n\nThank you for your prompt response!"
+    }
+  },
+
+  "rejection_confirmation": {
+    "type": "text",
+    "text": {
+      "body": "❌ *Content Rejected*\n\nRequest ID: {{request_id}}\nPlatform: {{platform}}\n\nThe content has been rejected. Please reply with your feedback for the content creator."
+    }
+  },
+
+  "edit_request": {
+    "type": "text",
+    "text": {
+      "body": "✏️ *Edit Requested*\n\nRequest ID: {{request_id}}\nPlatform: {{platform}}\n\nPlease reply with your specific edit suggestions or changes you'd like to see."
+    }
+  },
+
+  "status_update": {
+    "type": "text",
+    "text": {
+      "body": "📊 *Status Update*\n\n{{status_message}}\n\nRequest ID: {{request_id}}\nTimestamp: {{timestamp}}"
+    }
+  },
+
+  "reminder": {
+    "type": "text",
+    "text": {
+      "body": "⏰ *Reminder: Approval Pending*\n\nRequest ID: {{request_id}}\nPlatform: {{platform}}\n\nThis approval request is still pending. Please review and respond at your earliest convenience.\n\nExpires in: {{time_remaining}}"
+    }
+  },
+
+  "batch_approval": {
+    "type": "interactive",
+    "interactive": {
+      "type": "list",
+      "header": {
+        "type": "text",
+        "text": "📋 Multiple Approvals"
+      },
+      "body": {
+        "text": "You have {{count}} pending approval requests. Select one to review:"
+      },
+      "footer": {
+        "text": "Tap to view details"
+      },
+      "action": {
+        "button": "View Requests",
+        "sections": [
+          {
+            "title": "Pending Approvals",
+            "rows": "{{approval_list}}"
+          }
+        ]
+      }
+    }
+  },
+
+  "published_notification": {
+    "type": "text",
+    "text": {
+      "body": "🚀 *Content Published*\n\nRequest ID: {{request_id}}\nPlatform: {{platform}}\nPublished at: {{publish_time}}\n\nView post: {{post_url}}\n\nInitial metrics will be available in 1 hour."
+    }
+  },
+
+  "performance_report": {
+    "type": "text",
+    "text": {
+      "body": "📈 *Performance Report*\n\nPost ID: {{post_id}}\nPlatform: {{platform}}\n\n📊 Metrics (24h):\n• Impressions: {{impressions}}\n• Engagement: {{engagement}}\n• Clicks: {{clicks}}\n• Engagement Rate: {{engagement_rate}}%\n\n{{performance_summary}}"
+    }
+  }
+}

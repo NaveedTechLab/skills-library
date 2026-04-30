@@ -1,0 +1,39 @@
+{
+  "name": "event_streaming",
+  "version": "1.0.0",
+  "description": "Implements Kafka-based event streaming to decouple channel intake from agent processing. Manages producers, consumers, and message reliability across the processing pipeline.",
+  "author": "Claude",
+  "tags": [
+    "kafka",
+    "event-streaming",
+    "pubsub",
+    "producer",
+    "consumer",
+    "reliability",
+    "fault-tolerance",
+    "monitoring",
+    "scalability"
+  ],
+  "dependencies": [
+    "kafka-python",
+    "redis",
+    "cryptography",
+    "requests",
+    "psutil",
+    "boto3"
+  ],
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "requirements.txt",
+    "setup.sh",
+    "scripts/event_streaming_manager.py",
+    "references/PRODUCER_PATTERNS.md",
+    "references/CONSUMER_PATTERNS.md",
+    "references/RELIABILITY_PATTERNS.md",
+    "references/MONITORING_GUIDE.md",
+    "references/SCALING_STRATEGIES.md",
+    "references/SECURITY_BEST_PRACTICES.md",
+    "references/FAULT_TOLERANCE.md"
+  ]
+}

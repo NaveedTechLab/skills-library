@@ -1,0 +1,10 @@
+# Required dependencies for Security Sandbox Controls
+cryptography>=3.4.8
+redis>=4.0.0
+pydantic>=1.8.0
+structlog>=21.1.0
+PyYAML>=6.0
+
+# Optional dependencies
+# aiohttp>=3.8.0  # For async operations
+# aioredis>=2.0.0  # For async Redis operations

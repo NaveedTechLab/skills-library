@@ -1,0 +1,52 @@
+{
+  "enabled": true,
+  "log_format": "structured_json",
+  "storage": {
+    "storage_path": "/var/log/audit",
+    "max_size_mb": 100,
+    "compress_logs": true,
+    "keep_archives": 10,
+    "rotation_interval_hours": 24
+  },
+  "security": {
+    "enable_encryption": true,
+    "encryption_key": "your-secure-encryption-key-here",
+    "enable_signing": true,
+    "integrity_protection": true,
+    "access_control_enabled": true,
+    "privileged_access_logging": true
+  },
+  "retention": {
+    "retention_days": 2555,
+    "security_event_retention_days": 3650,
+    "compliance_retention_days": 2555,
+    "auto_cleanup": true,
+    "cleanup_interval_hours": 24
+  },
+  "filters": {
+    "include_event_types": [
+      "agent_action",
+      "file_access",
+      "api_call",
+      "config_change",
+      "authentication",
+      "authorization",
+      "data_access",
+      "system_event",
+      "security_event"
+    ],
+    "exclude_event_types": [
+      "heartbeat",
+      "health_check",
+      "debug_internal"
+    ],
+    "min_log_level": "INFO",
+    "sensitive_data_masking": true,
+    "pii_masking_patterns": [
+      "\\b\\d{3}-\\d{2}-\\d{4}\\b",
+      "\\b[A-Z]{2}\\d{6}\\b",
+      "\\b\\d{16}\\b",
+      "\\b[\\w\\.-]+@[\\w\\.-]+\\.\\w{2,4}\\b"
+    ]
+  }
+}

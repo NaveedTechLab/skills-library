@@ -1,0 +1,54 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: PLACEHOLDER_APP_NAME
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: PLACEHOLDER_REPO_URL
+    path: PLACEHOLDER_PATH
+    targetRevision: HEAD
+    helm: {}
+    kustomize: {}
+    directory: {}
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: PLACEHOLDER_NAMESPACE
+  syncPolicy:
+    automated:
+      enabled: true
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+    - ApplyOutOfSyncOnly=true
+    - PruneLast=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+  revisionHistoryLimit: 10
+  ignoreDifferences:
+  - group: apps
+    kind: Deployment
+    jsonPointers:
+    - /status
+  - group: argoproj.io
+    kind: Application
+    jsonPointers:
+    - /status
+  - group: ""
+    kind: Service
+    jsonPointers:
+    - /spec/clusterIP
+    - /spec/loadBalancerIP
+  info:
+  - name: Documentation
+    value: 'https://argoproj.github.io/argo-cd/'
+  - name: Support
+    value: 'https://argoproj.github.io/argo-cd/support/'

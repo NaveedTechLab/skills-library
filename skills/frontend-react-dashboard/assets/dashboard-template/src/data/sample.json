@@ -1,0 +1,22 @@
+{
+  "metrics": [
+    { "id": "revenue", "label": "Total Revenue",  "value": 124500, "delta": 12.4, "deltaLabel": "vs last 30 days" },
+    { "id": "spend",   "label": "Total Spend",    "value": 48200,  "delta": 3.1,  "deltaLabel": "vs last 30 days" },
+    { "id": "roas",    "label": "Avg ROAS",       "value": "2.58x", "delta": 8.7, "deltaLabel": "vs last 30 days" },
+    { "id": "clicks",  "label": "Total Clicks",   "value": 98340,  "delta": -2.3, "deltaLabel": "vs last 30 days" }
+  ],
+  "trend": [
+    { "date": "2024-03-01", "revenue": 3800, "spend": 1500 },
+    { "date": "2024-03-08", "revenue": 4200, "spend": 1700 },
+    { "date": "2024-03-15", "revenue": 3950, "spend": 1600 },
+    { "date": "2024-03-22", "revenue": 4800, "spend": 1900 },
+    { "date": "2024-03-29", "revenue": 5100, "spend": 2000 }
+  ],
+  "campaigns": [
+    { "id": 1, "name": "Summer Sale",   "spend": 12400, "revenue": 38200, "roas": 3.08, "status": "active" },
+    { "id": 2, "name": "Brand Awareness","spend": 8900,  "revenue": 14300, "roas": 1.61, "status": "active" },
+    { "id": 3, "name": "Retargeting",   "spend": 5600,  "revenue": 21000, "roas": 3.75, "status": "paused" },
+    { "id": 4, "name": "Search - Core", "spend": 9800,  "revenue": 29400, "roas": 3.00, "status": "active" },
+    { "id": 5, "name": "Video Q1",      "spend": 4200,  "revenue": 6300,  "roas": 1.50, "status": "archived" }
+  ]
+}

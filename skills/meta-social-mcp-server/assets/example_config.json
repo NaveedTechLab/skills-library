@@ -1,0 +1,17 @@
+{
+  "meta": {
+    "app_id": "",
+    "app_secret": "",
+    "access_token": "",
+    "page_id": "",
+    "instagram_account_id": "",
+    "api_version": "v21.0",
+    "timeout_seconds": 30,
+    "require_approval_for_posts": true,
+    "require_approval_for_reels": true,
+    "approval_timeout_hours": 48,
+    "max_text_length": 63206,
+    "max_hashtags": 30,
+    "max_images_carousel": 10
+  }
+}

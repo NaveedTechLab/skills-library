@@ -1,0 +1,18 @@
+{
+  "ralph_wiggum": {
+    "max_global_iterations": 10,
+    "max_task_iterations": 5,
+    "check_interval_seconds": 5,
+    "completion_markers": [
+      "status: completed",
+      "## Completed",
+      "[x] Task completed"
+    ],
+    "done_folder": "./vault/Done/",
+    "failed_folder": "./vault/Failed/",
+    "needs_action_folder": "./vault/Needs_Action/",
+    "enable_audit_logging": true,
+    "emergency_stop_file": ".ralph_stop",
+    "database_path": "./ralph_wiggum.db"
+  }
+}

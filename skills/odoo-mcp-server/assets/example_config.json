@@ -1,0 +1,15 @@
+{
+  "odoo": {
+    "url": "http://localhost:8069",
+    "database": "odoo_db",
+    "username": "admin",
+    "api_key": "",
+    "timeout_seconds": 30,
+    "verify_ssl": true,
+    "invoice_threshold": 1000.0,
+    "always_require_approval": ["post_invoice", "create_payment"],
+    "approval_timeout_hours": 24,
+    "requests_per_minute": 60,
+    "burst_limit": 10
+  }
+}

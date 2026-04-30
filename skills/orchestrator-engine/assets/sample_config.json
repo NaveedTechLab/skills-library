@@ -1,0 +1,91 @@
+{
+  "routing_rules": [
+    {
+      "pattern": "**/*.py",
+      "watcher": "python-analyzer",
+      "priority": 10,
+      "description": "Route Python files to Python analyzer"
+    },
+    {
+      "pattern": "**/*.js",
+      "watcher": "javascript-analyzer",
+      "priority": 10,
+      "description": "Route JavaScript files to JavaScript analyzer"
+    },
+    {
+      "pattern": "**/*.ts",
+      "watcher": "typescript-analyzer",
+      "priority": 10,
+      "description": "Route TypeScript files to TypeScript analyzer"
+    },
+    {
+      "pattern": "**/*.md",
+      "watcher": "markdown-processor",
+      "priority": 10,
+      "description": "Route Markdown files to documentation processor"
+    },
+    {
+      "pattern": "**/CLAUDE.md",
+      "watcher": "specification-processor",
+      "priority": 20,
+      "description": "Route CLAUDE.md files to specification processor with high priority"
+    },
+    {
+      "pattern": "**/requirements*.txt",
+      "watcher": "dependency-analyzer",
+      "priority": 15,
+      "description": "Route requirements files to dependency analyzer"
+    },
+    {
+      "pattern": "**/package*.json",
+      "watcher": "dependency-analyzer",
+      "priority": 15,
+      "description": "Route package files to dependency analyzer"
+    },
+    {
+      "pattern": "**/Dockerfile",
+      "watcher": "container-analyzer",
+      "priority": 15,
+      "description": "Route Dockerfiles to container analyzer"
+    },
+    {
+      "pattern": "**/*.yaml",
+      "watcher": "config-processor",
+      "priority": 5,
+      "description": "Route YAML config files to configuration processor"
+    },
+    {
+      "pattern": "**/*.yml",
+      "watcher": "config-processor",
+      "priority": 5,
+      "description": "Route YML config files to configuration processor"
+    }
+  ],
+  "concurrency_limits": {
+    "max_processes": 5,
+    "max_concurrent_files": 10
+  },
+  "output_settings": {
+    "default_output_dir": "./processed",
+    "preserve_original": true,
+    "log_level": "INFO",
+    "include_timestamps": true,
+    "format": "json"
+  },
+  "watcher_endpoints": {
+    "python-analyzer": "http://localhost:8001",
+    "javascript-analyzer": "http://localhost:8002",
+    "typescript-analyzer": "http://localhost:8003",
+    "markdown-processor": "http://localhost:8004",
+    "specification-processor": "http://localhost:8005",
+    "dependency-analyzer": "http://localhost:8006",
+    "container-analyzer": "http://localhost:8007",
+    "config-processor": "http://localhost:8008"
+  },
+  "workflow_settings": {
+    "default_timeout": 300,
+    "retry_attempts": 3,
+    "retry_delay": 5,
+    "error_threshold": 10
+  }
+}

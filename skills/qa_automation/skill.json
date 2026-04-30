@@ -1,0 +1,46 @@
+{
+  "name": "qa_automation",
+  "version": "1.0.0",
+  "description": "Builds the pytest-based test suite for the transition from prototype to production. Implements E2E tests, edge-case validation, and performance metric tracking (latency, accuracy, escalation rates).",
+  "author": "Claude",
+  "tags": [
+    "testing",
+    "pytest",
+    "automation",
+    "e2e",
+    "performance",
+    "metrics",
+    "quality",
+    "edge-case",
+    "validation"
+  ],
+  "dependencies": [
+    "pytest",
+    "requests",
+    "selenium",
+    "pandas",
+    "numpy",
+    "psutil",
+    "pyyaml",
+    "hypothesis",
+    "scikit-learn",
+    "matplotlib",
+    "seaborn",
+    "factory-boy",
+    "faker",
+    "allure-pytest"
+  ],
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "requirements.txt",
+    "setup.sh",
+    "scripts/qa_automation_system.py",
+    "references/TESTING_PATTERNS.md",
+    "references/E2E_TESTING_STRATEGIES.md",
+    "references/PERFORMANCE_TESTING.md",
+    "references/EDGE_CASE_VALIDATION.md",
+    "references/METRIC_TRACKING.md",
+    "references/PYTEST_BEST_PRACTICES.md"
+  ]
+}

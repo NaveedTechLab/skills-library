@@ -1,0 +1,106 @@
+{
+  "templates": {
+    "code_analysis_pipeline": {
+      "name": "Code Analysis Pipeline",
+      "description": "Analyze codebase, identify issues, and generate reports",
+      "steps": [
+        {
+          "name": "scan_codebase",
+          "type": "file_processing",
+          "directory": "./src",
+          "recursive": true,
+          "filters": ["*.py", "*.js", "*.ts", "*.java"]
+        },
+        {
+          "name": "generate_metrics",
+          "type": "custom_command",
+          "command": "python generate_metrics.py --input ./src --output ./metrics"
+        },
+        {
+          "name": "create_report",
+          "type": "custom_command",
+          "command": "python create_report.py --metrics ./metrics --output ./reports/analysis.html"
+        }
+      ]
+    },
+    "documentation_pipeline": {
+      "name": "Documentation Pipeline",
+      "description": "Process documentation files and generate static site",
+      "steps": [
+        {
+          "name": "process_markdown",
+          "type": "file_processing",
+          "directory": "./docs",
+          "recursive": true,
+          "filters": ["*.md", "*.rst"]
+        },
+        {
+          "name": "build_site",
+          "type": "custom_command",
+          "command": "mkdocs build --config-file mkdocs.yml --site-dir ./site"
+        },
+        {
+          "name": "validate_links",
+          "type": "custom_command",
+          "command": "python validate_links.py --site ./site --output ./reports/link_validation.json"
+        }
+      ]
+    },
+    "security_scan_pipeline": {
+      "name": "Security Scan Pipeline",
+      "description": "Scan codebase for security vulnerabilities",
+      "steps": [
+        {
+          "name": "identify_code_files",
+          "type": "file_processing",
+          "directory": "./src",
+          "recursive": true,
+          "filters": ["*.py", "*.js", "*.ts", "*.java", "*.php", "*.rb"]
+        },
+        {
+          "name": "run_security_scanner",
+          "type": "custom_command",
+          "command": "python run_security_scan.py --targets ./src --output ./security-results"
+        },
+        {
+          "name": "generate_security_report",
+          "type": "custom_command",
+          "command": "python generate_security_report.py --input ./security-results --output ./reports/security.html"
+        },
+        {
+          "name": "notify_team",
+          "type": "custom_command",
+          "command": "python notify_team.py --report ./reports/security.html --channel '#security-alerts'"
+        }
+      ]
+    },
+    "file_migration_pipeline": {
+      "name": "File Migration Pipeline",
+      "description": "Migrate files from old format to new format with validation",
+      "steps": [
+        {
+          "name": "discover_files",
+          "type": "file_processing",
+          "directory": "./legacy",
+          "recursive": true,
+          "filters": ["*.old", "*.dat", "*.backup"]
+        },
+        {
+          "name": "migrate_files",
+          "type": "custom_command",
+          "command": "python migrate_files.py --input ./legacy --output ./migrated --format new"
+        },
+        {
+          "name": "validate_migration",
+          "type": "custom_command",
+          "command": "python validate_migration.py --original ./legacy --migrated ./migrated --output ./validation-report.json"
+        },
+        {
+          "name": "archive_originals",
+          "type": "custom_command",
+          "command": "tar -czf legacy-archive.tar.gz ./legacy && rm -rf ./legacy"
+        }
+      ]
+    }
+  }
+}

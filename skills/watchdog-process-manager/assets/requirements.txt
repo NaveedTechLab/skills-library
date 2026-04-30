@@ -1,0 +1,8 @@
+# Required dependencies for Watchdog Process Manager
+psutil>=5.8.0
+requests>=2.25.0
+pyyaml>=6.0
+
+# Optional dependencies for specific features
+# For email alerts: smtplib is built-in to Python
+# For advanced monitoring: additional packages may be needed

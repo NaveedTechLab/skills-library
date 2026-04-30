@@ -1,0 +1,14 @@
+# Required dependencies for LinkedIn Posting Automation
+requests>=2.25.0
+requests-oauthlib>=1.3.0
+structlog>=21.1.0
+SQLAlchemy>=1.4.0
+celery>=5.2.0
+redis>=4.0.0
+PyYAML>=6.0
+pandas>=1.3.0
+cryptography>=3.4.8
+
+# Optional dependencies
+# linkedin-api-client>=2.0.0  # For official LinkedIn API integration
+# aiohttp>=3.8.0  # For async operations

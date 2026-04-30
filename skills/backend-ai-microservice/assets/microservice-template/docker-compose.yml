@@ -1,0 +1,36 @@
+version: '3.9'
+
+services:
+  ai-service:
+    build:
+      context: .
+      target: production
+    ports:
+      - "3000:3000"
+    environment:
+      # Secrets: NO default value — must be set in shell env or .env file
+      - LLM_API_KEY
+      # Non-sensitive config defaults
+      - LLM_BASE_URL=https://api.openai.com/v1
+      - LLM_MODEL=gpt-4o-mini
+      - NODE_ENV=production
+      - LOG_LEVEL=info
+      - PORT=3000
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+    restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /tmp
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    deploy:
+      resources:
+        limits:
+          memory: 512M

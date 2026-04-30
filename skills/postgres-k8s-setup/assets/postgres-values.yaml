@@ -1,0 +1,153 @@
+# PostgreSQL Helm Chart Values
+# Sample configuration for deploying PostgreSQL on Kubernetes
+
+# Global settings
+global:
+  storageClass: ""
+
+# PostgreSQL settings
+architecture: standalone
+
+# Authentication settings
+auth:
+  postgresPassword: "supersecurepassword"  # Change this in production
+  username: "myuser"
+  password: "mypassword"  # Change this in production
+  database: "mydatabase"
+  enablePostgresUser: true
+
+# Image configuration
+image:
+  registry: docker.io
+  repository: bitnami/postgresql
+  tag: 15.3.0
+  pullPolicy: IfNotPresent
+
+# Persistence configuration
+primary:
+  persistence:
+    enabled: true
+    storageClass: ""  # Use default storage class
+    size: 50Gi  # Adjust based on expected data volume
+    accessModes:
+      - ReadWriteOnce
+
+# Resources configuration
+primary:
+  resources:
+    limits:
+      cpu: 1000m
+      memory: 2Gi
+    requests:
+      cpu: 250m
+      memory: 256Mi
+
+# Service configuration
+service:
+  type: ClusterIP
+  ports:
+    postgresql: 5432
+  nodePorts:
+    postgresql: ""
+  annotations: {}
+
+# Network Policy configuration
+networkPolicy:
+  enabled: false  # Enable if network isolation is needed
+
+# Metrics configuration
+metrics:
+  enabled: true
+  serviceMonitor:
+    enabled: false  # Enable if using Prometheus Operator
+
+  postgresql:
+    enabled: true
+    image:
+      registry: docker.io
+      repository: bitnami/postgres-exporter
+      tag: 0.12.0
+
+# PostgreSQL configuration
+primary:
+  configuration: |
+    # Custom PostgreSQL configuration
+    max_connections = 200
+    shared_buffers = 512MB
+    effective_cache_size = 2GB
+    maintenance_work_mem = 128MB
+    checkpoint_completion_target = 0.9
+    wal_buffers = 16MB
+    default_statistics_target = 100
+    random_page_cost = 1.1
+    effective_io_concurrency = 200
+    min_wal_size = 1GB
+    max_wal_size = 4GB
+    max_worker_processes = 2
+    max_parallel_workers_per_gather = 1
+    max_parallel_workers = 2
+    max_parallel_maintenance_workers = 1
+
+# Initdb configuration
+primary:
+  initdb:
+    enabled: true
+    scriptsConfigMap: ""  # Use this to provide custom init scripts
+    scriptsSecret: ""     # Use this to provide init scripts that contain secrets
+
+# Backup configuration
+backup:
+  enabled: false  # Enable and configure for production
+  cronjob:
+    schedule: "0 */8 * * *"
+    historyLimit: 1
+    restartPolicy: OnFailure
+
+# Service Account
+serviceAccount:
+  create: true
+  name: ""
+  automountServiceAccountToken: false
+
+# Security Context
+podSecurityContext:
+  enabled: true
+  fsGroup: 1001
+
+containerSecurityContext:
+  enabled: true
+  runAsUser: 1001
+  runAsNonRoot: true
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: false
+  capabilities:
+    drop:
+      - ALL
+
+# LDAP configuration (optional)
+ldap:
+  enabled: false
+  url: ""
+  binddn: ""
+  bindpw: ""
+  search_attr: ""
+  search_filter: ""
+  scheme: ""
+  tls_reqcert: ""
+
+# Audit logging (optional)
+audit:
+  enabled: false
+  logHostname: false
+  logConnections: false
+  logDisconnections: false
+  logLinePrefix: "'%t [%p]: [%l-1] user=%u,db=%d,app=%a,client=%h '"
+  pgAuditLog: "read,write,function"
+  pgAuditLogCatalog: "off"
+
+# Extended configuration (optional)
+extendedConf: {}
+  # Add extended configuration parameters here
+  # For example:
+  # log_statement: 'all'
+  # log_min_duration_statement: 1000

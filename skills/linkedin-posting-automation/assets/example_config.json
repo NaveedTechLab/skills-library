@@ -1,0 +1,96 @@
+{
+  "linkedin": {
+    "oauth_client_id": "your-linkedin-app-client-id",
+    "oauth_client_secret": "your-linkedin-app-client-secret",
+    "redirect_uri": "https://yourdomain.com/linkedin/callback",
+    "scopes": [
+      "w_member_social",
+      "w_organization_social",
+      "rw_organization_admin"
+    ],
+    "api_version": "202404",
+    "page_ids": [
+      "urn:li:organization:123456789"
+    ]
+  },
+  "approval": {
+    "enabled": true,
+    "required_approvals": 1,
+    "approval_levels": [
+      {
+        "name": "editorial",
+        "role": "content_editor",
+        "required": true
+      },
+      {
+        "name": "compliance",
+        "role": "compliance_officer",
+        "required": false
+      }
+    ],
+    "max_review_days": 7,
+    "auto_reject_expired": true,
+    "notification_on_pending": true
+  },
+  "posting": {
+    "auto_publish": false,
+    "scheduled_buffer_days": 7,
+    "max_posts_per_day": 1,
+    "optimal_posting_times": [
+      "08:00",
+      "12:00",
+      "16:00"
+    ],
+    "timezone": "UTC",
+    "posting_strategy": "scheduled",
+    "retry_failed_posts": true,
+    "retry_attempts": 3
+  },
+  "content": {
+    "max_characters": 3000,
+    "max_hashtags": 5,
+    "media_support": true,
+    "supported_media_types": [
+      "image",
+      "video",
+      "document"
+    ],
+    "max_media_attachment": 1,
+    "enable_templates": true,
+    "default_template_category": "news"
+  },
+  "moderation": {
+    "enabled": true,
+    "ai_content_check": true,
+    "brand_keyword_check": true,
+    "profanity_filter": true,
+    "compliance_keywords": [
+      "confidential",
+      "proprietary",
+      "secret"
+    ],
+    "moderation_level": "moderate",
+    "auto_flag_suspicious_content": true
+  },
+  "notifications": {
+    "email_enabled": true,
+    "slack_enabled": false,
+    "webhook_enabled": false,
+    "email_template_path": "./templates/email_template.txt",
+    "slack_webhook_url": null,
+    "webhook_urls": [],
+    "notification_recipients": [
+      "admin@company.com"
+    ],
+    "notify_on_failure": true,
+    "notify_on_success": false,
+    "notify_on_approval_needed": true
+  },
+  "system_settings": {
+    "debug_mode": false,
+    "log_level": "INFO",
+    "max_content_history_days": 90,
+    "backup_enabled": true,
+    "audit_trail_enabled": true
+  }
+}
